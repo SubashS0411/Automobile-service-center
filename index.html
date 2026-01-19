@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoPremium - Elite Card Services</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/black-chancery" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span style="color:var(--color-primary)">AUTO</span>PREMIUM
+            </a>
+
+            <nav class="nav-links">
+                <!-- Home Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger active">
+                        Home
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="index.html">Main Home</a>
+                        <a href="index2.html">Home V2</a>
+                    </div>
+                </div>
+
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+
+                <!-- Dashboards Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">
+                        Dashboards
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="user-dashboard.html">User Dashboard</a>
+                        <a href="admin-dashboard.html">Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline" style="margin-right: 0.5rem;">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+
+                <div style="width: 1px; height: 24px; background: #e2e8f0; margin: 0 0.5rem;"></div>
+
+                <button id="rtl-toggle-btn" class="nav-icon-btn" title="Toggle RTL" style="font-size: 1.25rem;">
+                    🌐
+                </button>
+                <button id="theme-toggle-btn" class="nav-icon-btn" title="Toggle Theme">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+
+                <div class="mobile-toggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. Hero Section -->
+    <section class="hero" style="background-image: url('Assets/Bg.jpg');">
+        <div class="hero-content reveal-zoom">
+            <h1>Premium Car Service Experience</h1>
+            <p>Elevating automotive care with state-of-the-art technology and expert mechanics.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="services.html" class="btn btn-primary">Our Services</a>
+                <a href="contact.html" class="btn btn-secondary">Book Appointment</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Service Highlights -->
+    <section class="container" style="margin-top: -50px; position: relative; z-index: 10;">
+        <div class="grid-3">
+            <div class="glass-card reveal-left">
+                <h3>Engine Diagnostics</h3>
+                <p class="text-muted">Precision analysis using advanced tools to ensure peak performance.</p>
+            </div>
+            <div class="glass-card reveal-zoom">
+                <h3>Brake & Suspension</h3>
+                <p class="text-muted">Safety critical systems maintained to the highest manufacturer standards.</p>
+            </div>
+            <div class="glass-card reveal-right">
+                <h3>Detailing & Spa</h3>
+                <p class="text-muted">Restoring your vehicle's aesthetic brilliance inside and out.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Why Choose Us -->
+    <section class="container section-space">
+        <div class="section-title reveal">
+            <h2>Why Choose AutoPremium</h2>
+            <p>We redefine the standard of car care.</p>
+        </div>
+        <div class="grid-2" style="align-items: center; gap: 4rem;">
+            <div class="reveal-left">
+                <img src="Assets/Automobile-Industry.jpeg" alt="Our Garage"
+                    style="border-radius: var(--border-radius); box-shadow: var(--shadow-glow); width: 100%; height: 450px; object-fit: cover;">
+            </div>
+            <div class="reveal-right">
+                <ul style="display: flex; flex-direction: column; gap: 2rem;">
+                    <li style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                        <span style="color: var(--color-success); font-size: 2rem; line-height: 1;">✔</span>
+                        <div>
+                            <h4 style="margin-bottom: 0.5rem;">Certified Experts</h4>
+                            <p class="text-muted">Our mechanics are brand-certified professionals trained in the latest
+                                automotive technologies.</p>
+                        </div>
+                    </li>
+                    <li style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                        <span style="color: var(--color-success); font-size: 2rem; line-height: 1;">✔</span>
+                        <div>
+                            <h4 style="margin-bottom: 0.5rem;">Genuine Parts</h4>
+                            <p class="text-muted">We use only original manufacturer parts to ensure your vehicle
+                                maintains its value and performance.</p>
+                        </div>
+                    </li>
+                    <li style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                        <span style="color: var(--color-success); font-size: 2rem; line-height: 1;">✔</span>
+                        <div>
+                            <h4 style="margin-bottom: 0.5rem;">Transparent Pricing</h4>
+                            <p class="text-muted">No hidden costs. Detailed digital invoices and up-front quotes for
+                                every service.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Safety First (From New Assets) -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="container grid-2" style="align-items: center; gap: 4rem;">
+            <div class="reveal-left">
+                <h2 style="color: var(--color-secondary); margin-bottom: 1.5rem;">Safety Inspection Standard</h2>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">
+                    Every vehicle that enters our facility undergoes a rigorous 50-point safety check. We leave nothing
+                    to chance when it comes to your security on the road.
+                </p>
+                <div class="glass-card" style="border-left: 4px solid var(--color-secondary);">
+                    <p style="font-weight: 600;">"Safety isn't just a checklist; it's our promise to every driver."</p>
+                </div>
+            </div>
+            <div class="reveal-right">
+                <img src="Assets/images (10).jpg" alt="Safety Inspection"
+                    style="border-radius: var(--border-radius); box-shadow: var(--shadow-glow); width: 100%; height: 400px; object-fit: cover;">
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Authorized Badges -->
+    <section class="container section-space">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <h4 style="color: var(--color-primary); letter-spacing: 2px;">TRUSTED & CERTIFIED</h4>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 4rem; flex-wrap: wrap;">
+            <img src="Assets/authorized-service-centre.jpg" alt="Authorized Center"
+                style="height: 120px; filter: grayscale(1) opacity(0.7); transition: all 0.3s;"
+                onmouseover="this.style.filter='none'; this.style.opacity='1'"
+                onmouseout="this.style.filter='grayscale(1) opacity(0.7)'">
+            <div class="glass-card" style="padding: 1rem 2rem;">
+                <h3 style="margin:0; font-size: 1.5rem;">ISO 9001:2015</h3>
+            </div>
+            <div class="glass-card" style="padding: 1rem 2rem;">
+                <h3 style="margin:0; font-size: 1.5rem;">BOSCH GOLD</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Process Timeline -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Our Service Process</h2>
+                <p>Seamless from start to finish.</p>
+            </div>
+            <div class="grid-4" style="text-align: center;">
+                <div class="glass-card reveal float-anim">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">📅</div>
+                    <h4>1. Booking</h4>
+                    <p class="text-muted">Schedule online or via app.</p>
+                </div>
+                <div class="glass-card reveal float-anim" style="animation-delay: 0.5s;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+                    <h4>2. Diagnose</h4>
+                    <p class="text-muted">Full inspection & quota.</p>
+                </div>
+                <div class="glass-card reveal float-anim" style="animation-delay: 1s;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🔧</div>
+                    <h4>3. Repair</h4>
+                    <p class="text-muted">Expert job handling.</p>
+                </div>
+                <div class="glass-card reveal float-anim" style="animation-delay: 1.5s;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
+                    <h4>4. Delivery</h4>
+                    <p class="text-muted">Ready to hit the road.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Live Stats -->
+    <section class="section-space" style="background-color: var(--color-primary); color: #fff;">
+        <div class="container">
+            <div class="grid-4" style="text-align: center;">
+                <div class="reveal">
+                    <h2 class="counter-value" data-target="5000" data-suffix="+">0</h2>
+                    <p>Cars Serviced</p>
+                </div>
+                <div class="reveal">
+                    <h2 class="counter-value" data-target="150" data-suffix="+">0</h2>
+                    <p>Expert Mechanics</p>
+                </div>
+                <div class="reveal">
+                    <h2 class="counter-value" data-target="25" data-suffix="+">0</h2>
+                    <p>Years Experience</p>
+                </div>
+                <div class="reveal">
+                    <h2 class="counter-value" data-target="99" data-suffix="%">0</h2>
+                    <p>Client Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Testimonials -->
+    <section class="container section-space">
+        <div class="section-title reveal">
+            <h2>Client Testimonials</h2>
+        </div>
+        <div class="grid-3">
+            <div class="glass-card reveal-left">
+                <p class="text-muted">"Absolutely the best service in town. My car feels brand new!"</p>
+                <h5 style="margin-top: 1rem;">- Alex D.</h5>
+            </div>
+            <div class="glass-card reveal-zoom">
+                <p class="text-muted">"Transparent pricing and super fast delivery. Highly recommended."</p>
+                <h5 style="margin-top: 1rem;">- Sarah M.</h5>
+            </div>
+            <div class="glass-card reveal-right">
+                <p class="text-muted">"The team really knows their stuff. Great attention to detail."</p>
+                <h5 style="margin-top: 1rem;">- James W.</h5>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Partner Brands -->
+    <section class="section-space" style="background: var(--bg-card); overflow: hidden;">
+        <div class="container section-title reveal" style="margin-bottom: 1rem;">
+            <h2>We Service All Brands</h2>
+        </div>
+        <div class="marquee-container reveal" style="opacity: 1;">
+            <div class="marquee-track">
+                <!-- Original Set -->
+                <div class="brand-plate">
+                    <h2>BMW</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>AUDI</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>MERCEDES</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>TESLA</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>TOYOTA</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>FORD</h2>
+                </div>
+
+                <!-- Duplicated Set for Infinite Loop -->
+                <div class="brand-plate">
+                    <h2>BMW</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>AUDI</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>MERCEDES</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>TESLA</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>TOYOTA</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>FORD</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Our Technology -->
+    <section class="container section-space">
+        <div class="grid-2" style="align-items: center; gap: 4rem;">
+            <div class="reveal-left">
+                <div class="section-title" style="text-align: left; margin-bottom: 1.5rem;">
+                    <h2>Advanced Technology</h2>
+                    <p>We invest in the future of automotive care.</p>
+                </div>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">
+                    Our facility is equipped with cutting-edge diagnostic tools and computerized systems that interface
+                    directly with your vehicle's onboard computer. We don't just guess; we analyze data with precision
+                    to identify issues before they become problems.
+                </p>
+                <ul class="text-muted" style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+                    <li>• Computerized 3D Wheel Alignment</li>
+                    <li>• Advanced Engine Mapping & Tuning</li>
+                    <li>• Hybrid & Electric Vehicle Specialists</li>
+                    <li>• Laser-Guided Body Repair</li>
+                </ul>
+                <a href="services.html" class="btn btn-outline">Learn More</a>
+            </div>
+            <div class="reveal-right">
+                <img src="Assets/Automobile-Industry-in-India.jpg" alt="Advanced Technology"
+                    style="border-radius: var(--border-radius); box-shadow: var(--shadow-glow); width: 100%; height: 400px; object-fit: cover;">
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Gallery -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Our Workshop Gallery</h2>
+                <p>A glimpse into our world class facilities.</p>
+            </div>
+            <div class="grid-3" style="grid-auto-rows: 250px;">
+                <img src="Assets/images (1).jpg" alt="Gallery 1" class="reveal-zoom"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                <img src="Assets/images (2).jpg" alt="Gallery 2" class="reveal-zoom delay-100"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                <img src="Assets/images (3).jpg" alt="Gallery 3" class="reveal-zoom delay-200"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                <img src="Assets/images (4).jpg" alt="Gallery 4" class="reveal-zoom"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                <img src="Assets/images (5).jpg" alt="Gallery 5" class="reveal-zoom delay-100"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                <img src="Assets/images (6).jpg" alt="Gallery 6" class="reveal-zoom delay-200"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Latest News -->
+    <section class="container section-space">
+        <div class="section-title reveal">
+            <h2>Latest Auto News</h2>
+            <p>Stay updated with the latest trends and tips.</p>
+        </div>
+        <div class="grid-3">
+            <div class="glass-card reveal-left" style="padding: 0; overflow: hidden;">
+                <img src="Assets/image.jpg" alt="News 1" style="width: 100%; height: 200px; object-fit: cover;">
+                <div style="padding: 1.5rem;">
+                    <span style="color: var(--color-primary); font-size: 0.8rem; font-weight: bold;">TIPS &
+                        TRICKS</span>
+                    <h4 style="margin: 0.5rem 0;">Summer Car Care Tips</h4>
+                    <p class="text-muted" style="font-size: 0.9rem;">Essential maintenance steps to keep your car
+                        running cool during the heatwave.</p>
+                    <a href="#"
+                        style="display: block; margin-top: 1rem; color: var(--color-primary); font-weight: 500;">Read
+                        More &rarr;</a>
+                </div>
+            </div>
+            <div class="glass-card reveal-zoom" style="padding: 0; overflow: hidden;">
+                <img src="Assets/image11.jpg" alt="News 2" style="width: 100%; height: 200px; object-fit: cover;">
+                <div style="padding: 1.5rem;">
+                    <span style="color: var(--color-primary); font-size: 0.8rem; font-weight: bold;">INDUSTRY
+                        NEWS</span>
+                    <h4 style="margin: 0.5rem 0;">The Future of EVs</h4>
+                    <p class="text-muted" style="font-size: 0.9rem;">How electric vehicle technology is reshaping the
+                        automotive service industry.</p>
+                    <a href="#"
+                        style="display: block; margin-top: 1rem; color: var(--color-primary); font-weight: 500;">Read
+                        More &rarr;</a>
+                </div>
+            </div>
+            <div class="glass-card reveal-right" style="padding: 0; overflow: hidden;">
+                <img src="Assets/images.jpg" alt="News 3" style="width: 100%; height: 200px; object-fit: cover;">
+                <div style="padding: 1.5rem;">
+                    <span style="color: var(--color-primary); font-size: 0.8rem; font-weight: bold;">COMPANY
+                        UPDATE</span>
+                    <h4 style="margin: 0.5rem 0;">New Branch Opening</h4>
+                    <p class="text-muted" style="font-size: 0.9rem;">We are excited to announce our new premium facility
+                        opening in Downtown.</p>
+                    <a href="#"
+                        style="display: block; margin-top: 1rem; color: var(--color-primary); font-weight: 500;">Read
+                        More &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: FAQ -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Frequently Asked Questions</h2>
+                <p>Common questions answered for you.</p>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem;">
+                <div class="glass-card reveal" style="cursor: pointer; padding: 1.5rem;">
+                    <h4 style="display: flex; justify-content: space-between; align-items: center;">
+                        Do I need an appointment?
+                        <span>+</span>
+                    </h4>
+                    <p class="text-muted" style="margin-top: 1rem; display: none;">While walk-ins are welcome, we highly
+                        recommend booking an appointment to ensure prompt service and minimal waiting time.</p>
+                </div>
+                <div class="glass-card reveal" style="cursor: pointer; padding: 1.5rem;">
+                    <h4 style="display: flex; justify-content: space-between; align-items: center;">
+                        Do you offer warranty on repairs?
+                        <span>+</span>
+                    </h4>
+                    <p class="text-muted" style="margin-top: 1rem; display: none;">Yes, we offer a 12-month or
+                        12,000-mile warranty on all parts and labor for your peace of mind.</p>
+                </div>
+                <div class="glass-card reveal" style="cursor: pointer; padding: 1.5rem;">
+                    <h4 style="display: flex; justify-content: space-between; align-items: center;">
+                        What brands do you service?
+                        <span>+</span>
+                    </h4>
+                    <p class="text-muted" style="margin-top: 1rem; display: none;">We specialize in premium and luxury
+                        brands including BMW, Audi, Mercedes-Benz, Lexus, and more, but we are equipped to service all
+                        major makes.</p>
+                </div>
+                <div class="glass-card reveal" style="cursor: pointer; padding: 1.5rem;">
+                    <h4 style="display: flex; justify-content: space-between; align-items: center;">
+                        Is there a waiting area?
+                        <span>+</span>
+                    </h4>
+                    <p class="text-muted" style="margin-top: 1rem; display: none;">Yes, our premium lounge includes free
+                        Wi-Fi, coffee, and comfortable seating so you can work or relax while you wait.</p>
+                </div>
+            </div>
+            <!-- Simple script for FAQ toggle -->
+            <script>
+                document.querySelectorAll('.glass-card h4').forEach(header => {
+                    header.addEventListener('click', () => {
+                        const p = header.nextElementSibling;
+                        const span = header.querySelector('span');
+                        if (p.style.display === 'none' || !p.style.display) {
+                            p.style.display = 'block';
+                            span.textContent = '-';
+                        } else {
+                            p.style.display = 'none';
+                            span.textContent = '+';
+                        }
+                    });
+                });
+            </script>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Newsletter Parallax -->
+    <section
+        style="background-image: url('Assets/bg2.jpg'); background-attachment: fixed; background-size: cover; background-position: center; position: relative; padding: 6rem 0;">
+        <div
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1;">
+        </div>
+        <div class="container relative reveal-zoom"
+            style="position: relative; z-index: 2; text-align: center; color: white;">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p style="margin-bottom: 2rem; color: rgba(255,255,255,0.8);">Get exclusive offers and maintenance tips
+                delivered to your inbox.</p>
+            <form style="max-width: 500px; margin: 0 auto; display: flex; gap: 0.5rem;">
+                <input type="email" placeholder="Enter your email address"
+                    style="flex: 1; padding: 1rem; border-radius: 8px; border: none; outline: none;">
+                <button type="button" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 8. CTA Section -->
+    <section class="section-space"
+        style="background: linear-gradient(45deg, var(--color-primary), var(--color-secondary)); text-align: center; color: white;">
+        <div class="container reveal">
+            <h2>Ready to Upgrade Your Ride?</h2>
+            <p style="margin-bottom: 2rem; color: rgba(255,255,255,0.9);">Book your service appointment today and
+                experience the difference.</p>
+            <a href="contact.html" class="btn" style="background: #fff; color: var(--color-primary);">Book Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <a href="#" class="logo" style="margin-bottom: 1rem; color: #fff;">
+                    <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
+                </a>
+                <p>Professional automobile services tailored for premium vehicles. We ensure quality, safety, and
+                    performance.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul style="margin-top: 1rem;">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul style="margin-top: 1rem;">
+                    <li>Engine Repair</li>
+                    <li>Tire Service</li>
+                    <li>Detailing</li>
+                    <li>Diagnostics</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p style="margin-top: 1rem;">123 Auto Street, Motor City</p>
+                <p>+1 234 567 890</p>
+                <p>support@autopremium.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AutoPremium. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="theme-toggle.js"></script>
+    <script src="rtl-toggle.js"></script>
+    <script src="main.js"></script>
+
+    <script src="transitions.js"></script>
+</body>
+
+</html>

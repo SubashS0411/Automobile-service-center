@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - AutoPremium</title>
+    <link href="https://fonts.cdnfonts.com/css/black-chancery" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard-animations.css">
+    <style>
+        /* Specific Admin Table Styles */
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background: rgba(255, 149, 0, 0.2);
+            color: var(--color-accent);
+        }
+
+        .status-active {
+            background: rgba(0, 123, 255, 0.2);
+            color: var(--color-primary);
+        }
+
+        .status-completed {
+            background: rgba(57, 255, 20, 0.2);
+            color: #39ff14;
+        }
+
+        .status-cancelled {
+            background: rgba(255, 59, 48, 0.2);
+            color: var(--color-secondary);
+        }
+
+        /* Chart responsiveness fixes */
+        .chart-container {
+            min-height: 280px;
+            width: 100%;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="nav-container flex justify-between items-center" style="max-width: none; padding: 0 2rem;">
+            <div class="flex items-center gap-1">
+                <a href="index.html" class="logo">
+                    <span style="color:var(--color-primary)">AUTO</span>PREMIUM
+                </a>
+            </div>
+
+            <nav class="nav-links flex items-center gap-2">
+                <!-- Home Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">
+                        Home
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="index.html">Main Home</a>
+                        <a href="index2.html">Home V2</a>
+                    </div>
+                </div>
+
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+
+                <!-- Dashboards Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger active">
+                        Dashboards
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="user-dashboard.html">User Dashboard</a>
+                        <a href="admin-dashboard.html">Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <div class="nav-actions flex items-center gap-1">
+                <a href="login.html" class="btn btn-outline" style="padding: 5px 15px; border-radius: 4px;">Login</a>
+                <a href="signup.html" class="btn btn-primary" style="padding: 5px 15px; border-radius: 4px;">Sign Up</a>
+
+                <div style="width: 1px; height: 24px; background: rgba(0,0,0,0.1); margin: 0 0.5rem;"></div>
+
+                <button id="rtl-toggle-btn" class="nav-icon-btn" title="Toggle RTL">
+                    🌐
+                </button>
+                <button id="theme-toggle-btn" class="nav-icon-btn" title="Toggle Theme">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+
+                <div class="mobile-toggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="javascript:void(0)" class="tab-link active" data-tab="overview"><i>📊</i> Overview</a></li>
+                <li><a href="javascript:void(0)" class="tab-link" data-tab="users"><i>👥</i> Users</a></li>
+                <li><a href="javascript:void(0)" class="tab-link" data-tab="services"><i>🔧</i> Services</a></li>
+                <li><a href="javascript:void(0)" class="tab-link" data-tab="bookings"><i>📅</i> Bookings</a></li>
+                <li><a href="javascript:void(0)" class="tab-link" data-tab="inventory"><i>📦</i> Inventory</a></li>
+                <li><a href="javascript:void(0)" class="tab-link" data-tab="reports"><i>📈</i> Reports</a></li>
+                <li><a href="javascript:void(0)" class="tab-link" data-tab="settings"><i>⚙️</i> Settings</a></li>
+                <li><a href="index.html" style="color: var(--color-secondary);"><i>🚪</i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- TAB: Overview -->
+            <div id="overview" class="tab-pane active">
+                <section class="reveal-zoom">
+                    <h2 style="margin-bottom: 2rem;">Platform Overview</h2>
+                    <div class="grid" style="grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem;">
+                        <div class="card flex items-center gap-1 bg-subtle-primary">
+                            <div
+                                style="width: 50px; height: 50px; border-radius: 50%; background: rgba(84, 81, 229, 0.2); display: flex; align-items: center; justify-content: center; color: var(--color-primary); font-size: 1.5rem; flex-shrink: 0;">
+                                <i>💰</i>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-muted); font-size: 0.9rem;">Total Revenue</div>
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-success);"
+                                    id="ticker-revenue">$124,500</div>
+                            </div>
+                        </div>
+                        <div class="card flex items-center gap-1 bg-subtle-accent">
+                            <div
+                                style="width: 50px; height: 50px; border-radius: 50%; background: rgba(255, 149, 0, 0.2); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 1.5rem; flex-shrink: 0;">
+                                <i>📅</i>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-muted); font-size: 0.9rem;">Active Bookings</div>
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary);">42</div>
+                            </div>
+                        </div>
+                        <div class="card flex items-center gap-1 bg-subtle-success">
+                            <div
+                                style="width: 50px; height: 50px; border-radius: 50%; background: rgba(57, 255, 20, 0.2); display: flex; align-items: center; justify-content: center; color: var(--color-success); font-size: 1.5rem; flex-shrink: 0;">
+                                <i>🔧</i>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-muted); font-size: 0.9rem;">Mechanics Online</div>
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-accent);">18</div>
+                            </div>
+                        </div>
+                        <div class="card flex items-center gap-1 bg-subtle-secondary">
+                            <div
+                                style="width: 50px; height: 50px; border-radius: 50%; background: rgba(255, 59, 48, 0.2); display: flex; align-items: center; justify-content: center; color: var(--color-secondary); font-size: 1.5rem; flex-shrink: 0;">
+                                <i>🆘</i>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-muted); font-size: 0.9rem;">Pending Support</div>
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-secondary);">7</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Charts Grid -->
+                <div class="charts-grid" style="margin-top: 2rem;">
+                    <div class="chart-card">
+                        <h3>Revenue Growth</h3>
+                        <div id="revenueChart" class="chart-container-inner"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Team Workload (Real-time)</h3>
+                        <div id="teamWorkloadChart" class="chart-container-inner"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Service Distribution</h3>
+                        <div id="servicePieChart" class="chart-container-inner"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Vehicle Models</h3>
+                        <div id="modelUsageChart" class="chart-container-inner"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Service Regions</h3>
+                        <div id="regionalServiceChart" class="chart-container-inner"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Workshop Status</h3>
+                        <div id="workshopStatusChart" class="chart-container-inner"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Booking Status</h3>
+                        <div id="statusChart" class="chart-container-inner"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Revenue Source</h3>
+                        <div id="revSourceChart" class="chart-container-inner"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Customer Satisfaction</h3>
+                        <div id="customerSatisfactionChart" class="chart-container-inner"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: Bookings -->
+            <div id="bookings" class="tab-pane">
+                <div class="charts-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="chart-card">
+                        <h3>Booking Trends</h3>
+                        <div id="bookingTrendChart" class="chart-container-inner"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Efficiency Rating</h3>
+                        <div
+                            style="margin-top: 1.5rem; text-align: left; padding: 1rem; flex: 1; display: flex; flex-direction: column; justify-content: center;">
+                            <div style="margin-bottom: 1rem;">
+                                <span>Master Mechanic A</span>
+                                <div
+                                    style="height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-top: 5px;">
+                                    <div
+                                        style="width: 95%; height: 100%; background: var(--color-success); border-radius: 4px;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 1rem;">
+                                <span>Service Pro B</span>
+                                <div
+                                    style="height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-top: 5px;">
+                                    <div
+                                        style="width: 82%; height: 100%; background: var(--color-primary); border-radius: 4px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section style="margin-top: 2rem;">
+                    <div class="glass-card">
+                        <h3>Active Booking Details</h3>
+                        <div style="overflow-x: auto; margin-top: 1rem;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                                        <th style="padding: 1rem;">ID</th>
+                                        <th style="padding: 1rem;">Customer</th>
+                                        <th style="padding: 1rem;">Vehicle</th>
+                                        <th style="padding: 1rem;">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                        <td style="padding: 1rem;">#BK001</td>
+                                        <td style="padding: 1rem;">Alice</td>
+                                        <td style="padding: 1rem;">Audi Q7</td>
+                                        <td style="padding: 1rem;"><span
+                                                class="status-badge status-pending">Pending</span></td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                        <td style="padding: 1rem;">#BK002</td>
+                                        <td style="padding: 1rem;">Robert</td>
+                                        <td style="padding: 1rem;">Tesla S</td>
+                                        <td style="padding: 1rem;"><span
+                                                class="status-badge status-active">Active</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB: Inventory -->
+            <div id="inventory" class="tab-pane">
+                <div class="charts-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="chart-card">
+                        <h3>Service vs Parts Revenue</h3>
+                        <div id="servicePartsChart" class="chart-container-inner"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Inventory Status</h3>
+                        <div style="overflow-x: auto; margin-top: 1rem; flex: 1;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="text-align: left; border-bottom: 2px solid var(--text-muted);">
+                                        <th style="padding: 1rem;">Item</th>
+                                        <th style="padding: 1rem;">Quantity</th>
+                                        <th style="padding: 1rem;">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                        <td style="padding: 1rem;">5W-30 Synthetic Oil</td>
+                                        <td style="padding: 1rem;">2 Barrels</td>
+                                        <td style="padding: 1rem; color: var(--color-secondary);">Low</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                        <td style="padding: 1rem;">Brake Pads (Model X)</td>
+                                        <td style="padding: 1rem;">50 Sets</td>
+                                        <td style="padding: 1rem; color: var(--color-success);">Good</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB: Users -->
+            <div id="users" class="tab-pane">
+                <section class="glass-card">
+                    <div class="section-title">
+                        <h2>User Management</h2>
+                    </div>
+                    <div style="overflow-x: auto; margin-top: 1rem;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="text-align: left; border-bottom: 2px solid var(--text-muted);">
+                                    <th style="padding: 1rem;">Name</th>
+                                    <th style="padding: 1rem;">Email</th>
+                                    <th style="padding: 1rem;">Role</th>
+                                    <th style="padding: 1rem;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <td style="padding: 1rem;">Alice Wonder</td>
+                                    <td style="padding: 1rem;">alice@example.com</td>
+                                    <td style="padding: 1rem;">Customer</td>
+                                    <td style="padding: 1rem; color: var(--color-success);">Active</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <td style="padding: 1rem;">Bob Builder</td>
+                                    <td style="padding: 1rem;">bob@example.com</td>
+                                    <td style="padding: 1rem;">Mechanic</td>
+                                    <td style="padding: 1rem; color: var(--color-primary);">On Duty</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB: Services -->
+            <div id="services" class="tab-pane">
+                <section class="grid-3">
+                    <div class="glass-card">
+                        <h4>Oil Change</h4>
+                        <p class="text-muted">$49 - 30 mins</p>
+                        <button class="btn btn-outline" style="margin-top: 1rem; width: 100%;">Edit Service</button>
+                    </div>
+                    <div class="glass-card">
+                        <h4>Brake Pad Replacement</h4>
+                        <p class="text-muted">$89 - 60 mins</p>
+                        <button class="btn btn-outline" style="margin-top: 1rem; width: 100%;">Edit Service</button>
+                    </div>
+                    <div class="glass-card">
+                        <h4>Full Synthetic Service</h4>
+                        <p class="text-muted">$199 - 4 hours</p>
+                        <button class="btn btn-outline" style="margin-top: 1rem; width: 100%;">Edit Service</button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB: Reports -->
+            <div id="reports" class="tab-pane">
+                <section class="glass-card">
+                    <h2>Admin Operation Log</h2>
+                    <div style="height: 500px; overflow-y: auto; margin-top: 1rem;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="text-align: left; border-bottom: 2px solid var(--text-muted);">
+                                    <th style="padding: 1rem;">Timestamp</th>
+                                    <th style="padding: 1rem;">Action</th>
+                                    <th style="padding: 1rem;">User</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <td style="padding: 1rem;">2026-05-20 10:00:01</td>
+                                    <td style="padding: 1rem;">Login Success</td>
+                                    <td style="padding: 1rem;">Admin</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <td style="padding: 1rem;">2026-05-20 10:25:30</td>
+                                    <td style="padding: 1rem;">Service Completed</td>
+                                    <td style="padding: 1rem;">Mechanic</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <td style="padding: 1rem;">2026-05-20 11:10:00</td>
+                                    <td style="padding: 1rem;">Alert: Low Oil Inventory</td>
+                                    <td style="padding: 1rem;">System</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB: Settings -->
+            <div id="settings" class="tab-pane">
+                <section class="glass-card">
+                    <h2>System Settings</h2>
+                    <form style="max-width: 600px; margin-top: 1.5rem;">
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; margin-bottom: 0.5rem;">Service Center Name</label>
+                            <input type="text" class="form-control" value="AutoPremium HQ"
+                                style="width: 100%; padding: 0.8rem;">
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label style="display: block; margin-bottom: 0.5rem;">Admin Email</label>
+                            <input type="email" class="form-control" value="admin@autopremium.com"
+                                style="width: 100%; padding: 0.8rem;">
+                        </div>
+                        <button class="btn btn-primary" style="padding: 0.8rem 2rem;">Apply Changes</button>
+                    </form>
+                </section>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="theme-toggle.js"></script>
+    <script src="rtl-toggle.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ApexCharts Global Config
+            const commonOptions = {
+                chart: {
+                    fontFamily: "'Black Chancery', cursive",
+                    toolbar: { show: false },
+                    background: 'transparent',
+                    foreColor: 'var(--text-muted)'
+                },
+                grid: { borderColor: 'rgba(255,255,255,0.05)', strokeDashArray: 4 },
+                tooltip: { theme: 'dark' },
+                theme: { mode: 'dark' }
+            };
+
+            // 1. Revenue Growth (Bar)
+            const revenueChart = new ApexCharts(document.querySelector("#revenueChart"), {
+                ...commonOptions,
+                series: [{ name: 'Revenue', data: [15000, 25000, 22500, 40000] }],
+                chart: { ...commonOptions.chart, type: 'bar', height: '100%', width: '100%' },
+                plotOptions: { bar: { borderRadius: 4, columnWidth: '50%' } },
+                colors: ['var(--color-success)'],
+                xaxis: { categories: ['Q1', 'Q2', 'Q3', 'Q4'] },
+                yaxis: { labels: { formatter: (val) => '$' + val.toLocaleString() } }
+            });
+            revenueChart.render();
+
+            // 2. Team Workload (Area - Live)
+            const workloadChart = new ApexCharts(document.querySelector("#teamWorkloadChart"), {
+                ...commonOptions,
+                series: [{ name: 'Load %', data: Array(20).fill(0).map(() => Math.floor(Math.random() * 40) + 20) }],
+                chart: { ...commonOptions.chart, type: 'area', height: '100%', width: '100%', animations: { enabled: false } },
+                stroke: { curve: 'smooth', width: 2 },
+                fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.45, opacityTo: 0.05 } },
+                colors: ['var(--color-secondary)'],
+                xaxis: { labels: { show: false }, axisBorder: { show: false } },
+                yaxis: { min: 0, max: 100, labels: { formatter: (val) => val + '%' } }
+            });
+            workloadChart.render();
+
+            // 3. Service Distribution (Donut)
+            new ApexCharts(document.querySelector("#servicePieChart"), {
+                ...commonOptions,
+                series: [45, 25, 20, 10],
+                chart: { ...commonOptions.chart, type: 'donut', height: '100%', width: '100%' },
+                labels: ['Repair', 'Oil', 'Wash', 'Diagnostics'],
+                colors: ['var(--color-primary)', 'var(--color-accent)', 'var(--color-success)', 'var(--color-secondary)'],
+                stroke: { width: 0 },
+                legend: { position: 'bottom' }
+            }).render();
+
+            // 4. Vehicle Models (Pie)
+            new ApexCharts(document.querySelector("#modelUsageChart"), {
+                ...commonOptions,
+                series: [35, 30, 20, 15],
+                chart: { ...commonOptions.chart, type: 'pie', height: '100%', width: '100%' },
+                labels: ['BMW', 'Audi', 'Tesla', 'Mercedes'],
+                colors: ['var(--color-primary)', 'var(--color-accent)', 'var(--color-secondary)', '#6c757d'],
+                stroke: { width: 0 },
+                legend: { position: 'bottom' }
+            }).render();
+
+            // 5. Service Regions (Polar Area)
+            new ApexCharts(document.querySelector("#regionalServiceChart"), {
+                ...commonOptions,
+                series: [30, 45, 15, 10],
+                chart: { ...commonOptions.chart, type: 'polarArea', height: '100%', width: '100%' },
+                labels: ['North', 'South', 'East', 'West'],
+                colors: ['var(--color-success)', 'var(--color-primary)', 'var(--color-accent)', 'var(--color-secondary)'],
+                stroke: { width: 0 },
+                legend: { position: 'bottom' }
+            }).render();
+
+            // 6. Workshop Status (Radial Bar)
+            new ApexCharts(document.querySelector("#workshopStatusChart"), {
+                ...commonOptions,
+                series: [85, 92, 60],
+                chart: { ...commonOptions.chart, type: 'radialBar', height: '100%', width: '100%' },
+                plotOptions: { radialBar: { dataLabels: { total: { show: true, label: 'Capacity', formatter: () => '79%' } } } },
+                labels: ['Bays Full', 'Staff On', 'Parts Stock'],
+                colors: ['var(--color-primary)', 'var(--color-success)', 'var(--color-accent)']
+            }).render();
+
+            // 7. Booking Status (Doughnut)
+            new ApexCharts(document.querySelector("#statusChart"), {
+                ...commonOptions,
+                series: [60, 25, 15],
+                chart: { ...commonOptions.chart, type: 'donut', height: '100%', width: '100%' },
+                labels: ['Completed', 'In Progress', 'Pending'],
+                colors: ['var(--color-success)', 'var(--color-primary)', 'var(--color-accent)'],
+                stroke: { width: 0 },
+                legend: { position: 'bottom' }
+            }).render();
+
+            // 8. Revenue Source (Pie)
+            new ApexCharts(document.querySelector("#revSourceChart"), {
+                ...commonOptions,
+                series: [65, 25, 10],
+                chart: { ...commonOptions.chart, type: 'pie', height: '100%', width: '100%' },
+                labels: ['Services', 'Parts', 'Consulting'],
+                colors: ['var(--color-primary)', 'var(--color-accent)', 'var(--color-secondary)'],
+                stroke: { width: 0 },
+                legend: { position: 'bottom' }
+            }).render();
+
+            // 9. Customer Satisfaction (Gauge)
+            new ApexCharts(document.querySelector("#customerSatisfactionChart"), {
+                ...commonOptions,
+                series: [88],
+                chart: { ...commonOptions.chart, type: 'radialBar', height: '100%', width: '100%' },
+                plotOptions: {
+                    radialBar: {
+                        startAngle: -135,
+                        endAngle: 135,
+                        hollow: { size: '60%' },
+                        dataLabels: {
+                            name: { show: true, fontSize: '14px', offsetY: -10 },
+                            value: { show: true, fontSize: '28px', fontWeight: 'bold', offsetY: 5, formatter: (val) => val + '%' }
+                        }
+                    }
+                },
+                fill: {
+                    type: 'gradient',
+                    gradient: {
+                        shade: 'dark',
+                        type: 'horizontal',
+                        shadeIntensity: 0.5,
+                        gradientToColors: ['var(--color-success)'],
+                        inverseColors: false,
+                        opacityFrom: 1,
+                        opacityTo: 1,
+                        stops: [0, 100]
+                    }
+                },
+                labels: ['Satisfaction'],
+                colors: ['var(--color-primary)']
+            }).render();
+
+            // 10. Booking Trends (Line)
+            new ApexCharts(document.querySelector("#bookingTrendChart"), {
+                ...commonOptions,
+                series: [{ name: 'Bookings', data: [12, 19, 15, 25, 22, 30, 18] }],
+                chart: { ...commonOptions.chart, type: 'line', height: '100%', width: '100%' },
+                stroke: { curve: 'smooth', width: 3 },
+                colors: ['var(--color-primary)'],
+                xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], labels: { show: true } }
+            }).render();
+
+            // 11. Service vs Parts (Stacked Bar)
+            new ApexCharts(document.querySelector("#servicePartsChart"), {
+                ...commonOptions,
+                series: [
+                    { name: 'Services', data: [12000, 19000, 15000, 22000] },
+                    { name: 'Parts', data: [3000, 6000, 7500, 18000] }
+                ],
+                chart: { ...commonOptions.chart, type: 'bar', height: '100%', width: '100%', stacked: true },
+                colors: ['var(--color-primary)', 'var(--color-accent)'],
+                xaxis: { categories: ['Q1', 'Q2', 'Q3', 'Q4'] }
+            }).render();
+
+            // LIVE UPDATE LOGIC
+            setInterval(() => {
+                // Team Workload Update
+                const currentData = workloadChart.w.config.series[0].data;
+                const nextVal = Math.floor(Math.random() * (60 - 20) + 20);
+                currentData.push(nextVal);
+                currentData.shift();
+                workloadChart.updateSeries([{ data: currentData }]);
+
+                // Revenue Ticker
+                const tickerRev = document.querySelector('#ticker-revenue');
+                if (tickerRev) {
+                    let curRev = parseInt(tickerRev.innerText.replace(/[^0-9]/g, ''));
+                    curRev += Math.floor(Math.random() * 50) + 10;
+                    tickerRev.innerText = '$' + curRev.toLocaleString();
+                }
+            }, 3000);
+
+            // Tab Switching Logic
+            const tabLinks = document.querySelectorAll('.tab-link');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetTab = link.getAttribute('data-tab');
+                    tabLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                    tabPanes.forEach(pane => {
+                        pane.classList.remove('active');
+                        if (pane.id === targetTab) pane.classList.add('active');
+                    });
+                    window.dispatchEvent(new Event('resize'));
+                });
+            });
+        });
+    </script>
+    <script src="main.js"></script>
+    <script src="transitions.js"></script>
+</body>
+
+</html>
+```

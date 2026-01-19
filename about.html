@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AutoPremium</title>
+    <!-- Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/black-chancery" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific Styles for Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--color-primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-container.left {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-container.right {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            position: relative;
+            border: var(--border-glass);
+            box-shadow: var(--shadow-card);
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--bg-body);
+            border: 4px solid var(--color-secondary);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-container.right::after {
+            left: -10px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-container.left {
+                text-align: left;
+            }
+
+            .timeline-container.right {
+                left: 0;
+            }
+
+            .timeline-container::after {
+                left: 21px;
+            }
+
+            .timeline-container.right::after {
+                left: 21px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span style="color:var(--color-primary)">AUTO</span>PREMIUM
+            </a>
+
+            <nav class="nav-links">
+                <!-- Home Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">
+                        Home
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="index.html">Main Home</a>
+                        <a href="index2.html">Home V2</a>
+                    </div>
+                </div>
+
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+
+                <!-- Dashboards Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">
+                        Dashboards
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="user-dashboard.html">User Dashboard</a>
+                        <a href="admin-dashboard.html">Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline" style="margin-right: 0.5rem;">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+
+                <div style="width: 1px; height: 24px; background: #e2e8f0; margin: 0 0.5rem;"></div>
+
+                <button id="rtl-toggle-btn" class="nav-icon-btn" title="Toggle RTL" style="font-size: 1.25rem;">
+                    🌐
+                </button>
+                <button id="theme-toggle-btn" class="nav-icon-btn" title="Toggle Theme">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+
+                <div class="mobile-toggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. Hero / Story -->
+    <section class="container section-space">
+        <div class="grid-2" style="align-items: center;">
+            <div class="reveal-left">
+                <h1 style="font-size: 3rem; margin-bottom: 2rem;">Driven by <span
+                        style="color: var(--color-primary)">Passion</span></h1>
+                <p class="text-muted" style="margin-bottom: 1rem;">
+                    Established in 2010, AutoPremium began with a single bay garage and a vision to revolutionize car
+                    service transparency.
+                    Today, we stand as the city's premier automotive care center, combining old-school mechanics with
+                    modern diagnostics.
+                </p>
+                <p>
+                    We believe every car has a soul, and our job is to keep it vibrant. From classic restorations to EV
+                    maintenance, we handle it all.
+                </p>
+            </div>
+            <div class="reveal-right">
+                <img src="Assets/bg2.jpg" alt="Our Garage History"
+                    style="border-radius: var(--border-radius); box-shadow: var(--shadow-glow);">
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Vision & Mission -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="container grid-2">
+            <div class="glass-card reveal-left">
+                <h2 style="color: var(--color-secondary);">Our Mission</h2>
+                <p>To provide reliable, high-quality, and transparent automotive services that ensure safety and
+                    customer satisfaction at every turn.</p>
+            </div>
+            <div class="glass-card reveal-right">
+                <h2 style="color: var(--color-success);">Our Vision</h2>
+                <p>To be the world's most trusted partner in automotive care, pioneering eco-friendly solutions and
+                    advanced tech integrations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Premium Lounge (From New Assets) -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="container grid-2" style="align-items: center; gap: 4rem;">
+            <div class="reveal-left">
+                <h2 style="color: var(--color-primary); margin-bottom: 1.5rem;">While You Wait</h2>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">
+                    Service day shouldn't be a chore. Relax in our premium guest lounge featuring high-speed Wi-Fi,
+                    artisanal coffee, and a panoramic view of our service bays.
+                </p>
+                <div class="glass-card">
+                    <h4 style="color: var(--color-success);">Business Ready</h4>
+                    <p class="text-muted" style="margin-top: 0.5rem;">Private workstations available for those who need
+                        to stay productive while their vehicle gets refreshed.</p>
+                </div>
+            </div>
+            <div class="reveal-right">
+                <img src="Assets/images (12).jpg" alt="Guest Lounge"
+                    style="border-radius: var(--border-radius); box-shadow: var(--shadow-glow); width: 100%; height: 400px; object-fit: cover;">
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Quality Standards -->
+    <section class="container section-space">
+        <div class="grid-2" style="align-items: center; gap: 4rem;">
+            <div class="reveal-left">
+                <img src="Assets/images (14).jpg" alt="Quality Standards"
+                    style="border-radius: var(--border-radius); box-shadow: var(--shadow-card); width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="reveal-right">
+                <h2 style="color: var(--color-secondary); margin-bottom: 1.5rem;">Uncompromising Quality</h2>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">
+                    Every part we install and every lubricant we use meets or exceeds OEM specifications. Our quality
+                    assurance team double-checks every job before delivery.
+                </p>
+                <ul class="text-muted" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <li>• Triple-Point Inspection Workflow</li>
+                    <li>• Digital Service Records</li>
+                    <li>• Post-Service Performance Audit</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Core Values -->
+    <section class="container section-space">
+        <div class="section-title reveal">
+            <h2>Our Core Values</h2>
+            <p>The principles that drive us.</p>
+        </div>
+        <div class="grid-4" style="text-align: center;">
+            <div class="glass-card reveal-zoom">
+                <h3 style="color: var(--color-primary);">Integrity</h3>
+                <p class="text-muted">Honest diagnostics and pricing.</p>
+            </div>
+            <div class="glass-card reveal-zoom" style="animation-delay: 0.1s;">
+                <h3 style="color: var(--color-secondary);">Quality</h3>
+                <p class="text-muted">Zero compromise on parts.</p>
+            </div>
+            <div class="glass-card reveal-zoom" style="animation-delay: 0.2s;">
+                <h3 style="color: var(--color-accent);">Safety</h3>
+                <p class="text-muted">Your safety is our priority.</p>
+            </div>
+            <div class="glass-card reveal-zoom" style="animation-delay: 0.3s;">
+                <h3 style="color: var(--color-success);">Innovation</h3>
+                <p class="text-muted">Embracing new technology.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Timeline Animation -->
+    <section class="container section-space">
+        <div class="section-title reveal">
+            <h2>Our Journey</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-container left reveal-left">
+                <div class="timeline-content">
+                    <h3>2010</h3>
+                    <p>Opened our first garage in Downtown with 2 mechanics.</p>
+                </div>
+            </div>
+            <div class="timeline-container right reveal-right">
+                <div class="timeline-content">
+                    <h3>2015</h3>
+                    <p>Expanded to 10 bays and introduced digital diagnostics.</p>
+                </div>
+            </div>
+            <div class="timeline-container left reveal-left">
+                <div class="timeline-content">
+                    <h3>2020</h3>
+                    <p>Won "Best Service Center" award and partnered with major brands.</p>
+                </div>
+            </div>
+            <div class="timeline-container right reveal-right">
+                <div class="timeline-content">
+                    <h3>2024</h3>
+                    <p>Launched Eco-Friendly Waterless Wash and EV Support Wing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Infrastructure -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="container grid-2 reveal-zoom" style="align-items: center;">
+            <div style="order: 2;">
+                <h2>World Class Infrastructure</h2>
+                <p class="text-muted" style="margin-top: 1rem;">
+                    Our facility covers 10,000 sq ft, equipped with hydraulic lifters, 3D wheel alignment systems, and
+                    sterile paint booths.
+                </p>
+            </div>
+            <div style="order: 1;">
+                <img src="Assets/Automobile-Industry-in-India.jpg" alt="World Class Infrastructure"
+                    style="width: 100%; max-height: 400px; border-radius: var(--border-radius); object-fit: cover; box-shadow: var(--shadow-card);">
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Work Environment Gallery -->
+    <section class="container section-space">
+        <div class="section-title reveal">
+            <h2>Life at AutoPremium</h2>
+            <p>Where passion meets precision.</p>
+        </div>
+        <div class="grid-3" style="grid-auto-rows: 200px;">
+            <img src="Assets/images (1).jpg" class="reveal-zoom"
+                style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+            <img src="Assets/images (2).jpg" class="reveal-zoom delay-100"
+                style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+            <img src="Assets/images (3).jpg" class="reveal-zoom delay-200"
+                style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+            <img src="Assets/images (4).jpg" class="reveal-zoom"
+                style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+            <img src="Assets/images (5).jpg" class="reveal-zoom delay-100"
+                style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+            <img src="Assets/images (6).jpg" class="reveal-zoom delay-200"
+                style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+        </div>
+    </section>
+
+    <!-- 5. Expert Mechanics -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="section-title reveal">
+            <h2>Meet The Experts</h2>
+        </div>
+        <div class="grid-4">
+            <div class="glass-card reveal-left" style="text-align: center;">
+                <img src="Assets/profile.jpg"
+                    style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem;">
+                <h4>John Doe</h4>
+                <p class="text-muted">Chief Engineer</p>
+            </div>
+            <div class="glass-card reveal-zoom" style="text-align: center;">
+                <img src="Assets/profile2.jpg"
+                    style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem;">
+                <h4>Jane Smith</h4>
+                <p class="text-muted">Diagnostics Head</p>
+            </div>
+            <div class="glass-card reveal-zoom" style="text-align: center;">
+                <img src="Assets/profile3.jpg"
+                    style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem;">
+                <h4>Mike Ross</h4>
+                <p class="text-muted">Paint Specialist</p>
+            </div>
+            <div class="glass-card reveal-right" style="text-align: center;">
+                <img src="Assets/profile4.jpg"
+                    style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem;">
+                <h4>Sarah Lee</h4>
+                <p class="text-muted">Customer Relations</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Certifications -->
+    <section class="section-space" style="background: var(--bg-card); text-align: center;">
+        <div class="container reveal">
+            <h2>Certifications & Standards</h2>
+            <div style="display: flex; gap: 2rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
+                <div class="btn-outline" style="padding: 1rem 2rem; border-radius: 8px;">ISO 9001:2015</div>
+                <div class="btn-outline" style="padding: 1rem 2rem; border-radius: 8px;">Bosch Certified</div>
+                <div class="btn-outline" style="padding: 1rem 2rem; border-radius: 8px;">ASE Certified</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Awards -->
+    <section class="container section-space">
+        <div class="section-title reveal">
+            <h2>Awards & Milestones</h2>
+        </div>
+        <div class="grid-3">
+            <div class="glass-card reveal-left" style="border-left: 4px solid gold;">
+                <h4>Best Garage 2022</h4>
+                <p class="text-muted">Automotive Excellence Awards</p>
+            </div>
+            <div class="glass-card reveal-zoom" style="border-left: 4px solid silver;">
+                <h4>Customer Choice 2023</h4>
+                <p class="text-muted">Local Business Summit</p>
+            </div>
+            <div class="glass-card reveal-right" style="border-left: 4px solid #cd7f32;">
+                <h4>Top Innovator 2021</h4>
+                <p class="text-muted">Tech in Auto Guild</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. CTA Banner -->
+    <section class="reveal" style="text-align: center; background: url('Assets/bg3.jpg') fixed center; color: white;">
+        <div style="background: rgba(0,0,0,0.7); padding: 5rem 0;">
+            <div class="container">
+                <h2>Join Our Family of Satisfied Drivers</h2>
+                <a href="contact.html" class="btn btn-primary" style="margin-top: 2rem;">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <a href="#" class="logo" style="margin-bottom: 1rem; color: #fff;">
+                    <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
+                </a>
+                <p>Professional automobile services tailored for premium vehicles.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul style="margin-top: 1rem;">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul style="margin-top: 1rem;">
+                    <li>Engine Repair</li>
+                    <li>Detailing</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p>123 Auto Street, Motor City</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AutoPremium. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="theme-toggle.js"></script>
+    <script src="rtl-toggle.js"></script>
+    <script src="main.js"></script>
+
+    <script src="transitions.js"></script>
+</body>
+
+</html>

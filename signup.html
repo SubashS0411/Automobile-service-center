@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - AutoPremium</title>
+    <!-- Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/black-chancery" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding-top: var(--header-height);
+        }
+
+        .auth-content {
+            background: linear-gradient(135deg, rgba(255, 59, 48, 0.2), rgba(0, 0, 0, 0.9)), url('Assets/Bg.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem;
+            color: white;
+        }
+
+        .auth-form-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-body);
+            position: relative;
+        }
+
+        .auth-form-card {
+            width: 100%;
+            max-width: 450px;
+            padding: 2rem;
+            background: var(--bg-card);
+            /* Ensure card has background */
+        }
+
+        @media (max-width: 900px) {
+            .auth-container {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-content {
+                display: none;
+            }
+
+            .auth-form-wrapper {
+                padding: 4rem 2rem;
+                min-height: calc(100vh - var(--header-height));
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span style="color:var(--color-primary)">AUTO</span>PREMIUM
+            </a>
+
+            <nav class="nav-links">
+                <!-- Home Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">
+                        Home
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="index.html">Main Home</a>
+                        <a href="index2.html">Home V2</a>
+                    </div>
+                </div>
+
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+
+                <!-- Dashboards Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">
+                        Dashboards
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="user-dashboard.html">User Dashboard</a>
+                        <a href="admin-dashboard.html">Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline" style="margin-right: 0.5rem;">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+
+                <div style="width: 1px; height: 24px; background: #e2e8f0; margin: 0 0.5rem;"></div>
+
+                <button id="rtl-toggle-btn" class="nav-icon-btn" title="Toggle RTL" style="font-size: 1.25rem;">
+                    🌐
+                </button>
+                <button id="theme-toggle-btn" class="nav-icon-btn" title="Toggle Theme">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+
+                <div class="mobile-toggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="auth-container">
+        <!-- Left Side: Content -->
+        <div class="auth-content reveal-left">
+            <h1 style="font-size: 3.5rem; margin-bottom: 2rem;">Join the Elite Club.</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; line-height: 1.8; color: rgba(255,255,255,0.9);">
+                Experience seamless car maintenance like never before. Sign up today to unlock Priority Booking, Loyalty
+                Discounts, and 24/7 Roadside Assistance.
+            </p>
+            <div style="display: flex; gap: 2rem; margin-top: 1rem;">
+                <div style="text-align: center;">
+                    <h2 style="color: var(--color-success)">10%</h2>
+                    <p style="font-size: 0.9rem;">Off First Service</p>
+                </div>
+                <div style="text-align: center;">
+                    <h2 style="color: var(--color-secondary)">Free</h2>
+                    <p style="font-size: 0.9rem;">Diagnostic Check</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Form -->
+        <div class="auth-form-wrapper">
+            <div class="auth-form-card reveal-right">
+                <h2 style="margin-bottom: 0.5rem; text-align: center; color: var(--color-primary);">Create Account</h2>
+                <p style="text-align: center; margin-bottom: 2rem; color: var(--color-secondary);">It only takes a
+                    minute.</p>
+
+                <form>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label
+                            style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--color-primary);">Full
+                            Name</label>
+                        <input type="text" class="form-control"
+                            style="width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,0.1); border-radius: 4px; background: var(--bg-body); color: var(--text-main);">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label
+                            style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--color-primary);">Email
+                            Address</label>
+                        <input type="email" class="form-control"
+                            style="width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,0.1); border-radius: 4px; background: var(--bg-body); color: var(--text-main);">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label
+                            style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--color-primary);">Password</label>
+                        <input type="password" class="form-control"
+                            style="width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,0.1); border-radius: 4px; background: var(--bg-body); color: var(--text-main);">
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <label
+                            style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--color-primary);">Confirm
+                            Password</label>
+                        <input type="password" class="form-control"
+                            style="width: 100%; padding: 12px; border: 1px solid rgba(0,0,0,0.1); border-radius: 4px; background: var(--bg-body); color: var(--text-main);">
+                    </div>
+
+                    <button type="button" class="btn btn-primary"
+                        style="width: 100%; padding: 12px; margin-bottom: 1rem; background-color: #5451e5 !important; color: #ffffff !important; font-weight: bold; border: none;"
+                        onclick="window.location.href='user-dashboard.html'">Create Account</button>
+
+                    <div style="text-align: center; font-size: 0.9rem;">
+                        <p class="text-muted" style="color: var(--text-muted) !important;">Already a member? <a
+                                href="login.html" style="color: var(--color-primary);">Login here</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <a href="index.html" class="logo" style="margin-bottom: 1rem; color: #fff;">
+                    <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
+                </a>
+                <p>Professional automobile services tailored for premium vehicles. We ensure quality, safety, and
+                    performance.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul style="margin-top: 1rem;">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul style="margin-top: 1rem;">
+                    <li>Engine Repair</li>
+                    <li>Tire Service</li>
+                    <li>Detailing</li>
+                    <li>Diagnostics</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p style="margin-top: 1rem;">123 Auto Street, Motor City</p>
+                <p>+1 234 567 890</p>
+                <p>support@autopremium.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AutoPremium. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="theme-toggle.js"></script>
+    <script src="rtl-toggle.js"></script>
+    <script src="main.js"></script>
+
+    <script src="transitions.js"></script>
+</body>
+
+</html>

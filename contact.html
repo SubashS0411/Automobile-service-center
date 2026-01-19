@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - AutoPremium</title>
+    <!-- Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/black-chancery" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Floating Label Styles */
+        .form-group {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid var(--text-muted);
+            color: var(--text-main);
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-label {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            color: var(--text-muted);
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+
+        .form-control:focus+.form-label,
+        .form-control:not(:placeholder-shown)+.form-label {
+            top: -20px;
+            font-size: 0.8rem;
+            color: var(--color-primary);
+        }
+
+        .form-control:focus {
+            border-bottom-color: var(--color-primary);
+        }
+
+        /* Map Container */
+        .map-box {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        .map-box iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(0.2) contrast(1.1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span style="color:var(--color-primary)">AUTO</span>PREMIUM
+            </a>
+
+            <nav class="nav-links">
+                <!-- Home Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">
+                        Home
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="index.html">Main Home</a>
+                        <a href="index2.html">Home V2</a>
+                    </div>
+                </div>
+
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+
+                <!-- Dashboards Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">
+                        Dashboards
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="user-dashboard.html">User Dashboard</a>
+                        <a href="admin-dashboard.html">Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline" style="margin-right: 0.5rem;">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+
+                <div style="width: 1px; height: 24px; background: #e2e8f0; margin: 0 0.5rem;"></div>
+
+                <button id="rtl-toggle-btn" class="nav-icon-btn" title="Toggle RTL" style="font-size: 1.25rem;">
+                    🌐
+                </button>
+                <button id="theme-toggle-btn" class="nav-icon-btn" title="Toggle Theme">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+
+                <div class="mobile-toggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="container section-space" style="text-align: center; padding-top: 100px; padding-bottom: 2rem;">
+        <div class="reveal-zoom">
+            <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Get In Touch</h1>
+            <div style="width: 50px; height: 4px; background: var(--color-primary); margin: 0 auto 1.5rem;"></div>
+            <p class="text-muted" style="font-size: 1.1rem;">We are here to help you 24/7. Reach out via form, phone, or
+                visit our centers.</p>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Facility Spotlight (From New Assets) -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="container grid-2" style="align-items: center; gap: 4rem;">
+            <div class="reveal-left">
+                <img src="Assets/imagess.jpg" alt="Our Facility"
+                    style="border-radius: var(--border-radius); box-shadow: var(--shadow-glow); width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="reveal-right">
+                <h2 style="color: var(--color-primary); margin-bottom: 1.5rem;">Our Home, Your Hub</h2>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">
+                    Step into our state-of-the-art facility located in the heart of the city. Designed for efficiency
+                    and customer comfort, it's where the magic happens.
+                </p>
+                <div class="glass-card">
+                    <h4>Visit Anytime</h4>
+                    <p class="text-muted" style="margin-top: 0.5rem;">We offer guided tours of our workshop for car
+                        enthusiasts and students. Just ask at the front desk!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Locations & 3. Form -->
+    <section class="container section-space">
+        <div class="grid-2" style="align-items: start;">
+            <!-- Booking Form -->
+            <div class="glass-card reveal-left">
+                <h2 style="margin-bottom: 2rem;">Book Appointment</h2>
+                <form onsubmit="event.preventDefault(); alert('Booking Request Sent!');">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="name" placeholder=" " required>
+                        <label for="name" class="form-label">Full Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email" placeholder=" " required>
+                        <label for="email" class="form-label">Email Address</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control" id="phone" placeholder=" " required>
+                        <label for="phone" class="form-label">Phone Number</label>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" style="color: var(--text-muted);">
+                            <option>Select Service</option>
+                            <option>General Service</option>
+                            <option>Oil Change</option>
+                            <option>Diagnostics</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" class="form-control" placeholder=" " required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 2.5rem;">Confirm
+                        Booking</button>
+                </form>
+
+                <div style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
+                    <h3 style="margin-bottom: 1rem;">Support Channels</h3>
+                    <div style="display: flex; gap: 1rem;">
+                        <button class="btn btn-outline"
+                            style="width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">FB</button>
+                        <button class="btn btn-outline"
+                            style="width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">IG</button>
+                        <button class="btn btn-outline"
+                            style="width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">TW</button>
+                        <button class="btn btn-outline"
+                            style="width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">WA</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Locations Info & Map -->
+            <div class="reveal-right">
+                <div class="map-box glass">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.119763973046!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1714150567228!5m2!1sen!2sin"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="glass-card" style="margin-bottom: 2rem;">
+                    <h3>Main Headquarters</h3>
+                    <p class="text-muted">123 Auto Street, Motor City, MC 90210</p>
+                    <h4 style="margin-top: 1rem; color: var(--color-primary);">+1 234 567 890</h4>
+                </div>
+                <div class="glass-card">
+                    <h3>Downtown Branch</h3>
+                    <p class="text-muted">456 City Center, Downtown, MC 90211</p>
+                    <h4 style="margin-top: 1rem; color: var(--color-secondary);">+1 234 567 891</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Global Presence -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Global Presence</h2>
+                <p>Serving clients worldwide.</p>
+            </div>
+            <div class="grid-4">
+                <div class="glass-card reveal-zoom" style="text-align: center;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🗽</div>
+                    <h4>New York</h4>
+                    <p class="text-muted">Flagship Center</p>
+                </div>
+                <div class="glass-card reveal-zoom" style="text-align: center; animation-delay: 0.1s;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">💂</div>
+                    <h4>London</h4>
+                    <p class="text-muted">European Hub</p>
+                </div>
+                <div class="glass-card reveal-zoom" style="text-align: center; animation-delay: 0.2s;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🗼</div>
+                    <h4>Tokyo</h4>
+                    <p class="text-muted">Tech Innovation</p>
+                </div>
+                <div class="glass-card reveal-zoom" style="text-align: center; animation-delay: 0.3s;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🏜️</div>
+                    <h4>Dubai</h4>
+                    <p class="text-muted">Luxury Division</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Newsletter -->
+    <section class="section-space"
+        style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%); color: white;">
+        <div class="container reveal-zoom" style="text-align: center; padding: 4rem 0;">
+            <h2>Stay Connected</h2>
+            <p style="margin-bottom: 2rem; opacity: 0.9;">Subscribe for the latest updates and offers.</p>
+            <div style="display: flex; justify-content: center; gap: 1rem;">
+                <input type="email" placeholder="Your Email"
+                    style="padding: 0.8rem; border-radius: 50px; border: none; width: 300px; outline: none;">
+                <button class="btn"
+                    style="background: white; color: var(--color-primary); border-radius: 50px; padding: 0.8rem 2rem;">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FAQs -->
+
+    <!-- 7. FAQs -->
+    <section class="container section-space">
+        <div class="section-title reveal">
+            <h2>Frequently Asked Questions</h2>
+        </div>
+        <div class="grid-2">
+            <div class="reveal-left">
+                <details class="glass-card" style="margin-bottom: 1rem; cursor: pointer;">
+                    <summary style="font-weight: bold; padding-bottom: 0.5rem;">How long does a general service take?
+                    </summary>
+                    <p class="text-muted" style="margin-top: 0.5rem;">Typically 4-6 hours depending on the vehicle
+                        condition.</p>
+                </details>
+                <details class="glass-card" style="margin-bottom: 1rem; cursor: pointer;">
+                    <summary style="font-weight: bold; padding-bottom: 0.5rem;">Do you offer pick up and drop?</summary>
+                    <p class="text-muted" style="margin-top: 0.5rem;">Yes, within a 15-mile radius of our centers.</p>
+                </details>
+            </div>
+            <div class="reveal-right">
+                <details class="glass-card" style="margin-bottom: 1rem; cursor: pointer;">
+                    <summary style="font-weight: bold; padding-bottom: 0.5rem;">Are your parts genuine?</summary>
+                    <p class="text-muted" style="margin-top: 0.5rem;">100% OEM parts with manufacturer warranty.</p>
+                </details>
+                <details class="glass-card" style="margin-bottom: 1rem; cursor: pointer;">
+                    <summary style="font-weight: bold; padding-bottom: 0.5rem;">Can I book online?</summary>
+                    <p class="text-muted" style="margin-top: 0.5rem;">Absolutely! Use the form above or our mobile app.
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Final CTA -->
+    <section class="section-space" style="text-align: center;">
+        <div class="container reveal-zoom">
+            <h2>Still have questions?</h2>
+            <button class="btn btn-secondary" style="margin-top: 1rem;">Call Support</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <a href="index.html" class="logo" style="margin-bottom: 1rem; color: #fff;">
+                    <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
+                </a>
+                <p>Professional automobile services tailored for premium vehicles. We ensure quality, safety, and
+                    performance.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul style="margin-top: 1rem;">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul style="margin-top: 1rem;">
+                    <li>Engine Repair</li>
+                    <li>Tire Service</li>
+                    <li>Detailing</li>
+                    <li>Diagnostics</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p style="margin-top: 1rem;">123 Auto Street, Motor City</p>
+                <p>+1 234 567 890</p>
+                <p>support@autopremium.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AutoPremium. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="theme-toggle.js"></script>
+    <script src="rtl-toggle.js"></script>
+    <script src="main.js"></script>
+
+    <script src="transitions.js"></script>
+</body>
+
+</html>

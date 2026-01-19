@@ -1,0 +1,394 @@
+/* ========================================
+   DASHBOARD ANIMATIONS
+   ======================================== */
+
+/* Entry Animations */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px rgba(84, 81, 229, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(84, 81, 229, 0.6), 0 0 30px rgba(84, 81, 229, 0.4);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Dashboard Card Animations */
+.dashboard-layout .card,
+.dashboard-layout .chart-card {
+    animation: slideInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+.dashboard-layout .card:nth-child(1),
+.dashboard-layout .chart-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.dashboard-layout .card:nth-child(2),
+.dashboard-layout .chart-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dashboard-layout .card:nth-child(3),
+.dashboard-layout .chart-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.dashboard-layout .card:nth-child(4),
+.dashboard-layout .chart-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.dashboard-layout .card:nth-child(5),
+.dashboard-layout .chart-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.dashboard-layout .card:nth-child(6),
+.dashboard-layout .chart-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+/* Enhanced Hover Effects */
+.dashboard-layout .card:hover,
+.dashboard-layout .chart-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15),
+        0 0 20px rgba(84, 81, 229, 0.1);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dashboard-layout .card:active,
+.dashboard-layout .chart-card:active {
+    transform: translateY(-4px) scale(1.01);
+    transition: all 0.1s ease;
+}
+
+/* Button Animations */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Sidebar Animations */
+.sidebar-menu a {
+    animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidebar-menu a:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.sidebar-menu a:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.sidebar-menu a:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.sidebar-menu a:nth-child(4) {
+    animation-delay: 0.25s;
+}
+
+.sidebar-menu a:nth-child(5) {
+    animation-delay: 0.3s;
+}
+
+.sidebar-menu a:nth-child(6) {
+    animation-delay: 0.35s;
+}
+
+.sidebar-menu a:hover {
+    transform: translateX(8px);
+    background: linear-gradient(90deg,
+            rgba(84, 81, 229, 0.1) 0%,
+            rgba(84, 81, 229, 0.05) 100%);
+}
+
+.sidebar-menu a.active {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Icon Animations */
+.sidebar-menu a i,
+.nav-icon-btn svg,
+.btn i {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidebar-menu a:hover i {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.nav-icon-btn:hover svg {
+    transform: rotate(20deg) scale(1.1);
+}
+
+.btn:hover i {
+    transform: translateX(3px);
+}
+
+/* Loading Animation */
+.loading-shimmer {
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* Stats Counter Animation */
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.card .counter-value {
+    animation: countUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+/* Badge Pulse */
+.badge,
+.status-badge {
+    animation: pulse 2s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+/* Tab Transition */
+.tab-pane {
+    animation: fadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tab-pane.active {
+    animation: slideInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Chart Loading State */
+.chart-container-inner::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 3px solid rgba(84, 81, 229, 0.2);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: rotate 1s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.chart-container-inner.loading::before {
+    opacity: 1;
+}
+
+/* Notification Animation */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.notification {
+    animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Ripple Effect */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.ripple:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Accessibility: Respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark Mode Glow Effects */
+[data-theme="dark"] .card:hover,
+[data-theme="dark"] .chart-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(84, 81, 229, 0.2);
+}
+
+[data-theme="dark"] .sidebar-menu a.active {
+    box-shadow: 0 0 20px rgba(84, 81, 229, 0.3);
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus Animations */
+input:focus,
+textarea:focus,
+select:focus {
+    transform: scale(1.02);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Table Row Hover */
+table tbody tr {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+table tbody tr:hover {
+    background: rgba(84, 81, 229, 0.05);
+    transform: scale(1.01);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}

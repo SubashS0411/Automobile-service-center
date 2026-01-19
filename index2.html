@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoPremium - Home V2</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com/css2">
+    <link href="https://fonts.cdnfonts.com/css/black-chancery" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Home 2 Specific Overrides */
+        .hero-v2 {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--bg-body);
+            padding-top: var(--header-height);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-shape {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: var(--color-primary);
+            clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        [dir="rtl"] .hero-shape {
+            right: auto;
+            left: 0;
+            clip-path: polygon(0 0, 80% 0, 100% 100%, 0 100%);
+        }
+
+        .hero-img {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45%;
+            z-index: 2;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-glow);
+            animation: floatHero 4s ease-in-out infinite;
+        }
+
+        [dir="rtl"] .hero-img {
+            right: auto;
+            left: 5%;
+        }
+
+        .hero-text {
+            width: 50%;
+            padding-left: 5%;
+            z-index: 2;
+            position: relative;
+        }
+
+        [dir="rtl"] .hero-text {
+            padding-left: 0;
+            padding-right: 5%;
+        }
+
+        .spotlight-text {
+            padding-left: 2rem;
+        }
+
+        [dir="rtl"] .spotlight-text {
+            padding-left: 0;
+            padding-right: 2rem;
+        }
+
+        @media (max-width: 992px) {
+            .hero-v2 {
+                flex-direction: column;
+                text-align: center;
+                padding-bottom: 5rem;
+                justify-content: flex-start;
+                min-height: auto;
+            }
+
+            .hero-shape {
+                width: 100%;
+                height: 350px;
+                top: auto;
+                bottom: 0;
+                clip-path: polygon(0 20%, 100% 0, 100% 100%, 0% 100%);
+            }
+
+            [dir="rtl"] .hero-shape {
+                clip-path: polygon(0 0, 100% 20%, 100% 100%, 0% 100%);
+            }
+
+            .hero-text {
+                width: 100%;
+                padding: 5rem 2rem 2rem;
+                margin-bottom: 0;
+            }
+
+            .hero-img {
+                position: relative;
+                width: 90%;
+                top: auto;
+                right: auto;
+                left: auto;
+                bottom: auto;
+                transform: none;
+                margin: 2rem auto;
+                animation: floatHeroMobile 4s ease-in-out infinite;
+            }
+
+            .spotlight-text {
+                padding: 2rem 0;
+                text-align: center;
+            }
+        }
+
+        @keyframes floatHero {
+
+            0%,
+            100% {
+                transform: translateY(-50%) translateX(0);
+            }
+
+            50% {
+                transform: translateY(-55%) translateX(10px);
+            }
+        }
+
+        @keyframes floatHeroMobile {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span style="color:var(--color-primary)">AUTO</span>PREMIUM
+            </a>
+
+            <nav class="nav-links">
+                <!-- Home Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">
+                        Home
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="index.html">Main Home</a>
+                        <a href="index2.html">Home V2</a>
+                    </div>
+                </div>
+
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+
+                <!-- Dashboards Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">
+                        Dashboards
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="user-dashboard.html">User Dashboard</a>
+                        <a href="admin-dashboard.html">Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline" style="margin-right: 0.5rem;">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+
+                <div style="width: 1px; height: 24px; background: #e2e8f0; margin: 0 0.5rem;"></div>
+
+                <button id="rtl-toggle-btn" class="nav-icon-btn" title="Toggle RTL" style="font-size: 1.25rem;">
+                    🌐
+                </button>
+                <button id="theme-toggle-btn" class="nav-icon-btn" title="Toggle Theme">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+
+                <div class="mobile-toggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. Split Hero Section -->
+    <section class="hero-v2">
+        <div class="hero-shape"></div>
+        <div class="hero-text reveal-left">
+            <h4 style="color: var(--color-secondary); letter-spacing: 2px;">PREMIUM AUTO CARE</h4>
+            <h1 style="font-size: 3.5rem; margin: 0.5rem 0;">Excellence in <br>Every Rotation</h1>
+            <p class="text-muted" style="margin-bottom: 2rem; max-width: 500px;">
+                Experience the future of car maintenance. Real-time tracking, expert mechanics, and transparent pricing.
+            </p>
+            <div style="display: flex; gap: 1rem;">
+                <a href="services.html" class="btn btn-primary">Explore Services</a>
+                <a href="contact.html" class="btn btn-outline" style="background: var(--bg-card);">Contact Us</a>
+            </div>
+        </div>
+        <img src="Assets/Bg.jpg" class="hero-img reveal-right" alt="Luxury Car">
+    </section>
+
+    <!-- 2. Features Grid -->
+    <section class="container section-space">
+        <div class="grid-4">
+            <div class="glass-card reveal-zoom" style="text-align: center;">
+                <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--color-primary);">🚀</div>
+                <h4>Fast Service</h4>
+                <p class="text-muted">Same-day delivery for most repairs.</p>
+            </div>
+            <div class="glass-card reveal-zoom" style="text-align: center; animation-delay: 0.2s;">
+                <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--color-secondary);">💎</div>
+                <h4>Premium Parts</h4>
+                <p class="text-muted">Only original manufacturer components.</p>
+            </div>
+            <div class="glass-card reveal-zoom" style="text-align: center; animation-delay: 0.4s;">
+                <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--color-accent);">🛡️</div>
+                <h4>Warranty</h4>
+                <p class="text-muted">12-month warranty on detailed jobs.</p>
+            </div>
+            <div class="glass-card reveal-zoom" style="text-align: center; animation-delay: 0.6s;">
+                <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--color-success);">🌱</div>
+                <h4>Eco Friendly</h4>
+                <p class="text-muted">Sustainable practices & recycling.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: High-Tech Workshop (From New Assets) -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="container grid-2" style="align-items: center; gap: 4rem;">
+            <div class="reveal-left" style="order: 2;">
+                <h2 style="color: var(--color-primary); margin-bottom: 1.5rem;">Precision Engineering Hub</h2>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">
+                    Our workshop isn't just a garage—it's a laboratory. Equipped with the latest Swiss-made tools and AI
+                    diagnostics, we analyze your car's health with surgical precision.
+                </p>
+                <ul class="text-muted" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <li>• Computerized Torque Monitoring</li>
+                    <li>• Ultrasonic Leak Detection</li>
+                    <li>• Vibration Harmonic Analysis</li>
+                </ul>
+            </div>
+            <div class="reveal-right" style="order: 1;">
+                <img src="Assets/automobile-workshops-250x250.jpg" alt="Tech Workshop"
+                    style="border-radius: var(--border-radius); box-shadow: var(--shadow-glow); width: 100%; height: 400px; object-fit: cover;">
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Body & Paint Shop -->
+    <section class="container section-space">
+        <div class="grid-2" style="align-items: center; gap: 4rem;">
+            <div class="reveal-left">
+                <img src="Assets/images (11).jpg" alt="Body Shop"
+                    style="border-radius: var(--border-radius); box-shadow: var(--shadow-card); width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="reveal-right">
+                <h2 style="color: var(--color-accent); margin-bottom: 1.5rem;">Artistry in Bodywork</h2>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">
+                    Restoring a car to its showroom glory requires more than just paint. It requires an eye for detail
+                    and the patience of an artist. Our body shop specializes in luxury aesthetics.
+                </p>
+                <div class="glass-card">
+                    <h4>Perfect Finish Guarantee</h4>
+                    <p class="text-muted" style="margin-top: 0.5rem;">We use laser-color matching to ensure every
+                        touch-up is indistinguishable from the original factory coat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Service Spotlight -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="container">
+            <div class="grid-2" style="align-items: center;">
+                <div class="reveal-left">
+                    <img src="Assets/images.jpg"
+                        style="border-radius: var(--border-radius); box-shadow: var(--shadow-card);">
+                </div>
+                <div class="reveal-right spotlight-text">
+                    <h2>Master Mechanics at Work</h2>
+                    <p class="text-muted" style="margin: 1.5rem 0;">
+                        Our team is trained to handle top-tier brands including BMW, Audi, Mercedes, and Tesla. We don't
+                        just fix cars; we restore performance.
+                    </p>
+                    <ul style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <li>✅ Engine Tuning</li>
+                        <li>✅ Paint Protection</li>
+                        <li>✅ Ceramic Coating</li>
+                        <li>✅ Interior Spa</li>
+                    </ul>
+                    <a href="about.html" class="btn btn-secondary" style="margin-top: 2rem;">Meet the Team</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Stats Strip -->
+    <section class="container section-space reveal-zoom">
+        <div class="glass-card"
+            style="display: flex; justify-content: space-around; flex-wrap: wrap; text-align: center;">
+            <div style="padding: 1rem;">
+                <h2 class="counter-value" style="color: var(--color-primary);" data-target="5" data-suffix="k+">0</h2>
+                <p>Happy Clients</p>
+            </div>
+            <div style="padding: 1rem;">
+                <h2 class="counter-value" style="color: var(--color-secondary);" data-target="10" data-suffix="k+">0
+                </h2>
+                <p>Repairs Done</p>
+            </div>
+            <div style="padding: 1rem;">
+                <h2 class="counter-value" style="color: var(--color-accent);" data-target="15" data-suffix="">0</h2>
+                <p>Years Active</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Latest Insights -->
+    <section class="section-space">
+        <div class="container section-title reveal">
+            <h2>Latest Auto Insights</h2>
+        </div>
+        <div class="container grid-3">
+            <div class="glass-card reveal-left">
+                <img src="Assets/images (5).jpg" alt="Summer Driving"
+                    style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                <h4>5 Tips for Summer Driving</h4>
+                <p class="text-muted">Keep your engine cool and tires ready...</p>
+                <a href="#" style="color: var(--color-primary); margin-top: 0.5rem; display: block;">Read More
+                    &rarr;</a>
+            </div>
+            <div class="glass-card reveal-zoom">
+                <img src="Assets/image11.jpg" alt="Electric vs Hybrid"
+                    style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                <h4>Electric vs Hybrid?</h4>
+                <p class="text-muted">Understanding the difference for your next buy...</p>
+                <a href="#" style="color: var(--color-primary); margin-top: 0.5rem; display: block;">Read More
+                    &rarr;</a>
+            </div>
+            <div class="glass-card reveal-right">
+                <img src="Assets/images (9).jpg" alt="Maintenance Myths"
+                    style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                <h4>Maintenance Myths</h4>
+                <p class="text-muted">Debunking common car care misconceptions...</p>
+                <a href="#" style="color: var(--color-primary); margin-top: 0.5rem; display: block;">Read More
+                    &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Meet Our Experts -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Meet Our Top Mechanics</h2>
+                <p>The hands behind the magic.</p>
+            </div>
+            <div class="grid-4">
+                <div class="glass-card reveal-zoom" style="text-align: center;">
+                    <img src="Assets/profile.jpg" alt="Expert 1"
+                        style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem;">
+                    <h4>John Doe</h4>
+                    <p class="text-muted" style="font-size: 0.9rem;">Engine Specialist</p>
+                </div>
+                <div class="glass-card reveal-zoom" style="text-align: center; animation-delay: 0.1s;">
+                    <img src="Assets/profile2.jpg" alt="Expert 2"
+                        style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem;">
+                    <h4>Jane Smith</h4>
+                    <p class="text-muted" style="font-size: 0.9rem;">Diagnostics Lead</p>
+                </div>
+                <div class="glass-card reveal-zoom" style="text-align: center; animation-delay: 0.2s;">
+                    <img src="Assets/profile3.jpg" alt="Expert 3"
+                        style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem;">
+                    <h4>Mike Ross</h4>
+                    <p class="text-muted" style="font-size: 0.9rem;">Bodywork Artist</p>
+                </div>
+                <div class="glass-card reveal-zoom" style="text-align: center; animation-delay: 0.3s;">
+                    <img src="Assets/profile4.jpg" alt="Expert 4"
+                        style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin: 0 auto 1rem;">
+                    <h4>Sarah Lee</h4>
+                    <p class="text-muted" style="font-size: 0.9rem;">Customer Success</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Repair Timeline -->
+    <section class="container section-space">
+        <div class="section-title reveal">
+            <h2>How It Works</h2>
+            <p>Simple, transparent, and efficient.</p>
+        </div>
+        <div style="position: relative; max-width: 800px; margin: 0 auto;">
+            <!-- Vertical Line -->
+            <div
+                style="position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: var(--color-primary); transform: translateX(-50%);">
+            </div>
+
+            <!-- Items -->
+            <div class="reveal-left"
+                style="display: flex; justify-content: flex-end; padding-right: 50%; position: relative; margin-bottom: 2rem;">
+                <div class="glass-card" style="width: 80%; margin-right: 2rem; position: relative;">
+                    <h4 style="color: var(--color-primary);">1. Booking</h4>
+                    <p class="text-muted">Book online or call us.</p>
+                    <div
+                        style="position: absolute; top: 15px; right: -2.6rem; width: 20px; height: 20px; background: var(--color-primary); border-radius: 50%; border: 4px solid var(--bg-body);">
+                    </div>
+                </div>
+            </div>
+            <div class="reveal-right"
+                style="display: flex; justify-content: flex-start; padding-left: 50%; position: relative; margin-bottom: 2rem;">
+                <div class="glass-card" style="width: 80%; margin-left: 2rem; position: relative;">
+                    <h4 style="color: var(--color-secondary);">2. Inspection</h4>
+                    <p class="text-muted">We check every bolt.</p>
+                    <div
+                        style="position: absolute; top: 15px; left: -2.6rem; width: 20px; height: 20px; background: var(--color-secondary); border-radius: 50%; border: 4px solid var(--bg-body);">
+                    </div>
+                </div>
+            </div>
+            <div class="reveal-left"
+                style="display: flex; justify-content: flex-end; padding-right: 50%; position: relative; margin-bottom: 2rem;">
+                <div class="glass-card" style="width: 80%; margin-right: 2rem; position: relative;">
+                    <h4 style="color: var(--color-accent);">3. Repair</h4>
+                    <p class="text-muted">Detailed fixing process.</p>
+                    <div
+                        style="position: absolute; top: 15px; right: -2.6rem; width: 20px; height: 20px; background: var(--color-accent); border-radius: 50%; border: 4px solid var(--bg-body);">
+                    </div>
+                </div>
+            </div>
+            <div class="reveal-right"
+                style="display: flex; justify-content: flex-start; padding-left: 50%; position: relative;">
+                <div class="glass-card" style="width: 80%; margin-left: 2rem; position: relative;">
+                    <h4 style="color: var(--color-success);">4. Delivery</h4>
+                    <p class="text-muted">Good as new.</p>
+                    <div
+                        style="position: absolute; top: 15px; left: -2.6rem; width: 20px; height: 20px; background: var(--color-success); border-radius: 50%; border: 4px solid var(--bg-body);">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: FAQ -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>Common Questions</h2>
+                <p>Everything you need to know.</p>
+            </div>
+            <div class="grid-2">
+                <div class="glass-card reveal-left">
+                    <h5>Can I track my repair?</h5>
+                    <p class="text-muted" style="margin-top: 0.5rem;">Yes, use our User Dashboard to see real-time
+                        status updates and photos of your repair process.</p>
+                </div>
+                <div class="glass-card reveal-right">
+                    <h5>What payment methods?</h5>
+                    <p class="text-muted" style="margin-top: 0.5rem;">We accept all major credit cards, bank transfers,
+                        and insurance direct billing.</p>
+                </div>
+                <div class="glass-card reveal-left">
+                    <h5>Do you provide a loaner car?</h5>
+                    <p class="text-muted" style="margin-top: 0.5rem;">For repairs taking longer than 24 hours, we offer
+                        complimentary loaner vehicles.</p>
+                </div>
+                <div class="glass-card reveal-right">
+                    <h5>Is my car insured with you?</h5>
+                    <p class="text-muted" style="margin-top: 0.5rem;">Absolutely. Your vehicle is fully insured while on
+                        our premises.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Newsletter -->
+    <section class="section-space"
+        style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%); color: white;">
+        <div class="container reveal-zoom" style="text-align: center; padding: 4rem 0;">
+            <h2>Join the Club</h2>
+            <p style="margin-bottom: 2rem; opacity: 0.9;">Exclusive discounts for members.</p>
+            <div style="display: flex; justify-content: center; gap: 1rem;">
+                <input type="email" placeholder="Your Email"
+                    style="padding: 0.8rem; border-radius: 50px; border: none; width: 300px; outline: none; color: #1a1a1a;">
+                <button class="btn"
+                    style="background: white; color: var(--color-primary); border-radius: 50px; padding: 0.8rem 2rem;">Join</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <a href="#" class="logo" style="margin-bottom: 1rem; color: #fff;">
+                    <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
+                </a>
+                <p>Professional automobile services tailored for premium vehicles.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul style="margin-top: 1rem;">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul style="margin-top: 1rem;">
+                    <li>Engine Repair</li>
+                    <li>Detailing</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p>123 Auto Street, Motor City</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AutoPremium. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="theme-toggle.js"></script>
+    <script src="rtl-toggle.js"></script>
+    <script src="main.js"></script>
+
+    <script src="transitions.js"></script>
+</body>
+
+</html>

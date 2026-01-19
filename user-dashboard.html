@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - AutoPremium</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard-animations.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* Dashboard-specific adjustments */
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-completed {
+            background-color: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+
+        .status-pending {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+        }
+
+        .status-scheduled {
+            background-color: rgba(14, 165, 233, 0.1);
+            color: #0ea5e9;
+        }
+
+        /* Square Chart Containers */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-card {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            flex-direction: column;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .chart-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .chart-container {
+            flex: 1;
+            min-height: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 1024px) {
+            .charts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+
+<body class="dashboard-page">
+    <header>
+        <div class="nav-container flex justify-between items-center" style="max-width: none; padding: 0 2rem;">
+            <a href="index.html" class="logo">
+                <span style="color:var(--color-primary)">AUTO</span>PREMIUM
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-trigger">Home <i class='bx bx-chevron-down'></i></a>
+                        <div class="dropdown-menu">
+                            <a href="index.html">Main Home</a>
+                            <a href="index2.html">Home V2</a>
+                        </div>
+                    </li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-trigger active">Dashboard <i class='bx bx-chevron-down'></i></a>
+                        <div class="dropdown-menu">
+                            <a href="user-dashboard.html">User Dashboard</a>
+                            <a href="admin-dashboard.html">Admin Dashboard</a>
+                        </div>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html" class="btn btn-outline" style="padding: 8px 16px;">Login</a></li>
+                    <li><a href="signup.html" class="btn btn-primary" style="padding: 8px 16px; color: white;">Sign
+                            Up</a></li>
+                </ul>
+            </nav>
+            <div class="user-profile flex items-center gap-1">
+                <span>Alex</span>
+                <img src="Assets/images.jpg" alt="User"
+                    style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+            </div>
+            <div class="controls" style="display: flex; gap: 0.5rem; align-items: center;">
+                <button id="rtl-toggle-btn" class="btn-icon-animate" title="RTL Toggle"
+                    style="background:none; border:none; cursor:pointer; font-size:1.2rem;">🌐</button>
+                <button id="theme-toggle-btn" class="nav-icon-btn" title="Toggle Theme">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <div class="mobile-toggle"><i class='bx bx-menu'></i></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar-menu">
+                <a href="#" class="active" data-tab="overview-tab"><i>📊</i> Overview</a>
+                <a href="#" data-tab="booking-tab"><i>🚗</i> Book Service</a>
+                <a href="#" data-tab="history-tab"><i>📜</i> Service History</a>
+                <a href="#" data-tab="vehicles-tab"><i>🏎️</i> My Vehicles</a>
+                <a href="#" data-tab="settings-tab"><i>⚙️</i> Settings</a>
+                <a href="index.html"><i class='bx bx-log-out'></i> Logout</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <!-- Overview Tab -->
+            <div id="overview-tab" class="tab-pane active">
+                <div class="flex justify-between items-center" style="margin-bottom: 2rem;">
+                    <h2>Vehicle Status</h2>
+                    <button class="btn btn-primary"
+                        onclick="document.querySelector('[data-tab=\'booking-tab\']').click()">
+                        <i class='bx bx-plus'></i> Book New Service
+                    </button>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid" style="grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+                    <div class="card flex items-center gap-1 bg-subtle-primary">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: 50%; background: rgba(84, 81, 229, 0.2); display: flex; align-items: center; justify-content: center; color: var(--color-primary); font-size: 1.5rem; flex-shrink: 0;">
+                            <i>🛠️</i>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: 700;">12</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Total Services</div>
+                        </div>
+                    </div>
+                    <div class="card flex items-center gap-1 bg-subtle-accent">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: 50%; background: rgba(255, 149, 0, 0.2); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 1.5rem; flex-shrink: 0;">
+                            <i>📅</i>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: 700;">Oct 24</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Next Service</div>
+                        </div>
+                    </div>
+                    <div class="card flex items-center gap-1 bg-subtle-success">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: 50%; background: rgba(57, 255, 20, 0.2); display: flex; align-items: center; justify-content: center; color: var(--color-success); font-size: 1.5rem; flex-shrink: 0;">
+                            <i>❤️</i>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: 700;">92%</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Health Score</div>
+                        </div>
+                    </div>
+                    <div class="card flex items-center gap-1 bg-subtle-secondary">
+                        <div
+                            style="width: 48px; height: 48px; border-radius: 50%; background: rgba(255, 59, 48, 0.2); display: flex; align-items: center; justify-content: center; color: var(--color-secondary); font-size: 1.5rem; flex-shrink: 0;">
+                            <i>💎</i>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: 700;">450</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Reward Points</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Grid -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Service history (2024)</h3>
+                        <div id="serviceHistoryChart" class="chart-container"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Component Health Radial</h3>
+                        <div id="compHealthChart" class="chart-container"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Fuel Efficiency (MPG)</h3>
+                        <div id="fuelEcoChart" class="chart-container"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Service Type Distribution</h3>
+                        <div id="serviceTypeChart" class="chart-container"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Tire Pressure (PSI)</h3>
+                        <div id="tirePressureChart" class="chart-container"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Points Redemption</h3>
+                        <div id="pointsChart" class="chart-container"></div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div style="margin-bottom: 2rem;">
+                    <h3>Recent Vehicle Activity</h3>
+                    <div class="card" style="margin-top: 1rem;">
+                        <ul style="list-style: none;">
+                            <li
+                                style="padding: 1rem; border-bottom: 1px solid var(--border); display: flex; gap: 1rem;">
+                                <div
+                                    style="width: 8px; height: 8px; background: var(--color-primary); border-radius: 50%; margin-top: 8px;">
+                                </div>
+                                <div>
+                                    <p style="font-weight: 500;">Oil Change Completed</p>
+                                    <small style="color: var(--text-muted);">BMW X5 - Oct 20, 2024</small>
+                                </div>
+                            </li>
+                            <li
+                                style="padding: 1rem; border-bottom: 1px solid var(--border); display: flex; gap: 1rem;">
+                                <div
+                                    style="width: 8px; height: 8px; background: var(--color-accent); border-radius: 50%; margin-top: 8px;">
+                                </div>
+                                <div>
+                                    <p style="font-weight: 500;">Tire Pressure Warning Resolved</p>
+                                    <small style="color: var(--text-muted);">Front Left adjusted to 32 PSI - Oct 18,
+                                        2024</small>
+                                </div>
+                            </li>
+                            <li style="padding: 1rem; display: flex; gap: 1rem;">
+                                <div
+                                    style="width: 8px; height: 8px; background: var(--color-success); border-radius: 50%; margin-top: 8px;">
+                                </div>
+                                <div>
+                                    <p style="font-weight: 500;">Annual Inspection Scheduled</p>
+                                    <small style="color: var(--text-muted);">Dec 15, 2024 at Main Branch</small>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Tab -->
+            <div id="booking-tab" class="tab-pane" style="display: none;">
+                <h2 style="margin-bottom: 2rem;">Book a Service</h2>
+                <div class="card" style="max-width: 800px; margin: 0 auto;">
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label">Service Type</label>
+                            <select class="form-control"
+                                style="width: 100%; padding: 0.5rem; border-radius: 4px; border: 1px solid #ddd;">
+                                <option>Oil Change</option>
+                                <option>Brake Inspection</option>
+                                <option>Tire Rotation</option>
+                                <option>General Maintenance</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label class="form-label">Vehicle</label>
+                                <select class="form-control"
+                                    style="width: 100%; padding: 0.5rem; border-radius: 4px; border: 1px solid #ddd;">
+                                    <option>BMW X5 (2022)</option>
+                                    <option>Audi A4 (2021)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Preferred Date</label>
+                                <input type="date" class="form-control"
+                                    style="width: 100%; padding: 0.5rem; border-radius: 4px; border: 1px solid #ddd;">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Description / Concerns</label>
+                            <textarea class="form-control" rows="6"
+                                placeholder="Describe any issues or specific requests..."
+                                style="width: 100%; padding: 0.5rem; border-radius: 4px; border: 1px solid #ddd;"></textarea>
+                        </div>
+                        <div class="flex justify-end gap-1" style="margin-top:1rem;">
+                            <button type="button" class="btn btn-outline">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Book Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- History Tab -->
+            <div id="history-tab" class="tab-pane" style="display: none;">
+                <h2 style="margin-bottom: 2rem;">Service History</h2>
+                <div class="card" style="padding: 0;">
+                    <div class="table-responsive">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: var(--bg-body);">
+                                    <th style="padding: 1rem; text-align: left;">ID</th>
+                                    <th style="padding: 1rem; text-align: left;">Service</th>
+                                    <th style="padding: 1rem; text-align: left;">Vehicle</th>
+                                    <th style="padding: 1rem; text-align: left;">Date</th>
+                                    <th style="padding: 1rem; text-align: left;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid var(--border);">
+                                    <td style="padding: 1rem;">#S1024</td>
+                                    <td style="padding: 1rem;">Oil Change</td>
+                                    <td style="padding: 1rem;">BMW X5</td>
+                                    <td style="padding: 1rem;">Oct 20, 2024</td>
+                                    <td style="padding: 1rem;"><span
+                                            class="status-badge status-completed">Completed</span></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border);">
+                                    <td style="padding: 1rem;">#S1023</td>
+                                    <td style="padding: 1rem;">Brake Inspection</td>
+                                    <td style="padding: 1rem;">Audi A4</td>
+                                    <td style="padding: 1rem;">Oct 15, 2024</td>
+                                    <td style="padding: 1rem;"><span
+                                            class="status-badge status-completed">Completed</span></td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border);">
+                                    <td style="padding: 1rem;">#S1020</td>
+                                    <td style="padding: 1rem;">Tire Rotation</td>
+                                    <td style="padding: 1rem;">BMW X5</td>
+                                    <td style="padding: 1rem;">Sep 12, 2024</td>
+                                    <td style="padding: 1rem;"><span
+                                            class="status-badge status-completed">Completed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vehicles Tab -->
+            <div id="vehicles-tab" class="tab-pane" style="display: none;">
+                <h2 style="margin-bottom: 2rem;">My Vehicles</h2>
+                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div class="card" style="text-align: center;">
+                        <img src="Assets/car.jpg" alt="BMW X5"
+                            style="width: 100%; border-radius: 12px; margin-bottom: 1rem; object-fit: cover; height: 150px;">
+                        <h3>BMW X5 (2022)</h3>
+                        <p style="color: var(--text-muted);">VIN: 1B7FH...X921</p>
+                        <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 0.5rem;">
+                            <span class="badge badge-primary">Active</span>
+                            <span class="badge badge-secondary">Gasoline</span>
+                        </div>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <img src="Assets/images (2).jpg" alt="Audi A4"
+                            style="width: 100%; border-radius: 12px; margin-bottom: 1rem; object-fit: cover; height: 150px;">
+                        <h3>Audi A4 (2021)</h3>
+                        <p style="color: var(--text-muted);">VIN: 4U7GD...Z110</p>
+                        <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 0.5rem;">
+                            <span class="badge badge-primary">Active</span>
+                            <span class="badge badge-secondary">Electric</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings-tab" class="tab-pane" style="display: none;">
+                <h2 style="margin-bottom: 2rem;">User Settings</h2>
+                <div class="card">
+                    <form>
+                        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group"><label class="form-label">Full Name</label><input type="text"
+                                    class="form-control" value="Alex"
+                                    style="width: 100%; padding: 0.5rem; border-radius: 4px; border: 1px solid #ddd;">
+                            </div>
+                            <div class="form-group"><label class="form-label">Email</label><input type="email"
+                                    class="form-control" value="alex@autopremium.com"
+                                    style="width: 100%; padding: 0.5rem; border-radius: 4px; border: 1px solid #ddd;">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top:1rem;">
+                            <label class="form-label">Notification Preferences</label>
+                            <label style="display: block; margin-bottom: 0.5rem;"><input type="checkbox" checked> Email
+                                alerts for service reminders</label>
+                            <label style="display: block; margin-bottom: 0.5rem;"><input type="checkbox" checked> SMS
+                                alerts for car status changes</label>
+                        </div>
+                        <button class="btn btn-primary" style="margin-top:1rem;">Save Settings</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Tab switching logic
+            const tabLinks = document.querySelectorAll('.sidebar-menu a[data-tab]');
+            const tabContents = document.querySelectorAll('.tab-pane');
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetTab = link.getAttribute('data-tab');
+
+                    tabLinks.forEach(l => l.classList.remove('active'));
+                    tabContents.forEach(c => c.style.display = 'none');
+
+                    link.classList.add('active');
+                    document.getElementById(targetTab).style.display = 'block';
+
+                    // Trigger window resize for ApexCharts to respond if needed
+                    window.dispatchEvent(new Event('resize'));
+                });
+            });
+
+            // ApexCharts Implementation
+            const commonOptions = {
+                chart: {
+                    fontFamily: 'var(--font-main)',
+                    toolbar: { show: false },
+                    background: 'transparent',
+                    foreColor: 'var(--text-muted)'
+                },
+                grid: { borderColor: 'rgba(255,255,255,0.05)', strokeDashArray: 4 },
+                tooltip: { theme: 'dark' },
+                theme: {
+                    mode: document.documentElement.getAttribute('data-theme') || 'light'
+                }
+            };
+
+            // 1. Service History (Area Chart)
+            new ApexCharts(document.querySelector("#serviceHistoryChart"), {
+                ...commonOptions,
+                series: [{ name: 'Visits', data: [1, 2, 1, 3, 2, 4, 3, 5, 4, 6] }],
+                chart: { ...commonOptions.chart, type: 'area', height: '100%', width: '100%' },
+                stroke: { curve: 'smooth', width: 3 },
+                colors: ['var(--color-primary)'],
+                xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'] }
+            }).render();
+
+            // 2. Component Health (Radial Bar)
+            new ApexCharts(document.querySelector("#compHealthChart"), {
+                ...commonOptions,
+                series: [92, 85, 88, 75],
+                chart: { ...commonOptions.chart, type: 'radialBar', height: '100%', width: '100%' },
+                labels: ['Engine', 'Brakes', 'Tires', 'Battery'],
+                colors: ['var(--color-success)', 'var(--color-primary)', 'var(--color-accent)', 'var(--color-secondary)'],
+                plotOptions: { radialBar: { dataLabels: { total: { show: true, label: 'Health', formatter: () => '85%' } } } }
+            }).render();
+
+            // 3. Fuel Efficiency (Line)
+            new ApexCharts(document.querySelector("#fuelEcoChart"), {
+                ...commonOptions,
+                series: [{ name: 'MPG', data: [22, 24, 21, 25, 23, 26, 24, 28] }],
+                chart: { ...commonOptions.chart, type: 'line', height: '100%', width: '100%' },
+                colors: ['var(--color-success)'],
+                stroke: { curve: 'smooth', width: 3 },
+                xaxis: { categories: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8'] }
+            }).render();
+
+            // 4. Service Distribution (Pie)
+            new ApexCharts(document.querySelector("#serviceTypeChart"), {
+                ...commonOptions,
+                series: [45, 25, 20, 10],
+                chart: { ...commonOptions.chart, type: 'pie', height: '100%', width: '100%' },
+                labels: ['Maintenance', 'Repair', 'Inspection', 'Detailing'],
+                colors: ['var(--color-primary)', 'var(--color-accent)', 'var(--color-secondary)', 'var(--color-success)'],
+                legend: { position: 'bottom' }
+            }).render();
+
+            // 5. Tire Pressure (Bar)
+            new ApexCharts(document.querySelector("#tirePressureChart"), {
+                ...commonOptions,
+                series: [{ name: 'PSI', data: [32, 31, 30, 32] }],
+                chart: { ...commonOptions.chart, type: 'bar', height: '100%', width: '100%' },
+                colors: ['var(--color-accent)'],
+                xaxis: { categories: ['FL', 'FR', 'RL', 'RR'] }
+            }).render();
+
+            // 6. Points Redemption (Donut)
+            new ApexCharts(document.querySelector("#pointsChart"), {
+                ...commonOptions,
+                series: [150, 450],
+                chart: { ...commonOptions.chart, type: 'donut', height: '100%', width: '100%' },
+                labels: ['Used', 'Available'],
+                colors: ['var(--color-muted)', 'var(--color-secondary)'],
+                legend: { position: 'bottom' }
+            }).render();
+
+            // Tab Switching Logic
+            const sidebarLinks = document.querySelectorAll('.sidebar-menu a[data-tab]');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetTab = link.getAttribute('data-tab');
+
+                    // Remove active class from all links
+                    sidebarLinks.forEach(l => l.classList.remove('active'));
+
+                    // Add active class to clicked link
+                    link.classList.add('active');
+
+                    // Hide all tab panes
+                    tabPanes.forEach(pane => {
+                        pane.classList.remove('active');
+                        pane.style.display = 'none';
+                    });
+
+                    // Show target tab pane
+                    const targetPane = document.getElementById(targetTab);
+                    if (targetPane) {
+                        targetPane.classList.add('active');
+                        targetPane.style.display = 'block';
+                    }
+
+                    // Trigger window resize for charts to adjust
+                    window.dispatchEvent(new Event('resize'));
+                });
+            });
+        });
+    </script>
+    <script src="dashboard-animations.js"></script>
+    <script src="theme-toggle.js"></script>
+    <script src="rtl-toggle.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

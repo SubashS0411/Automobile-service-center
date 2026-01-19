@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - AutoPremium</title>
+    <!-- Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/black-chancery" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span style="color:var(--color-primary)">AUTO</span>PREMIUM
+            </a>
+
+            <nav class="nav-links">
+                <!-- Home Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">
+                        Home
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="index.html">Main Home</a>
+                        <a href="index2.html">Home V2</a>
+                    </div>
+                </div>
+
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+
+                <!-- Dashboards Dropdown -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">
+                        Dashboards
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="user-dashboard.html">User Dashboard</a>
+                        <a href="admin-dashboard.html">Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline" style="margin-right: 0.5rem;">Login</a>
+                <a href="signup.html" class="btn btn-primary">Sign Up</a>
+
+                <div style="width: 1px; height: 24px; background: #e2e8f0; margin: 0 0.5rem;"></div>
+
+                <button id="rtl-toggle-btn" class="nav-icon-btn" title="Toggle RTL" style="font-size: 1.25rem;">
+                    🌐
+                </button>
+                <button id="theme-toggle-btn" class="nav-icon-btn" title="Toggle Theme">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+
+                <div class="mobile-toggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Header -->
+    <section class="hero" style="height: 50vh; min-height: 400px; background-image: url('Assets/bg3.jpg');">
+        <div class="hero-content reveal-zoom">
+            <h1>Comprehensive Auto Care</h1>
+            <p>From routine maintenance to complex engine overhauls.</p>
+        </div>
+    </section>
+
+    <!-- 1. Engine Services -->
+    <section class="container section-space">
+        <div class="grid-2" style="align-items: center;">
+            <div class="reveal-left">
+                <h2 style="color: var(--color-primary); margin-bottom: 1rem;">Engine Services</h2>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">The heart of your vehicle deserves the best. We
+                    offer complete tuning and rebuilding services.</p>
+                <ul style="line-height: 2;">
+                    <li>✓ Complete Engine Diagnostics</li>
+                    <li>✓ Head Gasket Replacement</li>
+                    <li>✓ Timing Belt Replacement</li>
+                    <li>✓ Spark Plug & Ignition Wire</li>
+                </ul>
+            </div>
+        </div>
+        <div class="glass-card reveal-right" style="padding: 0; overflow: hidden;">
+            <img src="Assets/images (1).jpg" alt="Engine Services"
+                style="width: 100%; height: 300px; object-fit: cover;">
+        </div>
+        </div>
+    </section>
+
+    <!-- 2. Brake & Suspension -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="container grid-2" style="align-items: center;">
+            <div class="glass-card reveal-left" style="padding: 0; overflow: hidden;">
+                <img src="Assets/images (2).jpg" alt="Brake & Suspension"
+                    style="width: 100%; height: 300px; object-fit: cover;">
+            </div>
+            <div class="reveal-right">
+                <h2 style="color: var(--color-secondary); margin-bottom: 1rem;">Brake & Suspension</h2>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">Safety first. We check every pad, rotor, and strut
+                    to ensure a smooth and safe ride.</p>
+                <ul style="line-height: 2;">
+                    <li>✓ Brake Pad & Disc Inspection</li>
+                    <li>✓ Shock Absorber Replacement</li>
+                    <li>✓ Wheel Alignment & Balancing</li>
+                    <li>✓ Power Steering Fluid Flush</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Electrical Diagnostics -->
+    <section class="container section-space">
+        <div class="grid-2" style="align-items: center;">
+            <div class="reveal-left">
+                <h2 style="color: var(--color-accent); margin-bottom: 1rem;">Electrical Diagnostics</h2>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">Modern cars are computers on wheels. We speak their
+                    language.</p>
+                <ul style="line-height: 2;">
+                    <li>✓ Battery Health Check</li>
+                    <li>✓ Alternator Repair</li>
+                    <li>✓ Sensor Diagnostics</li>
+                    <li>✓ Lighting & Fuse Systems</li>
+                </ul>
+            </div>
+        </div>
+        <div class="glass-card reveal-right" style="padding: 0; overflow: hidden;">
+            <img src="Assets/images (3).jpg" alt="Electrical Diagnostics"
+                style="width: 100%; height: 300px; object-fit: cover;">
+        </div>
+        </div>
+    </section>
+
+    <!-- 4. Oil & Maintenance -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="container grid-2" style="align-items: center;">
+            <div class="glass-card reveal-left" style="padding: 0; overflow: hidden;">
+                <img src="Assets/images (4).jpg" alt="Oil & Maintenance"
+                    style="width: 100%; height: 300px; object-fit: cover;">
+            </div>
+            <div class="reveal-right">
+                <h2 style="color: var(--color-success); margin-bottom: 1rem;">Oil & Maintenance</h2>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">Regular fluids are vital for longevity.</p>
+                <ul style="line-height: 2;">
+                    <li>✓ Synthetic Oil Change</li>
+                    <li>✓ Oil Filter Replacement</li>
+                    <li>✓ Coolant Flush</li>
+                    <li>✓ Transmission Fluid Change</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Car Wash & Detailing -->
+    <section class="container section-space">
+        <div class="section-title reveal">
+            <h2>Car Wash & Detailing</h2>
+        </div>
+        <div class="grid-3">
+            <div class="glass-card reveal-left">
+                <h4>Express Wash</h4>
+                <p class="text-muted">Exterior foam wash & dry.</p>
+            </div>
+            <div class="glass-card reveal-zoom">
+                <h4>Interior Deep Clean</h4>
+                <p class="text-muted">Vacuum, shampoo & sanitize.</p>
+            </div>
+            <div class="glass-card reveal-right">
+                <h4>Ceramic Coating</h4>
+                <p class="text-muted">Long-lasting paint protection.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Emergency Roadside -->
+    <section style="background: var(--color-secondary); color: white;">
+        <div class="container grid-2 reveal" style="align-items: center;">
+            <div>
+                <h2>Stuck on the Road?</h2>
+                <p style="margin: 1rem 0;">We offer 24/7 towing, battery jumpstarts, and flat tire assistance.</p>
+            </div>
+            <div style="text-align: right;">
+                <h2 style="font-size: 3rem;">📞 555-0199</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. AMC Plans -->
+    <section class="container section-space">
+        <div class="section-title reveal">
+            <h2>Annual Maintenance Contracts</h2>
+        </div>
+        <div class="grid-3">
+            <div class="glass-card reveal-left" style="border-top: 4px solid silver;">
+                <h3>Silver Plan</h3>
+                <h2 style="color: var(--color-primary); margin: 1rem 0;">$299/yr</h2>
+                <ul style="text-align: left; margin: 1rem 0;">
+                    <li>2 General Services</li>
+                    <li>Free Oil Change</li>
+                    <li>10% Labor Discount</li>
+                </ul>
+                <button class="btn btn-outline">Select</button>
+            </div>
+            <div class="glass-card reveal-zoom" style="border-top: 4px solid gold; transform: scale(1.05);">
+                <h3>Gold Plan</h3>
+                <h2 style="color: var(--color-accent); margin: 1rem 0;">$499/yr</h2>
+                <ul style="text-align: left; margin: 1rem 0;">
+                    <li>3 General Services</li>
+                    <li>Free Wheel Alignment</li>
+                    <li>20% Labor Discount</li>
+                    <li>Priority Booking</li>
+                </ul>
+                <button class="btn btn-primary">Select</button>
+            </div>
+            <div class="glass-card reveal-right" style="border-top: 4px solid #333;">
+                <h3>Platinum Plan</h3>
+                <h2 style="color: var(--color-secondary); margin: 1rem 0;">$899/yr</h2>
+                <ul style="text-align: left; margin: 1rem 0;">
+                    <li>Unlimited Services</li>
+                    <li>Full Detailing x2</li>
+                    <li>Free Towing (50mi)</li>
+                </ul>
+                <button class="btn btn-outline">Select</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: EV Tech (From New Assets) -->
+    <section class="section-space" style="background: var(--bg-card);">
+        <div class="container grid-2" style="align-items: center; gap: 4rem;">
+            <div class="reveal-left">
+                <h2 style="color: var(--color-success); margin-bottom: 1.5rem;">Electrifying the Future</h2>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">
+                    As the world shifts to electric, AutoPremium is leading the charge. Our EV-certified technicians are
+                    trained to handle complex battery diagnostics and motor maintenance for all major electric brands.
+                </p>
+                <div class="glass-card" style="border-top: 4px solid var(--color-success);">
+                    <h4>EV Performance Pack</h4>
+                    <p class="text-muted" style="margin-top: 0.5rem;">Includes thermal system flushing, battery health
+                        reporting, and firmware optimization.</p>
+                </div>
+            </div>
+            <div class="reveal-right">
+                <img src="Assets/images (13).jpg" alt="EV Tech"
+                    style="border-radius: var(--border-radius); box-shadow: var(--shadow-glow); width: 100%; height: 400px; object-fit: cover;">
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Premium Paint Shop -->
+    <section class="container section-space">
+        <div class="grid-2" style="align-items: center; gap: 4rem;">
+            <div class="reveal-left">
+                <img src="Assets/images12.jpeg" alt="Paint Shop"
+                    style="border-radius: var(--border-radius); box-shadow: var(--shadow-card); width: 100%; height: 400px; object-fit: cover;">
+            </div>
+            <div class="reveal-right">
+                <h2 style="color: var(--color-primary); margin-bottom: 1.5rem;">Premium Paint Solutions</h2>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">
+                    Our sterile paint booths and advanced drying systems ensure a mirror-like finish every time. From
+                    custom wraps to factory resprays, we deliver perfection.
+                </p>
+                <ul class="text-muted" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <li>• Dust-Free Environment</li>
+                    <li>• Water-Based Eco-Paints</li>
+                    <li>• High-Gloss Ceramic Clearcoat</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Special Offers Parallax -->
+    <section style="background: url('Assets/bg.jpg') fixed center; color: white; padding: 6rem 0; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6);"></div>
+        <div class="container reveal-zoom" style="position: relative; z-index: 2; text-align: center;">
+            <h2 style="font-size: 3rem;">Seasonal Special</h2>
+            <p style="font-size: 1.5rem; margin: 1rem 0; color: var(--color-accent);">Get 20% OFF on AC Services this
+                Summer</p>
+            <p style="margin-bottom: 2rem;">Use Code: <strong>SUMMER26</strong></p>
+            <a href="contact.html" class="btn btn-primary">Book Now</a>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: Maintenance Schedule Table -->
+    <section class="container section-space">
+        <div class="section-title reveal">
+            <h2>Recommended Maintenance Schedule</h2>
+            <p>Keep your vehicle in prime condition.</p>
+        </div>
+        <div class="glass-card reveal" style="padding: 2rem; overflow-x: auto;">
+            <table style="width: 100%; text-align: left; border-collapse: collapse;">
+                <thead style="border-bottom: 2px solid var(--text-muted);">
+                    <tr>
+                        <th style="padding: 1rem;">Service</th>
+                        <th style="padding: 1rem;">Every 5k Miles</th>
+                        <th style="padding: 1rem;">Every 15k Miles</th>
+                        <th style="padding: 1rem;">Every 30k Miles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 1rem;">Oil Change</td>
+                        <td style="padding: 1rem; color: var(--color-success);">✔</td>
+                        <td style="padding: 1rem; color: var(--color-success);">✔</td>
+                        <td style="padding: 1rem; color: var(--color-success);">✔</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 1rem;">Tire Rotation</td>
+                        <td style="padding: 1rem; color: var(--color-success);">✔</td>
+                        <td style="padding: 1rem; color: var(--color-success);">✔</td>
+                        <td style="padding: 1rem; color: var(--color-success);">✔</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 1rem;">Air Filter</td>
+                        <td style="padding: 1rem;">-</td>
+                        <td style="padding: 1rem; color: var(--color-success);">✔</td>
+                        <td style="padding: 1rem; color: var(--color-success);">✔</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 1rem;">Brake Inspection</td>
+                        <td style="padding: 1rem;">Check</td>
+                        <td style="padding: 1rem; color: var(--color-success);">✔</td>
+                        <td style="padding: 1rem; color: var(--color-success);">✔</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <td style="padding: 1rem;">Coolant Flush</td>
+                        <td style="padding: 1rem;">-</td>
+                        <td style="padding: 1rem;">-</td>
+                        <td style="padding: 1rem; color: var(--color-success);">✔</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem;">Transmission Fluid</td>
+                        <td style="padding: 1rem;">-</td>
+                        <td style="padding: 1rem;">Check</td>
+                        <td style="padding: 1rem; color: var(--color-success);">✔</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 8. Pricing Teaser -->
+    <section class="section-space" style="background: var(--bg-card); text-align: center;">
+        <div class="container reveal">
+            <h2>Transparent Pricing</h2>
+            <p class="text-muted" style="margin-bottom: 2rem;">Know exactly what you pay for.</p>
+            <div class="grid-4" style="font-weight: bold;">
+                <div>Oil Change <br> <span style="color: var(--color-primary)">$49</span></div>
+                <div>Brake Pads <br> <span style="color: var(--color-primary)">$89</span></div>
+                <div>AC Gas <br> <span style="color: var(--color-primary)">$59</span></div>
+                <div>Diagnosis <br> <span style="color: var(--color-primary)">$39</span></div>
+            </div>
+            <div style="margin-top: 2rem;">
+                <a href="contact.html" class="btn btn-secondary">Get a Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <a href="index.html" class="logo" style="margin-bottom: 1rem; color: #fff;">
+                    <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
+                </a>
+                <p>Professional automobile services tailored for premium vehicles. We ensure quality, safety, and
+                    performance.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul style="margin-top: 1rem;">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul style="margin-top: 1rem;">
+                    <li>Engine Repair</li>
+                    <li>Tire Service</li>
+                    <li>Detailing</li>
+                    <li>Diagnostics</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p style="margin-top: 1rem;">123 Auto Street, Motor City</p>
+                <p>+1 234 567 890</p>
+                <p>support@autopremium.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AutoPremium. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="theme-toggle.js"></script>
+    <script src="rtl-toggle.js"></script>
+    <script src="main.js"></script>
+
+    <script src="transitions.js"></script>
+</body>
+
+</html>
