@@ -36,6 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Sidebar Toggle (Dashboard) ---
+    const sidebarBtn = document.querySelector('.sidebar-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebarBtn && sidebar) {
+        sidebarBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+    }
+
     // --- Scroll Animations (Reveal on Scroll) ---
     const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom');
     const revealObserver = new IntersectionObserver((entries, observer) => {
