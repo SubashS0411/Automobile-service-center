@@ -34,6 +34,7 @@
             justify-content: center;
             background: var(--bg-body);
             position: relative;
+            padding: 2rem;
         }
 
         .auth-form-card {
@@ -44,9 +45,31 @@
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-card);
             color: var(--text-main);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
         }
 
-        @media (max-width: 900px) {
+        .auth-form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: var(--border-radius);
+            padding: 2px;
+            background: linear-gradient(135deg, #5451e5, #ff3b30, #39ff14, #5451e5);
+            background-size: 300% 300%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            animation: gradientFlow 5s ease infinite;
+        }
+
+        @media (max-width: 1024px) {
             .auth-container {
                 grid-template-columns: 1fr;
             }
@@ -56,8 +79,57 @@
             }
 
             .auth-form-wrapper {
-                padding: 4rem 2rem;
+                padding: 3rem 2rem;
                 min-height: calc(100vh - var(--header-height));
+            }
+
+            .auth-form-card {
+                max-width: 100%;
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .auth-form-wrapper {
+                padding: 2rem 1rem;
+                min-height: auto;
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+
+            .auth-form-card {
+                padding: 1.5rem;
+            }
+
+            .auth-form-card h2 {
+                font-size: 1.6rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .auth-form-card input,
+            .auth-form-card button {
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .auth-form-wrapper {
+                padding: 1.5rem 1rem;
+            }
+
+            .auth-form-card {
+                padding: 1.25rem;
+            }
+
+            .auth-form-card h2 {
+                font-size: 1.4rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .auth-form-card input,
+            .auth-form-card button {
+                font-size: 16px;
+                padding: 0.7rem;
             }
         }
     </style>
@@ -68,9 +140,11 @@
     <!-- Navigation -->
     <header>
         <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <span style="color:var(--color-primary)">AUTO</span>PREMIUM
-            </a>
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
+                </a>
+            </div>
 
             <nav class="nav-links">
                 <!-- Home Dropdown -->
@@ -83,7 +157,7 @@
                         </svg>
                     </a>
                     <div class="dropdown-menu">
-                        <a href="index.html">Main Home</a>
+                        <a href="index.html">Home V1</a>
                         <a href="index2.html">Home V2</a>
                     </div>
                 </div>
@@ -108,9 +182,14 @@
 
                 <a href="contact.html">Contact</a>
 
+                <!-- Visual separator before auth links -->
+                <span style="width: 1px; height: 20px; background: var(--border-glass); margin: 0 0.5rem;"></span>
+
                 <a href="login.html" class="mobile-only-link">Login</a>
                 <a href="signup.html" class="mobile-only-link"
                     style="color: var(--color-primary); font-weight: bold;">Sign Up</a>
+
+                <!-- Mobile Only Toggles Removed (consolidated to header actions) -->
             </nav>
 
             <div class="nav-actions">
@@ -182,8 +261,16 @@
                         style="width: 100%; padding: 12px; margin-bottom: 1rem;"
                         onclick="window.location.href='user-dashboard.html'">Secure Login</button>
 
-                    <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                    <div
+                        style="display: flex; justify-content: flex-start; align-items: center; font-size: 0.9rem; gap: 0.5rem;">
                         <a href="#" class="text-muted">Forgot Password?</a>
+                        <a href="signup.html" class="text-muted"
+                            style="color: var(--color-primary); font-weight: 600;">Sign Up Here</a>
+                    </div>
+
+                    <div style="margin-top: 2rem; text-align: center;">
+                        <a href="index.html" class="btn btn-outline" style="width: 100%; padding: 10px;">Back to
+                            Home</a>
                     </div>
                 </form>
             </div>
@@ -195,7 +282,7 @@
     <footer>
         <div class="container footer-grid">
             <div>
-                <a href="index.html" class="logo" style="margin-bottom: 1rem; color: #fff;">
+                <a href="#" class="logo" style="margin-bottom: 1rem; color: #fff;">
                     <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
                 </a>
                 <p>Professional automobile services tailored for premium vehicles. We ensure quality, safety, and

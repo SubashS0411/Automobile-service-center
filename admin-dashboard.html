@@ -50,22 +50,34 @@
 
     <!-- Navigation -->
     <header>
-        <div class="nav-container flex justify-between items-center" style="max-width: none; padding: 0 2rem;">
+        <div class="nav-container flex justify-between items-center" style="max-width: none;">
             <div class="flex items-center gap-1">
                 <div class="sidebar-toggle">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                        <line x1="3" y1="5" x2="21" y2="5"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                        <line x1="3" y1="15" x2="21" y2="15"></line>
+                        <line x1="3" y1="20" x2="21" y2="20"></line>
                     </svg>
                 </div>
                 <a href="index.html" class="logo">
-                    <span style="color:var(--color-primary)">AUTO</span>PREMIUM
+                    <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
                 </a>
+                <div class="flex items-center gap-1" style="margin-left: 2rem;">
+                    <button id="rtl-toggle-btn" class="nav-icon-btn" title="Toggle RTL" style="font-size: 1.25rem;">
+                        🌐
+                    </button>
+                    <button id="theme-toggle-btn" class="nav-icon-btn" title="Toggle Theme">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
 
-            <nav class="nav-links flex items-center gap-2">
+            <nav class="nav-links">
                 <!-- Home Dropdown -->
                 <div class="dropdown">
                     <a href="#" class="dropdown-trigger">
@@ -76,7 +88,7 @@
                         </svg>
                     </a>
                     <div class="dropdown-menu">
-                        <a href="index.html">Main Home</a>
+                        <a href="index.html">Home V1</a>
                         <a href="index2.html">Home V2</a>
                     </div>
                 </div>
@@ -100,34 +112,42 @@
                 </div>
 
                 <a href="contact.html">Contact</a>
+
+                <!-- Visual separator before auth links -->
+                <span style="width: 1px; height: 20px; background: var(--border-glass); margin: 0 0.5rem;"></span>
+
+                <a href="login.html" class="mobile-only-link">Login</a>
+                <a href="signup.html" class="mobile-only-link"
+                    style="color: var(--color-primary); font-weight: bold;">Sign Up</a>
             </nav>
 
-            <div class="nav-actions flex items-center gap-1">
-                <a href="login.html" class="btn btn-outline" style="padding: 5px 15px; border-radius: 4px;">Login</a>
-                <a href="signup.html" class="btn btn-primary" style="padding: 5px 15px; border-radius: 4px;">Sign Up</a>
+            <div class="flex items-center justify-end gap-2">
+                <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                <a href="signup.html" class="btn btn-primary btn-sm">Sign Up</a>
 
-                <div style="width: 1px; height: 24px; background: rgba(0,0,0,0.1); margin: 0 0.5rem;"></div>
+                <div class="nav-divider"
+                    style="width: 1px; height: 20px; background: rgba(0,0,0,0.1); margin: 0 0.5rem;"></div>
 
-                <button id="rtl-toggle-btn" class="nav-icon-btn" title="Toggle RTL">
-                    🌐
-                </button>
-                <button id="theme-toggle-btn" class="nav-icon-btn" title="Toggle Theme">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
+                <div class="user-profile flex items-center gap-1">
+                    <span class="fs-sm">Admin</span>
+                    <div
+                        style="width: 32px; height: 32px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem;">
+                        AD</div>
+                </div>
+
+                <div class="nav-actions">
+                </div>
 
                 <div class="mobile-toggle">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
                     </svg>
                 </div>
             </div>
-        </div>
     </header>
 
     <div class="dashboard-layout">
@@ -152,7 +172,7 @@
             <div id="overview" class="tab-pane active">
                 <section class="reveal-zoom">
                     <h2 style="margin-bottom: 2rem;">Platform Overview</h2>
-                    <div class="grid" style="grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem;">
+                    <div class="grid grid-responsive" style="margin-top: 2rem;">
                         <div class="card flex items-center gap-1 bg-subtle-primary">
                             <div
                                 style="width: 50px; height: 50px; border-radius: 50%; background: rgba(84, 81, 229, 0.2); display: flex; align-items: center; justify-content: center; color: var(--color-primary); font-size: 1.5rem; flex-shrink: 0;">
@@ -160,8 +180,9 @@
                             </div>
                             <div>
                                 <div style="color: var(--text-muted); font-size: 0.9rem;">Total Revenue</div>
-                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-success);"
-                                    id="ticker-revenue">$124,500</div>
+                                <div class="counter-value"
+                                    style="font-size: 1.5rem; font-weight: 700; color: var(--color-success);"
+                                    id="ticker-revenue" data-target="124500" data-prefix="$">0</div>
                             </div>
                         </div>
                         <div class="card flex items-center gap-1 bg-subtle-accent">
@@ -171,7 +192,9 @@
                             </div>
                             <div>
                                 <div style="color: var(--text-muted); font-size: 0.9rem;">Active Bookings</div>
-                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary);">42</div>
+                                <div class="counter-value"
+                                    style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary);"
+                                    data-target="42">0</div>
                             </div>
                         </div>
                         <div class="card flex items-center gap-1 bg-subtle-success">
@@ -181,7 +204,9 @@
                             </div>
                             <div>
                                 <div style="color: var(--text-muted); font-size: 0.9rem;">Mechanics Online</div>
-                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-accent);">18</div>
+                                <div class="counter-value"
+                                    style="font-size: 1.5rem; font-weight: 700; color: var(--color-accent);"
+                                    data-target="18">0</div>
                             </div>
                         </div>
                         <div class="card flex items-center gap-1 bg-subtle-secondary">
@@ -191,14 +216,16 @@
                             </div>
                             <div>
                                 <div style="color: var(--text-muted); font-size: 0.9rem;">Pending Support</div>
-                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-secondary);">7</div>
+                                <div class="counter-value"
+                                    style="font-size: 1.5rem; font-weight: 700; color: var(--color-secondary);"
+                                    data-target="7">0</div>
                             </div>
                         </div>
                     </div>
                 </section>
 
                 <!-- Charts Grid -->
-                <div class="charts-grid" style="margin-top: 2rem;">
+                <div class="charts-grid grid-responsive" style="margin-top: 2rem;">
                     <div class="chart-card">
                         <h3>Revenue Growth</h3>
                         <div id="revenueChart" class="chart-container-inner"></div>
@@ -235,12 +262,20 @@
                         <h3>Customer Satisfaction</h3>
                         <div id="customerSatisfactionChart" class="chart-container-inner"></div>
                     </div>
+                    <div class="chart-card">
+                        <h3>Market Analysis</h3>
+                        <div id="marketAnalysisChart" class="chart-container-inner"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Yearly Projection</h3>
+                        <div id="projectionChart" class="chart-container-inner"></div>
+                    </div>
                 </div>
             </div>
 
             <!-- TAB: Bookings -->
             <div id="bookings" class="tab-pane">
-                <div class="charts-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="charts-grid grid-responsive">
                     <div class="chart-card">
                         <h3>Booking Trends</h3>
                         <div id="bookingTrendChart" class="chart-container-inner"></div>
@@ -273,7 +308,7 @@
                 <section style="margin-top: 2rem;">
                     <div class="glass-card">
                         <h3>Active Booking Details</h3>
-                        <div style="overflow-x: auto; margin-top: 1rem;">
+                        <div class="table-responsive">
                             <table style="width: 100%; border-collapse: collapse;">
                                 <thead>
                                     <tr style="text-align: left; border-bottom: 1px solid rgba(255,255,255,0.1);">
@@ -452,6 +487,46 @@
                 </section>
             </div>
 
+            <!-- Footer -->
+            <footer>
+                <div class="container footer-grid">
+                    <div>
+                        <a href="#" class="logo" style="margin-bottom: 1rem; color: #fff;">
+                            <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
+                        </a>
+                        <p>Professional automobile services tailored for premium vehicles. We ensure quality, safety,
+                            and
+                            performance.</p>
+                    </div>
+                    <div>
+                        <h4>Quick Links</h4>
+                        <ul style="margin-top: 1rem;">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="login.html">Login</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Services</h4>
+                        <ul style="margin-top: 1rem;">
+                            <li>Engine Repair</li>
+                            <li>Tire Service</li>
+                            <li>Detailing</li>
+                            <li>Diagnostics</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Contact</h4>
+                        <p style="margin-top: 1rem;">123 Auto Street, Motor City</p>
+                        <p>+1 234 567 890</p>
+                        <p>support@autopremium.com</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 AutoPremium. All rights reserved.</p>
+                </div>
+            </footer>
         </main>
     </div>
 
@@ -467,6 +542,7 @@
                     background: 'transparent',
                     foreColor: 'var(--text-muted)'
                 },
+                dataLabels: { enabled: false },
                 grid: { borderColor: 'rgba(255,255,255,0.05)', strokeDashArray: 4 },
                 tooltip: { theme: 'dark' },
                 theme: { mode: 'dark' }
@@ -615,6 +691,30 @@
                 chart: { ...commonOptions.chart, type: 'bar', height: '100%', width: '100%', stacked: true },
                 colors: ['var(--color-primary)', 'var(--color-accent)'],
                 xaxis: { categories: ['Q1', 'Q2', 'Q3', 'Q4'] }
+            }).render();
+
+            // 12. Market Analysis (Static)
+            new ApexCharts(document.querySelector("#marketAnalysisChart"), {
+                ...commonOptions,
+                series: [{ name: 'Market Share', data: [12, 18, 15, 25, 20, 30] }],
+                chart: { ...commonOptions.chart, type: 'area', height: '100%', width: '100%' },
+                colors: ['var(--color-secondary)'],
+                stroke: { curve: 'smooth', width: 2 },
+                fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.1 } },
+                xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] }
+            }).render();
+
+            // 13. Yearly Projection (Static)
+            new ApexCharts(document.querySelector("#projectionChart"), {
+                ...commonOptions,
+                series: [
+                    { name: 'Actual', data: [45, 52, 38, 24, 33, 26, 21, 20] },
+                    { name: 'Projected', data: [35, 41, 62, 42, 13, 18, 29, 37] }
+                ],
+                chart: { ...commonOptions.chart, type: 'line', height: '100%', width: '100%' },
+                colors: ['var(--color-success)', 'var(--color-muted)'],
+                stroke: { width: [3, 2], dashArray: [0, 5] },
+                xaxis: { categories: ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027'] }
             }).render();
 
             // LIVE UPDATE LOGIC

@@ -19,9 +19,11 @@
     <!-- Navigation -->
     <header>
         <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <span style="color:var(--color-primary)">AUTO</span>PREMIUM
-            </a>
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
+                </a>
+            </div>
 
             <nav class="nav-links">
                 <!-- Home Dropdown -->
@@ -34,7 +36,7 @@
                         </svg>
                     </a>
                     <div class="dropdown-menu">
-                        <a href="index.html">Main Home</a>
+                        <a href="index.html">Home V1</a>
                         <a href="index2.html">Home V2</a>
                     </div>
                 </div>
@@ -59,16 +61,21 @@
 
                 <a href="contact.html">Contact</a>
 
+                <!-- Visual separator before auth links -->
+                <span style="width: 1px; height: 20px; background: var(--border-glass); margin: 0 0.5rem;"></span>
+
                 <a href="login.html" class="mobile-only-link">Login</a>
                 <a href="signup.html" class="mobile-only-link"
                     style="color: var(--color-primary); font-weight: bold;">Sign Up</a>
+
+                <!-- Mobile Only Toggles Removed (consolidated to header actions) -->
             </nav>
 
             <div class="nav-actions">
                 <a href="login.html" class="btn btn-outline" style="margin-right: 0.5rem;">Login</a>
                 <a href="signup.html" class="btn btn-primary">Sign Up</a>
 
-                <div style="width: 1px; height: 24px; background: #e2e8f0; margin: 0 0.5rem;"></div>
+                <div class="nav-divider" style="width: 1px; height: 24px; background: #e2e8f0; margin: 0 0.5rem;"></div>
 
                 <button id="rtl-toggle-btn" class="nav-icon-btn" title="Toggle RTL" style="font-size: 1.25rem;">
                     🌐
@@ -191,7 +198,7 @@
         </div>
         <div style="display: flex; justify-content: center; align-items: center; gap: 4rem; flex-wrap: wrap;">
             <img src="Assets/authorized-service-centre.jpg" alt="Authorized Center"
-                style="height: 120px; filter: grayscale(1) opacity(0.7); transition: all 0.3s;"
+                style="max-height: 120px; max-width: 300px; width: auto; height: auto; object-fit: contain; filter: grayscale(1) opacity(0.7); transition: all 0.3s;"
                 onmouseover="this.style.filter='none'; this.style.opacity='1'"
                 onmouseout="this.style.filter='grayscale(1) opacity(0.7)'">
             <div class="glass-card" style="padding: 1rem 2rem;">

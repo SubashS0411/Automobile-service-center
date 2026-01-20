@@ -155,9 +155,11 @@
     <!-- Navigation -->
     <header>
         <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <span style="color:var(--color-primary)">AUTO</span>PREMIUM
-            </a>
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
+                </a>
+            </div>
 
             <nav class="nav-links">
                 <!-- Home Dropdown -->
@@ -170,7 +172,7 @@
                         </svg>
                     </a>
                     <div class="dropdown-menu">
-                        <a href="index.html">Main Home</a>
+                        <a href="index.html">Home V1</a>
                         <a href="index2.html">Home V2</a>
                     </div>
                 </div>
@@ -245,6 +247,32 @@
         <img src="Assets/Bg.jpg" class="hero-img reveal-right" alt="Luxury Car">
     </section>
 
+    <!-- 1.5 New About Section -->
+    <section class="container section-space">
+        <div class="grid-2" style="align-items: center; gap: 4rem;">
+            <div class="reveal-left">
+                <div class="section-title" style="text-align: left; margin-bottom: 1.5rem;">
+                    <h4 style="color: var(--color-primary); letter-spacing: 2px;">WHO WE ARE</h4>
+                    <h2>Redefining Automotive Luxury</h2>
+                </div>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">
+                    AutoPremium isn't just about repairs; it's about preserving the legacy of your vehicle. We combine
+                    heritage craftsmanship with futuristic diagnostics to ensure your machine performs exactly as the
+                    designer intended.
+                </p>
+                <p class="text-muted" style="margin-bottom: 1.5rem;">
+                    Our "White-Glove" service standard means you never have to worry. We handle everything from pickup
+                    to drop-off, providing you with a seamless ownership experience.
+                </p>
+                <a href="about.html" class="btn btn-outline">Our Heritage &rarr;</a>
+            </div>
+            <div class="reveal-right">
+                <img src="Assets/car.jpg" alt="Luxury Automotive Care"
+                    style="border-radius: var(--border-radius); box-shadow: var(--shadow-glow); width: 100%; height: 400px; object-fit: cover;">
+            </div>
+        </div>
+    </section>
+
     <!-- 2. Features Grid -->
     <section class="container section-space">
         <div class="grid-4">
@@ -267,6 +295,50 @@
                 <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--color-success);">🌱</div>
                 <h4>Eco Friendly</h4>
                 <p class="text-muted">Sustainable practices & recycling.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRAND MARQUEE -->
+    <section class="section-space reveal"
+        style="padding: 2rem 0; background: var(--bg-body); border-top: 1px solid var(--border-glass);">
+        <div class="container section-title" style="margin-bottom: 2rem;">
+            <p style="text-transform: uppercase; letter-spacing: 2px; color: var(--color-primary); font-weight: 600;">
+                Authorized Service Partners</p>
+        </div>
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <div class="brand-plate">
+                    <h2>BMW</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>Audi</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>Mercedes</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>Tesla</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>Ferrari</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>Porsche</h2>
+                </div>
+                <!-- Duplicate for seamless scroll -->
+                <div class="brand-plate">
+                    <h2>BMW</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>Audi</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>Mercedes</h2>
+                </div>
+                <div class="brand-plate">
+                    <h2>Tesla</h2>
+                </div>
             </div>
         </div>
     </section>
@@ -486,6 +558,60 @@
         </div>
     </section>
 
+    <!-- TESTIMONIALS -->
+    <section class="section-space">
+        <div class="container">
+            <div class="section-title reveal">
+                <h2>What Our Clients Say</h2>
+                <p>Real experiences from luxury car owners.</p>
+            </div>
+            <div class="grid-3">
+                <div class="glass-card reveal-left">
+                    <div style="color: var(--color-accent); font-size: 1.5rem; margin-bottom: 1rem;">★★★★★</div>
+                    <p class="text-muted" style="font-style: italic;">"The level of precision they show with my Tesla is
+                        unmatched. The digital dashboard tracking is a game changer."</p>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem;">
+                        <div
+                            style="width: 40px; height: 40px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                            RD</div>
+                        <div>
+                            <h5 style="margin: 0;">Robert Downey</h5>
+                            <p style="font-size: 0.8rem; margin: 0; color: var(--text-muted);">Model S Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card reveal-zoom">
+                    <div style="color: var(--color-accent); font-size: 1.5rem; margin-bottom: 1rem;">★★★★★</div>
+                    <p class="text-muted" style="font-style: italic;">"Finally a workshop that understands German
+                        engineering. My Audi A8 has never felt smoother. Highly recommended!"</p>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem;">
+                        <div
+                            style="width: 40px; height: 40px; background: var(--color-secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                            SJ</div>
+                        <div>
+                            <h5 style="margin: 0;">Scarlett Johansson</h5>
+                            <p style="font-size: 0.8rem; margin: 0; color: var(--text-muted);">Audi Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card reveal-right">
+                    <div style="color: var(--color-accent); font-size: 1.5rem; margin-bottom: 1rem;">★★★★★</div>
+                    <p class="text-muted" style="font-style: italic;">"Transparent pricing and expert care. They
+                        explained everything before starting the repair. Best service in town."</p>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem;">
+                        <div
+                            style="width: 40px; height: 40px; background: var(--color-success); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                            CE</div>
+                        <div>
+                            <h5 style="margin: 0;">Chris Evans</h5>
+                            <p style="font-size: 0.8rem; margin: 0; color: var(--text-muted);">Mercedes Driver</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- NEW SECTION: FAQ -->
     <section class="section-space" style="background: var(--bg-card);">
         <div class="container">
@@ -540,25 +666,32 @@
                 <a href="#" class="logo" style="margin-bottom: 1rem; color: #fff;">
                     <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
                 </a>
-                <p>Professional automobile services tailored for premium vehicles.</p>
+                <p>Professional automobile services tailored for premium vehicles. We ensure quality, safety, and
+                    performance.</p>
             </div>
             <div>
                 <h4>Quick Links</h4>
                 <ul style="margin-top: 1rem;">
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="login.html">Login</a></li>
                 </ul>
             </div>
             <div>
                 <h4>Services</h4>
                 <ul style="margin-top: 1rem;">
                     <li>Engine Repair</li>
+                    <li>Tire Service</li>
                     <li>Detailing</li>
+                    <li>Diagnostics</li>
                 </ul>
             </div>
             <div>
                 <h4>Contact</h4>
-                <p>123 Auto Street, Motor City</p>
+                <p style="margin-top: 1rem;">123 Auto Street, Motor City</p>
+                <p>+1 234 567 890</p>
+                <p>support@autopremium.com</p>
             </div>
         </div>
         <div class="footer-bottom">

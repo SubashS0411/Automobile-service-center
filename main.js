@@ -6,17 +6,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileBtn = document.querySelector('.mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
 
+    console.log('Mobile Toggle Found:', mobileBtn);
+    console.log('Nav Links Found:', navLinks);
+
     if (mobileBtn && navLinks) {
-        mobileBtn.addEventListener('click', () => {
+        mobileBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent closing immediately
             navLinks.classList.toggle('active');
-            mobileBtn.innerHTML = navLinks.classList.contains('active') ? '✕' : '☰';
+            console.log('Mobile toggle clicked! Active:', navLinks.classList.contains('active'));
+        });
+
+        // Close nav when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !mobileBtn.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
         });
 
         // Close nav when clicking a regular link (not dropdown triggers)
         navLinks.querySelectorAll('a:not(.dropdown-trigger)').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
-                mobileBtn.innerHTML = '☰';
             });
         });
 
@@ -46,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Scroll Animations (Reveal on Scroll) ---
-    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom');
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-zoom, .reveal-fade, .reveal-up, .reveal-scale');
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -78,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function animateCounter(el) {
         const target = +el.getAttribute('data-target');
+        const prefix = el.getAttribute('data-prefix') || '';
         const suffix = el.getAttribute('data-suffix') || '';
         const duration = 2000; // ms
         const increment = target / (duration / 16); // 60fps
@@ -86,10 +97,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const timer = setInterval(() => {
             current += increment;
             if (current >= target) {
-                el.innerText = target + suffix;
+                el.innerText = prefix + target.toLocaleString() + suffix;
                 clearInterval(timer);
             } else {
-                el.innerText = Math.ceil(current);
+                el.innerText = prefix + Math.ceil(current).toLocaleString() + suffix;
             }
         }, 16);
     }

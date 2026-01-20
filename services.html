@@ -16,9 +16,11 @@
     <!-- Navigation -->
     <header>
         <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <span style="color:var(--color-primary)">AUTO</span>PREMIUM
-            </a>
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
+                </a>
+            </div>
 
             <nav class="nav-links">
                 <!-- Home Dropdown -->
@@ -31,7 +33,7 @@
                         </svg>
                     </a>
                     <div class="dropdown-menu">
-                        <a href="index.html">Main Home</a>
+                        <a href="index.html">Home V1</a>
                         <a href="index2.html">Home V2</a>
                     </div>
                 </div>
@@ -56,9 +58,14 @@
 
                 <a href="contact.html">Contact</a>
 
+                <!-- Visual separator before auth links -->
+                <span style="width: 1px; height: 20px; background: var(--border-glass); margin: 0 0.5rem;"></span>
+
                 <a href="login.html" class="mobile-only-link">Login</a>
                 <a href="signup.html" class="mobile-only-link"
                     style="color: var(--color-primary); font-weight: bold;">Sign Up</a>
+
+                <!-- Mobile Only Toggles Removed (consolidated to header actions) -->
             </nav>
 
             <div class="nav-actions">
@@ -97,9 +104,40 @@
         </div>
     </section>
 
+    <!-- WHY CHOOSE US -->
+    <section class="container section-space reveal">
+        <div class="section-title">
+            <h2>Why Choose AutoPremium?</h2>
+            <p>We set the standard for automotive excellence.</p>
+        </div>
+        <div class="grid-4">
+            <div class="glass-card" style="text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 1rem;">👨‍🔧</div>
+                <h4>Expert Staff</h4>
+                <p class="text-muted" style="font-size: 0.9rem;">ASE-certified technicians with decades of experience.
+                </p>
+            </div>
+            <div class="glass-card" style="text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔧</div>
+                <h4>Genuine Parts</h4>
+                <p class="text-muted" style="font-size: 0.9rem;">Only OEM parts used to preserve vehicle integrity.</p>
+            </div>
+            <div class="glass-card" style="text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 1rem;">📱</div>
+                <h4>Live Tracking</h4>
+                <p class="text-muted" style="font-size: 0.9rem;">Track your car's service status in real-time.</p>
+            </div>
+            <div class="glass-card" style="text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 1rem;">🤝</div>
+                <h4>Global Warranty</h4>
+                <p class="text-muted" style="font-size: 0.9rem;">Service warranty honored at all our locations.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- 1. Engine Services -->
     <section class="container section-space">
-        <div class="grid-2" style="align-items: center;">
+        <div class="grid-2" style="align-items: center; gap: 2rem;">
             <div class="reveal-left">
                 <h2 style="color: var(--color-primary); margin-bottom: 1rem;">Engine Services</h2>
                 <p class="text-muted" style="margin-bottom: 1.5rem;">The heart of your vehicle deserves the best. We
@@ -111,11 +149,10 @@
                     <li>✓ Spark Plug & Ignition Wire</li>
                 </ul>
             </div>
-        </div>
-        <div class="glass-card reveal-right" style="padding: 0; overflow: hidden;">
-            <img src="Assets/images (1).jpg" alt="Engine Services"
-                style="width: 100%; height: 300px; object-fit: cover;">
-        </div>
+            <div class="glass-card reveal-right" style="padding: 0; overflow: hidden;">
+                <img src="Assets/Automobile-Industry-in-India.jpg" alt="Engine Services"
+                    style="width: 100%; height: 300px; object-fit: cover;">
+            </div>
         </div>
     </section>
 
@@ -142,7 +179,7 @@
 
     <!-- 3. Electrical Diagnostics -->
     <section class="container section-space">
-        <div class="grid-2" style="align-items: center;">
+        <div class="grid-2" style="align-items: center; gap: 2rem;">
             <div class="reveal-left">
                 <h2 style="color: var(--color-accent); margin-bottom: 1rem;">Electrical Diagnostics</h2>
                 <p class="text-muted" style="margin-bottom: 1.5rem;">Modern cars are computers on wheels. We speak their
@@ -154,11 +191,10 @@
                     <li>✓ Lighting & Fuse Systems</li>
                 </ul>
             </div>
-        </div>
-        <div class="glass-card reveal-right" style="padding: 0; overflow: hidden;">
-            <img src="Assets/images (3).jpg" alt="Electrical Diagnostics"
-                style="width: 100%; height: 300px; object-fit: cover;">
-        </div>
+            <div class="glass-card reveal-right" style="padding: 0; overflow: hidden;">
+                <img src="Assets/images (3).jpg" alt="Electrical Diagnostics"
+                    style="width: 100%; height: 300px; object-fit: cover;">
+            </div>
         </div>
     </section>
 
@@ -224,28 +260,31 @@
         <div class="grid-3">
             <div class="glass-card reveal-left" style="border-top: 4px solid silver;">
                 <h3>Silver Plan</h3>
-                <h2 style="color: var(--color-primary); margin: 1rem 0;">$299/yr</h2>
+                <h2 style="color: var(--color-primary); margin: 1rem 0;"><span class="counter-value" data-target="299"
+                        data-prefix="$">0</span>/yr</h2>
                 <ul style="text-align: left; margin: 1rem 0;">
                     <li>2 General Services</li>
                     <li>Free Oil Change</li>
-                    <li>10% Labor Discount</li>
+                    <li><span class="counter-value" data-target="10" data-suffix="%">0</span> Labor Discount</li>
                 </ul>
                 <button class="btn btn-outline">Select</button>
             </div>
             <div class="glass-card reveal-zoom" style="border-top: 4px solid gold; transform: scale(1.05);">
                 <h3>Gold Plan</h3>
-                <h2 style="color: var(--color-accent); margin: 1rem 0;">$499/yr</h2>
+                <h2 style="color: var(--color-accent); margin: 1rem 0;"><span class="counter-value" data-target="499"
+                        data-prefix="$">0</span>/yr</h2>
                 <ul style="text-align: left; margin: 1rem 0;">
                     <li>3 General Services</li>
                     <li>Free Wheel Alignment</li>
-                    <li>20% Labor Discount</li>
+                    <li><span class="counter-value" data-target="20" data-suffix="%">0</span> Labor Discount</li>
                     <li>Priority Booking</li>
                 </ul>
                 <button class="btn btn-primary">Select</button>
             </div>
             <div class="glass-card reveal-right" style="border-top: 4px solid #333;">
                 <h3>Platinum Plan</h3>
-                <h2 style="color: var(--color-secondary); margin: 1rem 0;">$899/yr</h2>
+                <h2 style="color: var(--color-secondary); margin: 1rem 0;"><span class="counter-value" data-target="899"
+                        data-prefix="$">0</span>/yr</h2>
                 <ul style="text-align: left; margin: 1rem 0;">
                     <li>Unlimited Services</li>
                     <li>Full Detailing x2</li>
@@ -305,7 +344,8 @@
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6);"></div>
         <div class="container reveal-zoom" style="position: relative; z-index: 2; text-align: center;">
             <h2 style="font-size: 3rem;">Seasonal Special</h2>
-            <p style="font-size: 1.5rem; margin: 1rem 0; color: var(--color-accent);">Get 20% OFF on AC Services this
+            <p style="font-size: 1.5rem; margin: 1rem 0; color: var(--color-accent);">Get <span class="counter-value"
+                    data-target="20" data-suffix="%">0</span> OFF on AC Services this
                 Summer</p>
             <p style="margin-bottom: 2rem;">Use Code: <strong>SUMMER26</strong></p>
             <a href="contact.html" class="btn btn-primary">Book Now</a>
@@ -376,13 +416,53 @@
             <h2>Transparent Pricing</h2>
             <p class="text-muted" style="margin-bottom: 2rem;">Know exactly what you pay for.</p>
             <div class="grid-4" style="font-weight: bold;">
-                <div>Oil Change <br> <span style="color: var(--color-primary)">$49</span></div>
-                <div>Brake Pads <br> <span style="color: var(--color-primary)">$89</span></div>
-                <div>AC Gas <br> <span style="color: var(--color-primary)">$59</span></div>
-                <div>Diagnosis <br> <span style="color: var(--color-primary)">$39</span></div>
+                <div>Oil Change <br> <span style="color: var(--color-primary)" class="counter-value" data-target="49"
+                        data-prefix="$">0</span></div>
+                <div>Brake Pads <br> <span style="color: var(--color-primary)" class="counter-value" data-target="89"
+                        data-prefix="$">0</span></div>
+                <div>AC Gas <br> <span style="color: var(--color-primary)" class="counter-value" data-target="59"
+                        data-prefix="$">0</span></div>
+                <div>Diagnosis <br> <span style="color: var(--color-primary)" class="counter-value" data-target="39"
+                        data-prefix="$">0</span></div>
             </div>
             <div style="margin-top: 2rem;">
                 <a href="contact.html" class="btn btn-secondary">Get a Quote</a>
+            </div>
+        </div>
+    </section>
+
+    </div>
+    </section>
+
+    <!-- SERVICE FAQ -->
+    <section class="section-space reveal" style="background: var(--bg-card);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Service FAQs</h2>
+                <p>Everything you need to know about our maintenance process.</p>
+            </div>
+            <div class="grid-2">
+                <div class="glass-card">
+                    <h5>How long does a general service take?</h5>
+                    <p class="text-muted" style="margin-top: 0.5rem;">A standard service usually takes 3-4 hours. We
+                        offer express servicing for certain packages that can be completed in under 90 minutes.</p>
+                </div>
+                <div class="glass-card">
+                    <h5>Do you provide pickup and drop-off?</h5>
+                    <p class="text-muted" style="margin-top: 0.5rem;">Yes, we offer complimentary pickup and drop-off
+                        within a 15-mile radius of our service center for all premium members.</p>
+                </div>
+                <div class="glass-card">
+                    <h5>What happens if additional repairs are needed?</h5>
+                    <p class="text-muted" style="margin-top: 0.5rem;">We provide a digital health report with
+                        photos/videos of any issues found. We only proceed after your explicit digital approval via our
+                        app.</p>
+                </div>
+                <div class="glass-card">
+                    <h5>Is my vehicle insured during the service?</h5>
+                    <p class="text-muted" style="margin-top: 0.5rem;">Absolutely. All vehicles in our care are fully
+                        insured against any accidental damage from the moment of pickup to delivery.</p>
+                </div>
             </div>
         </div>
     </section>

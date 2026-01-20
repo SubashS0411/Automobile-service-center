@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.setAttribute('dir', dirParams.ltr);
     }
 
-    // Toggle Button Listener
-    const btn = document.getElementById(dirParams.toggleBtnId);
-    if (btn) {
+    // Toggle Button Listener (Support Multiple)
+    const btns = document.querySelectorAll('.rtl-toggle-btn, #rtl-toggle-btn');
+    btns.forEach(btn => {
         btn.addEventListener('click', () => {
             const current = document.documentElement.getAttribute('dir');
             const target = current === dirParams.rtl ? dirParams.ltr : dirParams.rtl;
@@ -27,5 +27,5 @@ document.addEventListener('DOMContentLoaded', () => {
             document.documentElement.setAttribute('dir', target);
             localStorage.setItem(dirParams.key, target);
         });
-    }
+    });
 });

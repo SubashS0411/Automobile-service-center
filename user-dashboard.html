@@ -57,6 +57,12 @@
             height: 2.5rem;
             display: flex;
             align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .chart-card:hover h3 {
+            opacity: 1;
         }
 
         .chart-container {
@@ -71,12 +77,61 @@
         @media (max-width: 1024px) {
             .charts-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .chart-card {
+                aspect-ratio: auto;
+                min-height: 300px;
             }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             .charts-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .chart-card {
+                aspect-ratio: auto;
+                min-height: 300px;
+                padding: 1.25rem;
+            }
+
+            .chart-card h3 {
+                font-size: 1rem;
+                margin-bottom: 0.75rem;
+                opacity: 0;
+            }
+
+            .status-badge {
+                padding: 3px 10px;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .charts-grid {
+                gap: 0.75rem;
+                margin-bottom: 1rem;
+            }
+
+            .chart-card {
+                padding: 1rem;
+                min-height: 250px;
+            }
+
+            .chart-card h3 {
+                font-size: 0.95rem;
+                margin-bottom: 0.5rem;
+                height: 2rem;
+                opacity: 0;
+            }
+
+            .status-badge {
+                padding: 2px 8px;
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -85,58 +140,98 @@
 
 <body class="dashboard-page">
     <header>
-        <div class="nav-container flex justify-between items-center" style="max-width: none; padding: 0 2rem;">
-            <div class="sidebar-toggle">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-            </div>
-            <a href="index.html" class="logo">
-                <span style="color:var(--color-primary)">AUTO</span>PREMIUM
-            </a>
-            <nav>
-                <ul class="nav-links">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-trigger">Home <i class='bx bx-chevron-down'></i></a>
-                        <div class="dropdown-menu">
-                            <a href="index.html">Main Home</a>
-                            <a href="index2.html">Home V2</a>
-                        </div>
-                    </li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-trigger active">Dashboard <i class='bx bx-chevron-down'></i></a>
-                        <div class="dropdown-menu">
-                            <a href="user-dashboard.html">User Dashboard</a>
-                            <a href="admin-dashboard.html">Admin Dashboard</a>
-                        </div>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="login.html" class="btn btn-outline" style="padding: 8px 16px;">Login</a></li>
-                    <li><a href="signup.html" class="btn btn-primary" style="padding: 8px 16px; color: white;">Sign
-                            Up</a></li>
-                </ul>
-            </nav>
-            <div class="user-profile flex items-center gap-1">
-                <span>Alex</span>
-                <img src="Assets/images.jpg" alt="User"
-                    style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
-            </div>
-            <div class="controls" style="display: flex; gap: 0.5rem; align-items: center;">
-                <button id="rtl-toggle-btn" class="btn-icon-animate" title="RTL Toggle"
-                    style="background:none; border:none; cursor:pointer; font-size:1.2rem;">🌐</button>
-                <button id="theme-toggle-btn" class="nav-icon-btn" title="Toggle Theme">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        <div class="nav-container flex justify-between items-center" style="max-width: none;">
+            <div class="flex items-center gap-1">
+                <div class="sidebar-toggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        <line x1="3" y1="5" x2="21" y2="5"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                        <line x1="3" y1="15" x2="21" y2="15"></line>
+                        <line x1="3" y1="20" x2="21" y2="20"></line>
                     </svg>
-                </button>
-                <div class="mobile-toggle"><i class='bx bx-menu'></i></div>
+                </div>
+                <a href="index.html" class="logo">
+                    <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
+                </a>
+                <div class="flex items-center gap-1" style="margin-left: 2rem;">
+                    <button id="rtl-toggle-btn" class="nav-icon-btn" title="Toggle RTL" style="font-size: 1.25rem;">
+                        🌐
+                    </button>
+                    <button id="theme-toggle-btn" class="nav-icon-btn" title="Toggle Theme">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <nav class="nav-links">
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">Home
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="index.html">Home V1</a>
+                        <a href="index2.html">Home V2</a>
+                    </div>
+                </div>
+
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger active">Dashboards
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="user-dashboard.html">User Dashboard</a>
+                        <a href="admin-dashboard.html">Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html">Contact</a>
+
+                <!-- Visual separator before auth links -->
+                <span style="width: 1px; height: 20px; background: var(--border-glass); margin: 0 0.5rem;"></span>
+
+                <a href="login.html" class="mobile-only-link">Login</a>
+                <a href="signup.html" class="mobile-only-link"
+                    style="color: var(--color-primary); font-weight: bold;">Sign Up</a>
+            </nav>
+
+            <div class="flex items-center justify-end gap-2">
+                <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+                <a href="signup.html" class="btn btn-primary btn-sm">Sign Up</a>
+
+                <div class="nav-divider"
+                    style="width: 1px; height: 20px; background: rgba(0,0,0,0.1); margin: 0 0.5rem;"></div>
+
+                <div class="user-profile flex items-center gap-1">
+                    <span class="fs-sm">Alex</span>
+                    <img src="Assets/images.jpg" alt="User"
+                        style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+                </div>
+
+                <div class="nav-actions">
+                </div>
+
+                <div class="mobile-toggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                </div>
             </div>
         </div>
     </header>
@@ -165,14 +260,15 @@
                 </div>
 
                 <!-- Stats -->
-                <div class="grid" style="grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+                <div class="grid grid-responsive" style="margin-bottom: 2rem;">
                     <div class="card flex items-center gap-1 bg-subtle-primary">
                         <div
                             style="width: 48px; height: 48px; border-radius: 50%; background: rgba(84, 81, 229, 0.2); display: flex; align-items: center; justify-content: center; color: var(--color-primary); font-size: 1.5rem; flex-shrink: 0;">
                             <i>🛠️</i>
                         </div>
                         <div>
-                            <div style="font-size: 1.5rem; font-weight: 700;">12</div>
+                            <div class="counter-value" style="font-size: 1.5rem; font-weight: 700;" data-target="12">0
+                            </div>
                             <div style="color: var(--text-muted); font-size: 0.9rem;">Total Services</div>
                         </div>
                     </div>
@@ -192,7 +288,8 @@
                             <i>❤️</i>
                         </div>
                         <div>
-                            <div style="font-size: 1.5rem; font-weight: 700;">92%</div>
+                            <div class="counter-value" style="font-size: 1.5rem; font-weight: 700;" data-target="92"
+                                data-suffix="%">0</div>
                             <div style="color: var(--text-muted); font-size: 0.9rem;">Health Score</div>
                         </div>
                     </div>
@@ -202,14 +299,15 @@
                             <i>💎</i>
                         </div>
                         <div>
-                            <div style="font-size: 1.5rem; font-weight: 700;">450</div>
+                            <div class="counter-value" style="font-size: 1.5rem; font-weight: 700;" data-target="450">0
+                            </div>
                             <div style="color: var(--text-muted); font-size: 0.9rem;">Reward Points</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Charts Grid -->
-                <div class="charts-grid">
+                <div class="charts-grid grid-responsive">
                     <div class="chart-card">
                         <h3>Service history (2024)</h3>
                         <div id="serviceHistoryChart" class="chart-container"></div>
@@ -233,6 +331,14 @@
                     <div class="chart-card">
                         <h3>Points Redemption</h3>
                         <div id="pointsChart" class="chart-container"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Driving Score</h3>
+                        <div id="drivingScoreChart" class="chart-container"></div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Monthly Mileage</h3>
+                        <div id="mileageChart" class="chart-container"></div>
                     </div>
                 </div>
 
@@ -420,6 +526,46 @@
                     </form>
                 </div>
             </div>
+            <!-- Footer -->
+            <footer>
+                <div class="container footer-grid">
+                    <div>
+                        <a href="#" class="logo" style="margin-bottom: 1rem; color: #fff;">
+                            <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
+                        </a>
+                        <p>Professional automobile services tailored for premium vehicles. We ensure quality,
+                            safety, and
+                            performance.</p>
+                    </div>
+                    <div>
+                        <h4>Quick Links</h4>
+                        <ul style="margin-top: 1rem;">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="login.html">Login</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Services</h4>
+                        <ul style="margin-top: 1rem;">
+                            <li>Engine Repair</li>
+                            <li>Tire Service</li>
+                            <li>Detailing</li>
+                            <li>Diagnostics</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Contact</h4>
+                        <p style="margin-top: 1rem;">123 Auto Street, Motor City</p>
+                        <p>+1 234 567 890</p>
+                        <p>support@autopremium.com</p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 AutoPremium. All rights reserved.</p>
+                </div>
+            </footer>
         </main>
     </div>
 
@@ -453,6 +599,7 @@
                     background: 'transparent',
                     foreColor: 'var(--text-muted)'
                 },
+                dataLabels: { enabled: false },
                 grid: { borderColor: 'rgba(255,255,255,0.05)', strokeDashArray: 4 },
                 tooltip: { theme: 'dark' },
                 theme: {
@@ -519,6 +666,25 @@
                 legend: { position: 'bottom' }
             }).render();
 
+            // 7. Driving Score (Radial Bar - Static)
+            new ApexCharts(document.querySelector("#drivingScoreChart"), {
+                ...commonOptions,
+                series: [88],
+                chart: { ...commonOptions.chart, type: 'radialBar', height: '100%', width: '100%' },
+                plotOptions: { radialBar: { dataLabels: { total: { show: true, label: 'Score', formatter: () => '88' } } } },
+                labels: ['Efficiency'],
+                colors: ['var(--color-success)']
+            }).render();
+
+            // 8. Monthly Mileage (Bar - Static)
+            new ApexCharts(document.querySelector("#mileageChart"), {
+                ...commonOptions,
+                series: [{ name: 'Miles', data: [850, 920, 780, 1100, 950, 1020] }],
+                chart: { ...commonOptions.chart, type: 'bar', height: '100%', width: '100%' },
+                colors: ['var(--color-primary)'],
+                xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] }
+            }).render();
+
             // Tab Switching Logic
             const sidebarLinks = document.querySelectorAll('.sidebar-menu a[data-tab]');
             const tabPanes = document.querySelectorAll('.tab-pane');
@@ -553,6 +719,7 @@
             });
         });
     </script>
+
     <script src="dashboard-animations.js"></script>
     <script src="theme-toggle.js"></script>
     <script src="rtl-toggle.js"></script>
