@@ -13,6 +13,16 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileBtn.addEventListener('click', (e) => {
             e.stopPropagation(); // Prevent closing immediately
             navLinks.classList.toggle('active');
+            
+            // Change icon based on menu state
+            const svg = mobileBtn.querySelector('svg');
+            if (navLinks.classList.contains('active')) {
+                // Show close icon (×)
+                svg.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>';
+            } else {
+                // Show hamburger icon (☰)
+                svg.innerHTML = '<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>';
+            }
             console.log('Mobile toggle clicked! Active:', navLinks.classList.contains('active'));
         });
 
@@ -20,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('click', (e) => {
             if (!navLinks.contains(e.target) && !mobileBtn.contains(e.target)) {
                 navLinks.classList.remove('active');
+                const svg = mobileBtn.querySelector('svg');
+                svg.innerHTML = '<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>';
             }
         });
 
@@ -27,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.querySelectorAll('a:not(.dropdown-trigger)').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                const svg = mobileBtn.querySelector('svg');
+                svg.innerHTML = '<line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>';
             });
         });
 
@@ -52,6 +66,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (sidebarBtn && sidebar) {
         sidebarBtn.addEventListener('click', () => {
             sidebar.classList.toggle('active');
+            
+            // Change icon based on sidebar state
+            const svg = sidebarBtn.querySelector('svg');
+            if (sidebar.classList.contains('active')) {
+                // Show close icon (×)
+                svg.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>';
+            } else {
+                // Show grid/hamburger icon (☰)
+                svg.innerHTML = '<rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect>';
+            }
         });
     }
 
