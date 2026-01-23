@@ -387,6 +387,7 @@ img:not(.transition-car):hover {
 
 .chart-card {
     aspect-ratio: 1 / 1;
+    min-height: 108px;
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
@@ -431,7 +432,7 @@ img:not(.transition-car):hover {
     height: 2.5rem;
     display: flex;
     align-items: center;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.3s ease;
     position: relative;
     z-index: 1;
@@ -516,7 +517,7 @@ header {
     font-family: var(--font-heading);
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0;
     white-space: nowrap;
 }
 
@@ -607,10 +608,7 @@ header {
     color: var(--color-primary);
 }
 
-.dropdown-trigger::after {
-    display: none;
-    /* Remove text arrow if we want, but image has chevron. */
-}
+
 
 /* Re-adding chevron as generic SVG or keep css arrow. Image has a small chevron down. */
 .dropdown-trigger svg {
@@ -1495,6 +1493,7 @@ footer {
     .nav-actions .btn-primary,
     .nav-actions .btn-sm,
     .nav-actions .nav-divider,
+    .nav-actions .user-profile,
     .nav-actions [style*="width: 1px"] {
         display: none !important;
     }

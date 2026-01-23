@@ -32,79 +32,10 @@
             color: #0ea5e9;
         }
 
-        /* Square Chart Containers */
-        .charts-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
+        /* Single Page Scroll Layout Overrides */
 
-        .chart-card {
-            aspect-ratio: 1 / 1;
-            display: flex;
-            flex-direction: column;
-            padding: 1.5rem;
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-        }
-
-        .chart-card h3 {
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-            height: 2.5rem;
-            display: flex;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .chart-card:hover h3 {
-            opacity: 1;
-        }
-
-        .chart-container {
-            flex: 1;
-            min-height: 0;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        @media (max-width: 1024px) {
-            .charts-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .chart-card {
-                aspect-ratio: auto;
-                min-height: 300px;
-            }
-        }
 
         @media (max-width: 768px) {
-            .charts-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .chart-card {
-                aspect-ratio: auto;
-                min-height: 300px;
-                padding: 1.25rem;
-            }
-
-            .chart-card h3 {
-                font-size: 1rem;
-                margin-bottom: 0.75rem;
-                opacity: 0;
-            }
-
             .status-badge {
                 padding: 3px 10px;
                 font-size: 0.75rem;
@@ -112,27 +43,78 @@
         }
 
         @media (max-width: 480px) {
-            .charts-grid {
-                gap: 0.75rem;
-                margin-bottom: 1rem;
-            }
-
-            .chart-card {
-                padding: 1rem;
-                min-height: 250px;
-            }
-
-            .chart-card h3 {
-                font-size: 0.95rem;
-                margin-bottom: 0.5rem;
-                height: 2rem;
-                opacity: 0;
-            }
-
             .status-badge {
                 padding: 2px 8px;
                 font-size: 0.7rem;
             }
+        }
+
+        /* Single Page Scroll Layout Overrides */
+        html,
+        body {
+            overflow: hidden;
+            /* Prevent body scroll, use main-content instead */
+            height: 100vh;
+        }
+
+        .dashboard-layout {
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            /* Ensure sidebar and main work together */
+            padding-top: var(--header-height);
+        }
+
+        .sidebar {
+            position: fixed;
+            /* Keep sidebar fixed */
+            height: calc(100vh - var(--header-height));
+            /* z-index handled by style.css */
+        }
+
+        .main-content {
+            height: 100%;
+            /* Fill remaining height */
+            overflow-y: auto;
+            /* Scroll internally */
+            scroll-behavior: smooth;
+            width: 100%;
+            padding-bottom: 2rem;
+            position: relative;
+            /* For scroll spy offset calc */
+            margin-left: 250px;
+            /* Match sidebar width */
+        }
+
+        /* Mobile Fix for Main Content Margin */
+        @media (max-width: 992px) {
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        .tab-pane {
+            display: block !important;
+            /* Always visible */
+            opacity: 1 !important;
+            /* Override fade effects if any that hide it */
+            margin-bottom: 4rem;
+            /* Section spacing */
+            scroll-margin-top: 2rem;
+            /* Smooth scroll offset */
+        }
+
+        /* Highlight active link override */
+        .sidebar-menu a.active {
+            background: rgba(84, 81, 229, 0.2);
+            color: var(--color-primary);
+            border-right: 3px solid var(--color-primary);
+        }
+
+        /* Fix for select options in dark mode */
+        [data-theme="dark"] .form-control option {
+            background-color: var(--bg-card);
+            color: var(--text-main);
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -151,20 +133,9 @@
                         <line x1="3" y1="20" x2="21" y2="20"></line>
                     </svg>
                 </div>
-                <a href="index.html" class="logo">
-                    <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
-                </a>
-                <div class="flex items-center gap-1" style="margin-left: 2rem;">
-                    <button id="rtl-toggle-btn" class="nav-icon-btn" title="Toggle RTL" style="font-size: 1.25rem;">
-                        🌐
-                    </button>
-                    <button id="theme-toggle-btn" class="nav-icon-btn" title="Toggle Theme">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                        </svg>
-                    </button>
-                </div>
+                <a href="index.html" class="logo"><span style="color:var(--color-secondary)">AUTO</span>PREMIUM</a>
+                <a href="#"
+                    style="background: red; color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-decoration: none; pointer-events: none; margin-left: 0.5rem;">User</a>
             </div>
 
             <nav class="nav-links">
@@ -208,19 +179,28 @@
             </nav>
 
             <div class="flex items-center justify-end gap-2">
-                <a href="login.html" class="btn btn-primary btn-sm">Login</a>
-                <a href="signup.html" class="btn btn-primary btn-sm">Sign Up</a>
-
-                <div class="nav-divider"
-                    style="width: 1px; height: 20px; background: rgba(0,0,0,0.1); margin: 0 0.5rem;"></div>
-
-                <div class="user-profile flex items-center gap-1">
-                    <span class="fs-sm">Alex</span>
-                    <img src="Assets/images.jpg" alt="User"
-                        style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+                <div class="flex items-center gap-1">
+                    <button id="rtl-toggle-btn" class="nav-icon-btn" title="Toggle RTL" style="font-size: 1.25rem;">
+                        🌐
+                    </button>
+                    <button id="theme-toggle-btn" class="nav-icon-btn" title="Toggle Theme">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
                 </div>
 
                 <div class="nav-actions">
+                    <a href="login.html" class="btn btn-primary btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-primary btn-sm">Sign Up</a>
+                    <div class="nav-divider"
+                        style="width: 1px; height: 20px; background: rgba(0,0,0,0.1); margin: 0 0.5rem;"></div>
+                    <div class="user-profile flex items-center gap-1">
+                        <span class="fs-sm">Alex</span>
+                        <img src="Assets/images.jpg" alt="User"
+                            style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+                    </div>
                 </div>
 
                 <div class="mobile-toggle">
@@ -239,11 +219,11 @@
     <div class="dashboard-layout">
         <aside class="sidebar">
             <div class="sidebar-menu">
-                <a href="#" class="active" data-tab="overview-tab"><i>📊</i> Overview</a>
-                <a href="#" data-tab="booking-tab"><i>🚗</i> Book Service</a>
-                <a href="#" data-tab="history-tab"><i>📜</i> Service History</a>
-                <a href="#" data-tab="vehicles-tab"><i>🏎️</i> My Vehicles</a>
-                <a href="#" data-tab="settings-tab"><i>⚙️</i> Settings</a>
+                <a href="#overview-tab" class="nav-link active"><i>📊</i> Overview</a>
+                <a href="#booking-tab" class="nav-link"><i>🚗</i> Book Service</a>
+                <a href="#history-tab" class="nav-link"><i>📜</i> Service History</a>
+                <a href="#vehicles-tab" class="nav-link"><i>🏎️</i> My Vehicles</a>
+                <a href="#settings-tab" class="nav-link"><i>⚙️</i> Settings</a>
                 <a href="index.html"><i class='bx bx-log-out'></i> Logout</a>
             </div>
         </aside>
@@ -253,10 +233,10 @@
             <div id="overview-tab" class="tab-pane active">
                 <div class="flex justify-between items-center" style="margin-bottom: 2rem;">
                     <h2>Vehicle Status</h2>
-                    <button class="btn btn-primary"
-                        onclick="document.querySelector('[data-tab=\'booking-tab\']').click()">
+                    <a href="#booking-tab" class="btn btn-primary"
+                        onclick="document.querySelector('a[href=\'#booking-tab\']').click()">
                         <i class='bx bx-plus'></i> Book New Service
-                    </button>
+                    </a>
                 </div>
 
                 <!-- Stats -->
@@ -310,35 +290,35 @@
                 <div class="charts-grid grid-responsive">
                     <div class="chart-card">
                         <h3>Service history (2024)</h3>
-                        <div id="serviceHistoryChart" class="chart-container"></div>
+                        <div id="serviceHistoryChart" class="chart-container-inner"></div>
                     </div>
                     <div class="chart-card">
                         <h3>Component Health Radial</h3>
-                        <div id="compHealthChart" class="chart-container"></div>
+                        <div id="compHealthChart" class="chart-container-inner"></div>
                     </div>
                     <div class="chart-card">
                         <h3>Fuel Efficiency (MPG)</h3>
-                        <div id="fuelEcoChart" class="chart-container"></div>
+                        <div id="fuelEcoChart" class="chart-container-inner"></div>
                     </div>
                     <div class="chart-card">
                         <h3>Service Type Distribution</h3>
-                        <div id="serviceTypeChart" class="chart-container"></div>
+                        <div id="serviceTypeChart" class="chart-container-inner"></div>
                     </div>
                     <div class="chart-card">
                         <h3>Tire Pressure (PSI)</h3>
-                        <div id="tirePressureChart" class="chart-container"></div>
+                        <div id="tirePressureChart" class="chart-container-inner"></div>
                     </div>
                     <div class="chart-card">
                         <h3>Points Redemption</h3>
-                        <div id="pointsChart" class="chart-container"></div>
+                        <div id="pointsChart" class="chart-container-inner"></div>
                     </div>
                     <div class="chart-card">
                         <h3>Driving Score</h3>
-                        <div id="drivingScoreChart" class="chart-container"></div>
+                        <div id="drivingScoreChart" class="chart-container-inner"></div>
                     </div>
                     <div class="chart-card">
                         <h3>Monthly Mileage</h3>
-                        <div id="mileageChart" class="chart-container"></div>
+                        <div id="mileageChart" class="chart-container-inner"></div>
                     </div>
                 </div>
 
@@ -571,25 +551,50 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Tab switching logic
-            const tabLinks = document.querySelectorAll('.sidebar-menu a[data-tab]');
-            const tabContents = document.querySelectorAll('.tab-pane');
+            // Smooth Scrolling & ScrollSpy Logic
+            const mainContent = document.querySelector('.main-content');
+            const sidebarLinks = document.querySelectorAll('.sidebar-menu a.nav-link');
+            const sections = document.querySelectorAll('.tab-pane');
 
-            tabLinks.forEach(link => {
+            sidebarLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const targetTab = link.getAttribute('data-tab');
+                    e.stopImmediatePropagation();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
 
-                    tabLinks.forEach(l => l.classList.remove('active'));
-                    tabContents.forEach(c => c.style.display = 'none');
+                    if (targetSection) {
+                        mainContent.scrollTo({
+                            top: targetSection.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
 
-                    link.classList.add('active');
-                    document.getElementById(targetTab).style.display = 'block';
-
-                    // Trigger window resize for ApexCharts to respond if needed
-                    window.dispatchEvent(new Event('resize'));
+                        // Set active link immediately
+                        sidebarLinks.forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+                    }
                 });
             });
+
+            // IntersectionObserver for ScrollSpy
+            const observerOptions = {
+                root: mainContent,
+                rootMargin: '-10% 0px -80% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        sidebarLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
 
             // ApexCharts Implementation
             const commonOptions = {
@@ -644,7 +649,7 @@
                 chart: { ...commonOptions.chart, type: 'pie', height: '100%', width: '100%' },
                 labels: ['Maintenance', 'Repair', 'Inspection', 'Detailing'],
                 colors: ['var(--color-primary)', 'var(--color-accent)', 'var(--color-secondary)', 'var(--color-success)'],
-                legend: { position: 'bottom' }
+                legend: { position: 'bottom', horizontalAlign: 'center', itemMargin: { horizontal: 10, vertical: 5 }, fontSize: '13px' }
             }).render();
 
             // 5. Tire Pressure (Bar)
@@ -663,7 +668,7 @@
                 chart: { ...commonOptions.chart, type: 'donut', height: '100%', width: '100%' },
                 labels: ['Used', 'Available'],
                 colors: ['var(--color-muted)', 'var(--color-secondary)'],
-                legend: { position: 'bottom' }
+                legend: { position: 'bottom', horizontalAlign: 'center', itemMargin: { horizontal: 10, vertical: 5 }, fontSize: '13px' }
             }).render();
 
             // 7. Driving Score (Radial Bar - Static)
@@ -685,38 +690,8 @@
                 xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] }
             }).render();
 
-            // Tab Switching Logic
-            const sidebarLinks = document.querySelectorAll('.sidebar-menu a[data-tab]');
-            const tabPanes = document.querySelectorAll('.tab-pane');
-
-            sidebarLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetTab = link.getAttribute('data-tab');
-
-                    // Remove active class from all links
-                    sidebarLinks.forEach(l => l.classList.remove('active'));
-
-                    // Add active class to clicked link
-                    link.classList.add('active');
-
-                    // Hide all tab panes
-                    tabPanes.forEach(pane => {
-                        pane.classList.remove('active');
-                        pane.style.display = 'none';
-                    });
-
-                    // Show target tab pane
-                    const targetPane = document.getElementById(targetTab);
-                    if (targetPane) {
-                        targetPane.classList.add('active');
-                        targetPane.style.display = 'block';
-                    }
-
-                    // Trigger window resize for charts to adjust
-                    window.dispatchEvent(new Event('resize'));
-                });
-            });
+            // Trigger window resize for charts to adjust
+            window.dispatchEvent(new Event('resize'));
         });
     </script>
 

@@ -42,32 +42,116 @@
             min-height: 280px;
             width: 100%;
         }
+
+        /* Single Page Scroll Layout Overrides */
+        html,
+        body {
+            overflow: hidden;
+            /* Prevent body scroll, use main-content instead */
+            height: 100vh;
+        }
+
+        .dashboard-layout {
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            /* Ensure sidebar and main work together */
+            padding-top: var(--header-height);
+        }
+
+        .sidebar {
+            position: fixed;
+            /* Keep sidebar fixed */
+            height: calc(100vh - var(--header-height));
+            /* z-index handled by style.css */
+        }
+
+        .main-content {
+            height: 100%;
+            /* Fill remaining height */
+            overflow-y: auto;
+            /* Scroll internally */
+            scroll-behavior: smooth;
+            width: 100%;
+            padding-bottom: 2rem;
+            position: relative;
+            /* For scroll spy offset calc */
+            margin-left: 250px;
+            /* Match sidebar width */
+        }
+
+        /* Mobile Fix for Main Content Margin */
+        @media (max-width: 992px) {
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        .tab-pane {
+            display: block !important;
+            /* Always visible */
+            opacity: 1 !important;
+            /* Override fade effects if any that hide it */
+            margin-bottom: 4rem;
+            /* Section spacing */
+            scroll-margin-top: 2rem;
+            /* Smooth scroll offset */
+        }
+
+        /* Highlight active link override */
+        .sidebar-menu a.active {
+            background: rgba(84, 81, 229, 0.2);
+            color: var(--color-primary);
+            border-right: 3px solid var(--color-primary);
+        }
     </style>
+
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
 <body>
-
     <!-- Navigation -->
     <header>
         <div class="nav-container flex justify-between items-center" style="max-width: none;">
             <div class="flex items-center gap-1">
-                <div class="sidebar-toggle">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
+                <div class="sidebar-toggle"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="3" y1="5" x2="21" y2="5"></line>
                         <line x1="3" y1="10" x2="21" y2="10"></line>
                         <line x1="3" y1="15" x2="21" y2="15"></line>
                         <line x1="3" y1="20" x2="21" y2="20"></line>
-                    </svg>
-                </div>
-                <a href="index.html" class="logo">
-                    <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
-                </a>
-                <div class="flex items-center gap-1" style="margin-left: 2rem;">
-                    <button id="rtl-toggle-btn" class="nav-icon-btn" title="Toggle RTL" style="font-size: 1.25rem;">
-                        🌐
-                    </button>
+                    </svg></div><a href="index.html" class="logo"><span
+                        style="color:var(--color-secondary)">AUTO</span>PREMIUM</a>
+                <a href="#"
+                    style="background: red; color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-decoration: none; pointer-events: none; margin-left: 0.5rem;">Admin</a>
+            </div>
+            <nav class="nav-links">
+                <!-- Home Dropdown -->
+                <div class="dropdown"><a href="#" class="dropdown-trigger">Home <svg viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg></a>
+                    <div class="dropdown-menu"><a href="index.html">Home V1</a><a href="index2.html">Home V2</a>
+                    </div>
+                </div><a href="about.html">About</a><a href="services.html">Services</a>
+                <!-- Dashboards Dropdown -->
+                <div class="dropdown"><a href="#" class="dropdown-trigger active">Dashboards <svg viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg></a>
+                    <div class="dropdown-menu"><a href="user-dashboard.html">User Dashboard</a><a
+                            href="admin-dashboard.html">Admin Dashboard</a></div>
+                </div><a href="contact.html">Contact</a>
+                <!-- Visual separator before auth links --><span
+                    style="width: 1px; height: 20px; background: var(--border-glass); margin: 0 0.5rem;"></span><a
+                    href="login.html" class="mobile-only-link">Login</a><a href="signup.html" class="mobile-only-link"
+                    style="color: var(--color-primary); font-weight: bold;">Sign Up</a>
+            </nav>
+            <div class="flex items-center justify-end gap-2">
+                <div class="flex items-center gap-1">
+                    <button id="rtl-toggle-btn" class="nav-icon-btn" title="Toggle RTL"
+                        style="font-size: 1.25rem;">🌐</button>
                     <button id="theme-toggle-btn" class="nav-icon-btn" title="Toggle Theme">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -75,67 +159,12 @@
                         </svg>
                     </button>
                 </div>
-            </div>
-
-            <nav class="nav-links">
-                <!-- Home Dropdown -->
-                <div class="dropdown">
-                    <a href="#" class="dropdown-trigger">
-                        Home
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a href="index.html">Home V1</a>
-                        <a href="index2.html">Home V2</a>
-                    </div>
-                </div>
-
-                <a href="about.html">About</a>
-                <a href="services.html">Services</a>
-
-                <!-- Dashboards Dropdown -->
-                <div class="dropdown">
-                    <a href="#" class="dropdown-trigger active">
-                        Dashboards
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a href="user-dashboard.html">User Dashboard</a>
-                        <a href="admin-dashboard.html">Admin Dashboard</a>
-                    </div>
-                </div>
-
-                <a href="contact.html">Contact</a>
-
-                <!-- Visual separator before auth links -->
-                <span style="width: 1px; height: 20px; background: var(--border-glass); margin: 0 0.5rem;"></span>
-
-                <a href="login.html" class="mobile-only-link">Login</a>
-                <a href="signup.html" class="mobile-only-link"
-                    style="color: var(--color-primary); font-weight: bold;">Sign Up</a>
-            </nav>
-
-            <div class="flex items-center justify-end gap-2">
-                <a href="login.html" class="btn btn-primary btn-sm">Login</a>
-                <a href="signup.html" class="btn btn-primary btn-sm">Sign Up</a>
-
-                <div class="nav-divider"
-                    style="width: 1px; height: 20px; background: rgba(0,0,0,0.1); margin: 0 0.5rem;"></div>
-
-                <div class="user-profile flex items-center gap-1">
-                    <span class="fs-sm">Admin</span>
-                    <div
-                        style="width: 32px; height: 32px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem;">
-                        AD</div>
-                </div>
 
                 <div class="nav-actions">
+                    <a href="login.html" class="btn btn-primary btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-primary btn-sm">Sign Up</a>
+                    <div class="nav-divider"
+                        style="width: 1px; height: 20px; background: rgba(0,0,0,0.1); margin: 0 0.5rem;"></div>
                 </div>
 
                 <div class="mobile-toggle">
@@ -149,25 +178,22 @@
                 </div>
             </div>
     </header>
-
     <div class="dashboard-layout">
         <!-- Sidebar -->
         <aside class="sidebar">
             <ul class="sidebar-menu">
-                <li><a href="javascript:void(0)" class="tab-link active" data-tab="overview"><i>📊</i> Overview</a></li>
-                <li><a href="javascript:void(0)" class="tab-link" data-tab="users"><i>👥</i> Users</a></li>
-                <li><a href="javascript:void(0)" class="tab-link" data-tab="services"><i>🔧</i> Services</a></li>
-                <li><a href="javascript:void(0)" class="tab-link" data-tab="bookings"><i>📅</i> Bookings</a></li>
-                <li><a href="javascript:void(0)" class="tab-link" data-tab="inventory"><i>📦</i> Inventory</a></li>
-                <li><a href="javascript:void(0)" class="tab-link" data-tab="reports"><i>📈</i> Reports</a></li>
-                <li><a href="javascript:void(0)" class="tab-link" data-tab="settings"><i>⚙️</i> Settings</a></li>
-                <li><a href="index.html" style="color: var(--color-secondary);"><i>🚪</i> Logout</a></li>
+                <li><a href="#overview" class="nav-link active"><i>📊</i>Overview</a></li>
+                <li><a href="#users" class="nav-link"><i>👥</i>Users</a></li>
+                <li><a href="#services" class="nav-link"><i>🔧</i>Services</a></li>
+                <li><a href="#bookings" class="nav-link"><i>📅</i>Bookings</a></li>
+                <li><a href="#inventory" class="nav-link"><i>📦</i>Inventory</a></li>
+                <li><a href="#reports" class="nav-link"><i>📈</i>Reports</a></li>
+                <li><a href="#settings" class="nav-link"><i>⚙️</i>Settings</a></li>
+                <li><a href="index.html" style="color: var(--color-secondary);"><i>🚪</i>Logout</a></li>
             </ul>
         </aside>
-
         <!-- Main Content -->
         <main class="main-content">
-
             <!-- TAB: Overview -->
             <div id="overview" class="tab-pane active">
                 <section class="reveal-zoom">
@@ -179,7 +205,8 @@
                                 <i>💰</i>
                             </div>
                             <div>
-                                <div style="color: var(--text-muted); font-size: 0.9rem;">Total Revenue</div>
+                                <div style="color: var(--text-muted); font-size: 0.9rem;">Total Revenue
+                                </div>
                                 <div class="counter-value"
                                     style="font-size: 1.5rem; font-weight: 700; color: var(--color-success);"
                                     id="ticker-revenue" data-target="124500" data-prefix="$">0</div>
@@ -191,7 +218,8 @@
                                 <i>📅</i>
                             </div>
                             <div>
-                                <div style="color: var(--text-muted); font-size: 0.9rem;">Active Bookings</div>
+                                <div style="color: var(--text-muted); font-size: 0.9rem;">Active
+                                    Bookings</div>
                                 <div class="counter-value"
                                     style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary);"
                                     data-target="42">0</div>
@@ -203,7 +231,8 @@
                                 <i>🔧</i>
                             </div>
                             <div>
-                                <div style="color: var(--text-muted); font-size: 0.9rem;">Mechanics Online</div>
+                                <div style="color: var(--text-muted); font-size: 0.9rem;">Mechanics
+                                    Online</div>
                                 <div class="counter-value"
                                     style="font-size: 1.5rem; font-weight: 700; color: var(--color-accent);"
                                     data-target="18">0</div>
@@ -215,7 +244,8 @@
                                 <i>🆘</i>
                             </div>
                             <div>
-                                <div style="color: var(--text-muted); font-size: 0.9rem;">Pending Support</div>
+                                <div style="color: var(--text-muted); font-size: 0.9rem;">Pending
+                                    Support</div>
                                 <div class="counter-value"
                                     style="font-size: 1.5rem; font-weight: 700; color: var(--color-secondary);"
                                     data-target="7">0</div>
@@ -223,7 +253,6 @@
                         </div>
                     </div>
                 </section>
-
                 <!-- Charts Grid -->
                 <div class="charts-grid grid-responsive" style="margin-top: 2rem;">
                     <div class="chart-card">
@@ -272,7 +301,62 @@
                     </div>
                 </div>
             </div>
-
+            <!-- TAB: Users -->
+            <div id="users" class="tab-pane">
+                <section class="glass-card">
+                    <div class="section-title">
+                        <h2>User Management</h2>
+                    </div>
+                    <div style="overflow-x: auto; margin-top: 1rem;">
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="text-align: left; border-bottom: 2px solid var(--text-muted);">
+                                    <th style="padding: 1rem;">Name</th>
+                                    <th style="padding: 1rem;">Email</th>
+                                    <th style="padding: 1rem;">Role</th>
+                                    <th style="padding: 1rem;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <td style="padding: 1rem;">Alice Wonder</td>
+                                    <td style="padding: 1rem;">alice@example.com</td>
+                                    <td style="padding: 1rem;">Customer</td>
+                                    <td style="padding: 1rem; color: var(--color-success);">
+                                        Active</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                    <td style="padding: 1rem;">Bob Builder</td>
+                                    <td style="padding: 1rem;">bob@example.com</td>
+                                    <td style="padding: 1rem;">Mechanic</td>
+                                    <td style="padding: 1rem; color: var(--color-primary);">
+                                        On Duty</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+            <!-- TAB: Services -->
+            <div id="services" class="tab-pane">
+                <section class="grid-3">
+                    <div class="glass-card">
+                        <h4>Oil Change</h4>
+                        <p class="text-muted">$49 - 30 mins</p><button class="btn btn-outline"
+                            style="margin-top: 1rem; width: 100%;">Edit Service</button>
+                    </div>
+                    <div class="glass-card">
+                        <h4>Brake Pad Replacement</h4>
+                        <p class="text-muted">$89 - 60 mins</p><button class="btn btn-outline"
+                            style="margin-top: 1rem; width: 100%;">Edit Service</button>
+                    </div>
+                    <div class="glass-card">
+                        <h4>Full Synthetic Service</h4>
+                        <p class="text-muted">$199 - 4 hours</p><button class="btn btn-outline"
+                            style="margin-top: 1rem; width: 100%;">Edit Service</button>
+                    </div>
+                </section>
+            </div>
             <!-- TAB: Bookings -->
             <div id="bookings" class="tab-pane">
                 <div class="charts-grid grid-responsive">
@@ -284,8 +368,7 @@
                         <h3>Efficiency Rating</h3>
                         <div
                             style="margin-top: 1.5rem; text-align: left; padding: 1rem; flex: 1; display: flex; flex-direction: column; justify-content: center;">
-                            <div style="margin-bottom: 1rem;">
-                                <span>Master Mechanic A</span>
+                            <div style="margin-bottom: 1rem;"><span>Master Mechanic A</span>
                                 <div
                                     style="height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-top: 5px;">
                                     <div
@@ -293,8 +376,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="margin-bottom: 1rem;">
-                                <span>Service Pro B</span>
+                            <div style="margin-bottom: 1rem;"><span>Service Pro B</span>
                                 <div
                                     style="height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; margin-top: 5px;">
                                     <div
@@ -324,14 +406,16 @@
                                         <td style="padding: 1rem;">Alice</td>
                                         <td style="padding: 1rem;">Audi Q7</td>
                                         <td style="padding: 1rem;"><span
-                                                class="status-badge status-pending">Pending</span></td>
+                                                class="status-badge status-pending">Pending</span>
+                                        </td>
                                     </tr>
                                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
                                         <td style="padding: 1rem;">#BK002</td>
                                         <td style="padding: 1rem;">Robert</td>
                                         <td style="padding: 1rem;">Tesla S</td>
                                         <td style="padding: 1rem;"><span
-                                                class="status-badge status-active">Active</span></td>
+                                                class="status-badge status-active">Active</span>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -339,7 +423,6 @@
                     </div>
                 </section>
             </div>
-
             <!-- TAB: Inventory -->
             <div id="inventory" class="tab-pane">
                 <div class="charts-grid" style="grid-template-columns: repeat(2, 1fr);">
@@ -362,12 +445,14 @@
                                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
                                         <td style="padding: 1rem;">5W-30 Synthetic Oil</td>
                                         <td style="padding: 1rem;">2 Barrels</td>
-                                        <td style="padding: 1rem; color: var(--color-secondary);">Low</td>
+                                        <td style="padding: 1rem; color: var(--color-secondary);">
+                                            Low</td>
                                     </tr>
                                     <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
                                         <td style="padding: 1rem;">Brake Pads (Model X)</td>
                                         <td style="padding: 1rem;">50 Sets</td>
-                                        <td style="padding: 1rem; color: var(--color-success);">Good</td>
+                                        <td style="padding: 1rem; color: var(--color-success);">
+                                            Good</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -375,63 +460,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- TAB: Users -->
-            <div id="users" class="tab-pane">
-                <section class="glass-card">
-                    <div class="section-title">
-                        <h2>User Management</h2>
-                    </div>
-                    <div style="overflow-x: auto; margin-top: 1rem;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <thead>
-                                <tr style="text-align: left; border-bottom: 2px solid var(--text-muted);">
-                                    <th style="padding: 1rem;">Name</th>
-                                    <th style="padding: 1rem;">Email</th>
-                                    <th style="padding: 1rem;">Role</th>
-                                    <th style="padding: 1rem;">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                                    <td style="padding: 1rem;">Alice Wonder</td>
-                                    <td style="padding: 1rem;">alice@example.com</td>
-                                    <td style="padding: 1rem;">Customer</td>
-                                    <td style="padding: 1rem; color: var(--color-success);">Active</td>
-                                </tr>
-                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                                    <td style="padding: 1rem;">Bob Builder</td>
-                                    <td style="padding: 1rem;">bob@example.com</td>
-                                    <td style="padding: 1rem;">Mechanic</td>
-                                    <td style="padding: 1rem; color: var(--color-primary);">On Duty</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-            </div>
-
-            <!-- TAB: Services -->
-            <div id="services" class="tab-pane">
-                <section class="grid-3">
-                    <div class="glass-card">
-                        <h4>Oil Change</h4>
-                        <p class="text-muted">$49 - 30 mins</p>
-                        <button class="btn btn-outline" style="margin-top: 1rem; width: 100%;">Edit Service</button>
-                    </div>
-                    <div class="glass-card">
-                        <h4>Brake Pad Replacement</h4>
-                        <p class="text-muted">$89 - 60 mins</p>
-                        <button class="btn btn-outline" style="margin-top: 1rem; width: 100%;">Edit Service</button>
-                    </div>
-                    <div class="glass-card">
-                        <h4>Full Synthetic Service</h4>
-                        <p class="text-muted">$199 - 4 hours</p>
-                        <button class="btn btn-outline" style="margin-top: 1rem; width: 100%;">Edit Service</button>
-                    </div>
-                </section>
-            </div>
-
             <!-- TAB: Reports -->
             <div id="reports" class="tab-pane">
                 <section class="glass-card">
@@ -447,18 +475,23 @@
                             </thead>
                             <tbody>
                                 <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                                    <td style="padding: 1rem;">2026-05-20 10:00:01</td>
+                                    <td style="padding: 1rem;">2026-05-20 10:00:01
+                                    </td>
                                     <td style="padding: 1rem;">Login Success</td>
                                     <td style="padding: 1rem;">Admin</td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                                    <td style="padding: 1rem;">2026-05-20 10:25:30</td>
-                                    <td style="padding: 1rem;">Service Completed</td>
+                                    <td style="padding: 1rem;">2026-05-20 10:25:30
+                                    </td>
+                                    <td style="padding: 1rem;">Service Completed
+                                    </td>
                                     <td style="padding: 1rem;">Mechanic</td>
                                 </tr>
                                 <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
-                                    <td style="padding: 1rem;">2026-05-20 11:10:00</td>
-                                    <td style="padding: 1rem;">Alert: Low Oil Inventory</td>
+                                    <td style="padding: 1rem;">2026-05-20 11:10:00
+                                    </td>
+                                    <td style="padding: 1rem;">Alert: Low Oil
+                                        Inventory</td>
                                     <td style="padding: 1rem;">System</td>
                                 </tr>
                             </tbody>
@@ -466,37 +499,31 @@
                     </div>
                 </section>
             </div>
-
             <!-- TAB: Settings -->
             <div id="settings" class="tab-pane">
                 <section class="glass-card">
                     <h2>System Settings</h2>
                     <form style="max-width: 600px; margin-top: 1.5rem;">
-                        <div style="margin-bottom: 1.5rem;">
-                            <label style="display: block; margin-bottom: 0.5rem;">Service Center Name</label>
-                            <input type="text" class="form-control" value="AutoPremium HQ"
-                                style="width: 100%; padding: 0.8rem;">
-                        </div>
-                        <div style="margin-bottom: 1.5rem;">
-                            <label style="display: block; margin-bottom: 0.5rem;">Admin Email</label>
-                            <input type="email" class="form-control" value="admin@autopremium.com"
-                                style="width: 100%; padding: 0.8rem;">
-                        </div>
+                        <div style="margin-bottom: 1.5rem;"><label
+                                style="display: block; margin-bottom: 0.5rem;">Service
+                                Center Name</label><input type="text" class="form-control" value="AutoPremium HQ"
+                                style="width: 100%; padding: 0.8rem;"></div>
+                        <div style="margin-bottom: 1.5rem;"><label style="display: block; margin-bottom: 0.5rem;">Admin
+                                Email</label><input type="email" class="form-control" value="admin@autopremium.com"
+                                style="width: 100%; padding: 0.8rem;"></div>
                         <button class="btn btn-primary" style="padding: 0.8rem 2rem;">Apply Changes</button>
                     </form>
                 </section>
             </div>
-
             <!-- Footer -->
             <footer>
                 <div class="container footer-grid">
-                    <div>
-                        <a href="#" class="logo" style="margin-bottom: 1rem; color: #fff;">
-                            <span style="color:var(--color-secondary)">AUTO</span>PREMIUM
+                    <div><a href="#" class="logo" style="margin-bottom: 1rem; color: #fff;"><span
+                                style="color:var(--color-secondary)">AUTO</span>PREMIUM
                         </a>
-                        <p>Professional automobile services tailored for premium vehicles. We ensure quality, safety,
-                            and
-                            performance.</p>
+                        <p>Professional automobile services tailored for
+                            premium vehicles. We ensure quality, safety,
+                            and performance.</p>
                     </div>
                     <div>
                         <h4>Quick Links</h4>
@@ -518,143 +545,315 @@
                     </div>
                     <div>
                         <h4>Contact</h4>
-                        <p style="margin-top: 1rem;">123 Auto Street, Motor City</p>
+                        <p style="margin-top: 1rem;">123 Auto Street, Motor
+                            City</p>
                         <p>+1 234 567 890</p>
                         <p>support@autopremium.com</p>
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; 2026 AutoPremium. All rights reserved.</p>
+                    <p>&copy;
+
+                        2026 AutoPremium. All rights reserved.</p>
                 </div>
             </footer>
         </main>
     </div>
-
     <script src="theme-toggle.js"></script>
     <script src="rtl-toggle.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+    <script>document.addEventListener('DOMContentLoaded', () => {
+
             // ApexCharts Global Config
             const commonOptions = {
                 chart: {
+
                     fontFamily: "'Black Chancery', cursive",
-                    toolbar: { show: false },
+                    toolbar: {
+                        show: false
+                    }
+
+                    ,
                     background: 'transparent',
                     foreColor: 'var(--text-muted)'
-                },
-                dataLabels: { enabled: false },
-                grid: { borderColor: 'rgba(255,255,255,0.05)', strokeDashArray: 4 },
-                tooltip: { theme: 'dark' },
-                theme: { mode: 'dark' }
-            };
+                }
+
+                ,
+                dataLabels: {
+                    enabled: false
+                }
+
+                ,
+                grid: {
+                    borderColor: 'rgba(255,255,255,0.05)', strokeDashArray: 4
+                }
+
+                ,
+                tooltip: {
+                    theme: 'dark'
+                }
+
+                ,
+                theme: {
+                    mode: 'dark'
+                }
+            }
+
+                ;
 
             // 1. Revenue Growth (Bar)
             const revenueChart = new ApexCharts(document.querySelector("#revenueChart"), {
+
                 ...commonOptions,
-                series: [{ name: 'Revenue', data: [15000, 25000, 22500, 40000] }],
-                chart: { ...commonOptions.chart, type: 'bar', height: '100%', width: '100%' },
-                plotOptions: { bar: { borderRadius: 4, columnWidth: '50%' } },
+                series: [{
+                    name: 'Revenue', data: [15000, 25000, 22500, 40000]
+                }
+
+                ],
+                chart: {
+                    ...commonOptions.chart, type: 'bar', height: '100%', width: '100%'
+                }
+
+                ,
+                plotOptions: {
+                    bar: {
+                        borderRadius: 4, columnWidth: '50%'
+                    }
+                }
+
+                ,
                 colors: ['var(--color-success)'],
-                xaxis: { categories: ['Q1', 'Q2', 'Q3', 'Q4'] },
-                yaxis: { labels: { formatter: (val) => '$' + val.toLocaleString() } }
+                xaxis: {
+                    categories: ['Q1', 'Q2', 'Q3', 'Q4']
+                }
+
+                ,
+                yaxis: {
+                    labels: {
+                        formatter: (val) => '$' + val.toLocaleString()
+                    }
+                }
             });
             revenueChart.render();
 
             // 2. Team Workload (Area - Live)
             const workloadChart = new ApexCharts(document.querySelector("#teamWorkloadChart"), {
+
                 ...commonOptions,
-                series: [{ name: 'Load %', data: Array(20).fill(0).map(() => Math.floor(Math.random() * 40) + 20) }],
-                chart: { ...commonOptions.chart, type: 'area', height: '100%', width: '100%', animations: { enabled: false } },
-                stroke: { curve: 'smooth', width: 2 },
-                fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.45, opacityTo: 0.05 } },
+                series: [{
+                    name: 'Load %', data: Array(20).fill(0).map(() => Math.floor(Math.random() * 40) + 20)
+                }
+
+                ],
+                chart: {
+                    ...commonOptions.chart, type: 'area', height: '100%', width: '100%', animations: {
+                        enabled: false
+                    }
+                }
+
+                ,
+                stroke: {
+                    curve: 'smooth', width: 2
+                }
+
+                ,
+                fill: {
+                    type: 'gradient', gradient: {
+                        shadeIntensity: 1, opacityFrom: 0.45, opacityTo: 0.05
+                    }
+                }
+
+                ,
                 colors: ['var(--color-secondary)'],
-                xaxis: { labels: { show: false }, axisBorder: { show: false } },
-                yaxis: { min: 0, max: 100, labels: { formatter: (val) => val + '%' } }
+                xaxis: {
+                    labels: {
+                        show: false
+                    }
+
+                    , axisBorder: {
+                        show: false
+                    }
+                }
+
+                ,
+                yaxis: {
+                    min: 0, max: 100, labels: {
+                        formatter: (val) => val + '%'
+                    }
+                }
             });
             workloadChart.render();
 
             // 3. Service Distribution (Donut)
             new ApexCharts(document.querySelector("#servicePieChart"), {
+
                 ...commonOptions,
                 series: [45, 25, 20, 10],
-                chart: { ...commonOptions.chart, type: 'donut', height: '100%', width: '100%' },
+                chart: {
+                    ...commonOptions.chart, type: 'donut', height: '100%', width: '100%'
+                }
+
+                ,
                 labels: ['Repair', 'Oil', 'Wash', 'Diagnostics'],
                 colors: ['var(--color-primary)', 'var(--color-accent)', 'var(--color-success)', 'var(--color-secondary)'],
-                stroke: { width: 0 },
-                legend: { position: 'bottom' }
+                stroke: {
+                    width: 0
+                }
+
+                ,
+                legend: {
+                    position: 'bottom'
+                }
             }).render();
 
             // 4. Vehicle Models (Pie)
             new ApexCharts(document.querySelector("#modelUsageChart"), {
+
                 ...commonOptions,
                 series: [35, 30, 20, 15],
-                chart: { ...commonOptions.chart, type: 'pie', height: '100%', width: '100%' },
+                chart: {
+                    ...commonOptions.chart, type: 'pie', height: '100%', width: '100%'
+                }
+
+                ,
                 labels: ['BMW', 'Audi', 'Tesla', 'Mercedes'],
                 colors: ['var(--color-primary)', 'var(--color-accent)', 'var(--color-secondary)', '#6c757d'],
-                stroke: { width: 0 },
-                legend: { position: 'bottom' }
+                stroke: {
+                    width: 0
+                }
+
+                ,
+                legend: {
+                    position: 'bottom'
+                }
             }).render();
 
             // 5. Service Regions (Polar Area)
             new ApexCharts(document.querySelector("#regionalServiceChart"), {
+
                 ...commonOptions,
                 series: [30, 45, 15, 10],
-                chart: { ...commonOptions.chart, type: 'polarArea', height: '100%', width: '100%' },
+                chart: {
+                    ...commonOptions.chart, type: 'polarArea', height: '100%', width: '100%'
+                }
+
+                ,
                 labels: ['North', 'South', 'East', 'West'],
                 colors: ['var(--color-success)', 'var(--color-primary)', 'var(--color-accent)', 'var(--color-secondary)'],
-                stroke: { width: 0 },
-                legend: { position: 'bottom' }
+                stroke: {
+                    width: 0
+                }
+
+                ,
+                legend: {
+                    position: 'bottom'
+                }
             }).render();
 
             // 6. Workshop Status (Radial Bar)
             new ApexCharts(document.querySelector("#workshopStatusChart"), {
+
                 ...commonOptions,
                 series: [85, 92, 60],
-                chart: { ...commonOptions.chart, type: 'radialBar', height: '100%', width: '100%' },
-                plotOptions: { radialBar: { dataLabels: { total: { show: true, label: 'Capacity', formatter: () => '79%' } } } },
+                chart: {
+                    ...commonOptions.chart, type: 'radialBar', height: '100%', width: '100%'
+                }
+
+                ,
+                plotOptions: {
+                    radialBar: {
+                        dataLabels: {
+                            total: {
+                                show: true, label: 'Capacity', formatter: () => '79%'
+                            }
+                        }
+                    }
+                }
+
+                ,
                 labels: ['Bays Full', 'Staff On', 'Parts Stock'],
                 colors: ['var(--color-primary)', 'var(--color-success)', 'var(--color-accent)']
             }).render();
 
             // 7. Booking Status (Doughnut)
             new ApexCharts(document.querySelector("#statusChart"), {
+
                 ...commonOptions,
                 series: [60, 25, 15],
-                chart: { ...commonOptions.chart, type: 'donut', height: '100%', width: '100%' },
+                chart: {
+                    ...commonOptions.chart, type: 'donut', height: '100%', width: '100%'
+                }
+
+                ,
                 labels: ['Completed', 'In Progress', 'Pending'],
                 colors: ['var(--color-success)', 'var(--color-primary)', 'var(--color-accent)'],
-                stroke: { width: 0 },
-                legend: { position: 'bottom' }
+                stroke: {
+                    width: 0
+                }
+
+                ,
+                legend: {
+                    position: 'bottom'
+                }
             }).render();
 
             // 8. Revenue Source (Pie)
             new ApexCharts(document.querySelector("#revSourceChart"), {
+
                 ...commonOptions,
                 series: [65, 25, 10],
-                chart: { ...commonOptions.chart, type: 'pie', height: '100%', width: '100%' },
+                chart: {
+                    ...commonOptions.chart, type: 'pie', height: '100%', width: '100%'
+                }
+
+                ,
                 labels: ['Services', 'Parts', 'Consulting'],
                 colors: ['var(--color-primary)', 'var(--color-accent)', 'var(--color-secondary)'],
-                stroke: { width: 0 },
-                legend: { position: 'bottom' }
+                stroke: {
+                    width: 0
+                }
+
+                ,
+                legend: {
+                    position: 'bottom'
+                }
             }).render();
 
             // 9. Customer Satisfaction (Gauge)
             new ApexCharts(document.querySelector("#customerSatisfactionChart"), {
+
                 ...commonOptions,
                 series: [88],
-                chart: { ...commonOptions.chart, type: 'radialBar', height: '100%', width: '100%' },
+                chart: {
+                    ...commonOptions.chart, type: 'radialBar', height: '100%', width: '100%'
+                }
+
+                ,
                 plotOptions: {
                     radialBar: {
+
                         startAngle: -135,
                         endAngle: 135,
-                        hollow: { size: '60%' },
+                        hollow: {
+                            size: '60%'
+                        }
+
+                        ,
                         dataLabels: {
-                            name: { show: true, fontSize: '14px', offsetY: -10 },
-                            value: { show: true, fontSize: '28px', fontWeight: 'bold', offsetY: 5, formatter: (val) => val + '%' }
+                            name: {
+                                show: true, fontSize: '14px', offsetY: -10
+                            }
+
+                            ,
+                            value: {
+                                show: true, fontSize: '28px', fontWeight: 'bold', offsetY: 5, formatter: (val) => val + '%'
+                            }
                         }
                     }
-                },
+                }
+
+                ,
                 fill: {
+
                     type: 'gradient',
                     gradient: {
                         shade: 'dark',
@@ -666,55 +865,125 @@
                         opacityTo: 1,
                         stops: [0, 100]
                     }
-                },
+                }
+
+                ,
                 labels: ['Satisfaction'],
                 colors: ['var(--color-primary)']
             }).render();
 
             // 10. Booking Trends (Line)
             new ApexCharts(document.querySelector("#bookingTrendChart"), {
+
                 ...commonOptions,
-                series: [{ name: 'Bookings', data: [12, 19, 15, 25, 22, 30, 18] }],
-                chart: { ...commonOptions.chart, type: 'line', height: '100%', width: '100%' },
-                stroke: { curve: 'smooth', width: 3 },
+                series: [{
+                    name: 'Bookings', data: [12, 19, 15, 25, 22, 30, 18]
+                }
+
+                ],
+                chart: {
+                    ...commonOptions.chart, type: 'line', height: '100%', width: '100%'
+                }
+
+                ,
+                stroke: {
+                    curve: 'smooth', width: 3
+                }
+
+                ,
                 colors: ['var(--color-primary)'],
-                xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], labels: { show: true } }
+                xaxis: {
+                    categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], labels: {
+                        show: true
+                    }
+                }
             }).render();
 
             // 11. Service vs Parts (Stacked Bar)
             new ApexCharts(document.querySelector("#servicePartsChart"), {
+
                 ...commonOptions,
-                series: [
-                    { name: 'Services', data: [12000, 19000, 15000, 22000] },
-                    { name: 'Parts', data: [3000, 6000, 7500, 18000] }
+                series: [{
+                    name: 'Services', data: [12000, 19000, 15000, 22000]
+                }
+
+                    ,
+                {
+                    name: 'Parts', data: [3000, 6000, 7500, 18000]
+                }
+
                 ],
-                chart: { ...commonOptions.chart, type: 'bar', height: '100%', width: '100%', stacked: true },
+                chart: {
+                    ...commonOptions.chart, type: 'bar', height: '100%', width: '100%', stacked: true
+                }
+
+                ,
                 colors: ['var(--color-primary)', 'var(--color-accent)'],
-                xaxis: { categories: ['Q1', 'Q2', 'Q3', 'Q4'] }
+                xaxis: {
+                    categories: ['Q1', 'Q2', 'Q3', 'Q4']
+                }
             }).render();
 
             // 12. Market Analysis (Static)
             new ApexCharts(document.querySelector("#marketAnalysisChart"), {
+
                 ...commonOptions,
-                series: [{ name: 'Market Share', data: [12, 18, 15, 25, 20, 30] }],
-                chart: { ...commonOptions.chart, type: 'area', height: '100%', width: '100%' },
+                series: [{
+                    name: 'Market Share', data: [12, 18, 15, 25, 20, 30]
+                }
+
+                ],
+                chart: {
+                    ...commonOptions.chart, type: 'area', height: '100%', width: '100%'
+                }
+
+                ,
                 colors: ['var(--color-secondary)'],
-                stroke: { curve: 'smooth', width: 2 },
-                fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.1 } },
-                xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'] }
+                stroke: {
+                    curve: 'smooth', width: 2
+                }
+
+                ,
+                fill: {
+                    type: 'gradient', gradient: {
+                        shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.1
+                    }
+                }
+
+                ,
+                xaxis: {
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+                }
             }).render();
 
             // 13. Yearly Projection (Static)
             new ApexCharts(document.querySelector("#projectionChart"), {
+
                 ...commonOptions,
-                series: [
-                    { name: 'Actual', data: [45, 52, 38, 24, 33, 26, 21, 20] },
-                    { name: 'Projected', data: [35, 41, 62, 42, 13, 18, 29, 37] }
+                series: [{
+                    name: 'Actual', data: [45, 52, 38, 24, 33, 26, 21, 20]
+                }
+
+                    ,
+                {
+                    name: 'Projected', data: [35, 41, 62, 42, 13, 18, 29, 37]
+                }
+
                 ],
-                chart: { ...commonOptions.chart, type: 'line', height: '100%', width: '100%' },
+                chart: {
+                    ...commonOptions.chart, type: 'line', height: '100%', width: '100%'
+                }
+
+                ,
                 colors: ['var(--color-success)', 'var(--color-muted)'],
-                stroke: { width: [3, 2], dashArray: [0, 5] },
-                xaxis: { categories: ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027'] }
+                stroke: {
+                    width: [3, 2], dashArray: [0, 5]
+                }
+
+                ,
+                xaxis: {
+                    categories: ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027']
+                }
             }).render();
 
             // LIVE UPDATE LOGIC
@@ -724,38 +993,76 @@
                 const nextVal = Math.floor(Math.random() * (60 - 20) + 20);
                 currentData.push(nextVal);
                 currentData.shift();
-                workloadChart.updateSeries([{ data: currentData }]);
+
+                workloadChart.updateSeries([{
+                    data: currentData
+                }
+
+                ]);
 
                 // Revenue Ticker
                 const tickerRev = document.querySelector('#ticker-revenue');
+
                 if (tickerRev) {
                     let curRev = parseInt(tickerRev.innerText.replace(/[^0-9]/g, ''));
                     curRev += Math.floor(Math.random() * 50) + 10;
                     tickerRev.innerText = '$' + curRev.toLocaleString();
                 }
-            }, 3000);
+            }
 
-            // Tab Switching Logic
-            const tabLinks = document.querySelectorAll('.tab-link');
-            const tabPanes = document.querySelectorAll('.tab-pane');
+                , 3000);
 
-            tabLinks.forEach(link => {
+            // Smooth Scrolling & ScrollSpy Logic
+            const mainContent = document.querySelector('.main-content');
+            const navLinks = document.querySelectorAll('.sidebar-menu a.nav-link');
+            const sections = document.querySelectorAll('.tab-pane');
+
+            // Handle Sidebar Clicks for Smooth Scroll
+            navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
-                    const targetTab = link.getAttribute('data-tab');
-                    tabLinks.forEach(l => l.classList.remove('active'));
-                    link.classList.add('active');
-                    tabPanes.forEach(pane => {
-                        pane.classList.remove('active');
-                        if (pane.id === targetTab) pane.classList.add('active');
-                    });
-                    window.dispatchEvent(new Event('resize'));
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+
+                    if (targetSection) {
+                        mainContent.scrollTo({
+                            top: targetSection.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+
+                        // Manually set active class immediately for feedback
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+                    }
                 });
             });
+
+            // IntersectionObserver for ScrollSpy
+            const observerOptions = {
+                root: mainContent,
+                rootMargin: '-10% 0px -80% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+
+            // Trigger resize for charts when they become visible (though now they are all visible)
+            window.dispatchEvent(new Event('resize'));
         });
     </script>
     <script src="main.js"></script>
     <script src="transitions.js"></script>
 </body>
 
-</html>
-```
+</html>```

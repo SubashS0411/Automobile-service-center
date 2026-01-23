@@ -50,6 +50,12 @@
             right: 0;
         }
 
+        /* Fix for select options in dark mode */
+        [data-theme="dark"] .form-control option {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+        }
+
         .form-control:focus {
             border-bottom-color: var(--color-primary);
         }
@@ -162,7 +168,7 @@
                     </div>
                 </div>
 
-                <a href="contact.html">Contact</a>
+                <a href="contact.html" class="active">Contact</a>
 
                 <!-- Visual separator before auth links -->
                 <span style="width: 1px; height: 20px; background: var(--border-glass); margin: 0 0.5rem;"></span>
